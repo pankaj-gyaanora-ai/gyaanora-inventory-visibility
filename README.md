@@ -121,7 +121,104 @@ This is the key architectural decision. The available number must be:
 
 ---
 
-## Tech Stack — Current
+## Demo
+
+> 📹 **[Watch the full walkthrough video](doc/Inventory_Visibility.mov)**
+
+---
+
+## How the Dashboard Works
+
+The ops console (`ops-console.html`) has two navigation groups — **Operations** for daily use and **Engine** for configuration and audit.
+
+```
+Operations          │  Engine
+────────────────    │  ──────────────────────
+Command centre      │  Availability formula
+Exception queue     │  Feeds & extensibility
+Inventory explorer  │  Data quality & run manifest
+                    │  Forecast & risk
+                    │  AI layer
+                    │  API & CLI · Architecture
+```
+
+---
+
+### 1 — Command Centre
+
+> **Replaces the morning spreadsheet.** Shows the true ATP number, the gap vs what ops was reading, and the money at risk — all from a single run.
+
+**The six KPI cards:**
+
+| Card | Live value | What it means |
+|---|---|---|
+| True available today | **209,160 units** | What sales can safely promise right now |
+| Availability overstated by | **100,148 units (32.4%)** | How wrong the old WMS-only method was |
+| Revenue at risk | **$109,484** | Money attached to promises that cannot be kept |
+| Orders exposed to penalties | **25** | Open orders on oversold products with an OTIF clause |
+| Open exceptions | **27 critical / 21 warning** | Problems to action this morning |
+| Manual reconciliation time | **0 min** | Was ~60 min/day of spreadsheet work |
+
+**The reconciliation ladder** — the most persuasive object on the screen:
+
+```
+What ops read from the WMS export            309,308
+   less units already reserved by orders    −  83,190
+   less inbound stock not yet arrived       −  16,173
+   less damaged, blocked & safety stock     −     785
+──────────────────────────────────────────────────────
+Available to sell today                      209,160
+```
+
+> Start at the top — that's what they were reading. Every line below it is a reason that number was a lie. The bottom line is the only one you can safely sell against.
+
+---
+
+### 2 — Exception Queue
+
+> **The morning worklist.** Every anomaly the engine found, sorted by severity, each with the arithmetic and a suggested action.
+
+**Flag types caught automatically:**
+
+| Flag | Count | Plain English |
+|---|---|---|
+| `OVERSOLD` | 22 | Promised more than held — revenue at risk today |
+| `NEGATIVE_ON_HAND` | 2 | Warehouse reports physically impossible stock |
+| `ORPHAN_SKU_IN_ORDERS` | 2 | Selling a product the warehouse has never heard of |
+| `LOCATION_OVERSOLD` | 8 | One warehouse short while another has spare — move, don't cancel |
+| `OVERDUE_INBOUND` | 5 | Delivery late and quietly inflating the future number |
+| `BELOW_SAFETY_STOCK` | 3 | Buffer eaten into — reorder signal |
+| `UOM_UNKNOWN` | 1 | Product arrived in a unit with no conversion rule |
+| `DUPLICATE_RECORD` | 1 | Same row appeared twice in an export — dropped |
+| `BAD_INPUT_ROW` | 1 | Text where a number should be — quarantined |
+
+Click any row → a panel slides out showing the **exact arithmetic**, the **source order IDs**, and which orders carry penalty clauses. No one has to take the number on trust.
+
+---
+
+### 3 — Inventory Explorer
+
+> **The searchable catalogue.** Every SKU, its true ATP number, and one click to the full lineage behind it.
+
+- Filter by status: oversold · location short · negative · orphan · below safety stock
+- Sort by available, ATP 7-day, on-hand, or revenue at risk
+- Export to CSV for procurement or sales teams
+- Click any SKU to see the full `on_hand − reserved + incoming` breakdown with source row evidence
+
+---
+
+### 4 — Engine Tabs (for configuration & audit)
+
+| Tab | What it does |
+|---|---|
+| **Availability formula** | Live sandbox — change the formula, see the impact on ATP before publishing |
+| **Feeds & extensibility** | Add / remove source systems via YAML — no code change needed |
+| **Data quality** | Quarantine log, normalisation before/after, row-level audit trail |
+| **Forecast & risk** | 7-day ATP projection, SKU risk ranking, supplier ETA predictions |
+| **AI layer** | LLM exception triage briefs, natural language inventory queries |
+| **API & CLI** | Live endpoint explorer, CLI command reference |
+
+---
 
 ### Core Engine
 

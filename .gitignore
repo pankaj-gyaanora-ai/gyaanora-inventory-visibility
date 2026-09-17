@@ -73,3 +73,7 @@ Thumbs.db
 *.zip
 *.tar.gz
 *.pyc
+
+# Large media files — host externally
+*.mov
+*.mp4
