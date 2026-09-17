@@ -123,7 +123,9 @@ This is the key architectural decision. The available number must be:
 
 ## Demo
 
-> 📹 **[Watch the full walkthrough video](Inventory_Visibility-availability-platform/doc/Inventory_Visibility.mp4)**
+> 📹 **[Watch the full walkthrough video on YouTube](https://youtu.be/2CGv9RLu9GQ)**
+
+[![Inventory Visibility Demo](https://img.youtube.com/vi/2CGv9RLu9GQ/maxresdefault.jpg)](https://youtu.be/2CGv9RLu9GQ)
 
 ---
 
