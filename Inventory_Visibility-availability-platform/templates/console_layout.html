@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inventory Visibility — Availability Reconciliation Platform</title>
+<style>
+:root{
+  --navy:#0b1b32; --navy2:#122744; --line:#e5e9f0; --line2:#cdd5e0;
+  --ink:#0f172a; --mute:#64748b; --mute2:#94a3b8; --bg:#f5f7fa; --card:#fff;
+  --crit:#be123c; --critbg:#fff1f2; --warn:#b45309; --warnbg:#fffbeb;
+  --ok:#047857; --okbg:#ecfdf5; --accent:#1d4ed8; --accentbg:#eff6ff;
+  --shadow:0 1px 2px rgba(15,23,42,.05),0 3px 10px rgba(15,23,42,.045);
+  --r:10px; --s1:6px; --s2:12px; --s3:18px; --s4:26px;
+  --navw:230px; --headh:58px;
+}
+*{box-sizing:border-box;min-width:0}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+     color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+code,.mono{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;font-size:.94em}
+
+/* ============================ app chrome ============================ */
+header{background:var(--navy);color:#fff;display:flex;align-items:center;gap:var(--s3);
+       padding:0 var(--s3);height:var(--headh);position:sticky;top:0;z-index:60}
+.brand{display:flex;align-items:center;gap:10px;font-weight:650;letter-spacing:.2px;flex:none}
+.logo{width:29px;height:29px;border-radius:7px;background:linear-gradient(135deg,#3b82f6,#1e40af);
+      display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;flex:none}
+.brand div{line-height:1.25;white-space:nowrap}
+.brand small{display:block;font-weight:400;font-size:10.5px;color:#8fa8c8;letter-spacing:.3px}
+.hspace{flex:1 1 auto}
+.hmeta{display:flex;align-items:center;gap:var(--s3);font-size:11.5px;color:#a8bcd6;
+       flex:0 1 auto;min-width:0;overflow:hidden}
+.hmeta > div{line-height:1.35;white-space:nowrap}
+.hmeta b{color:#fff;font-weight:600;display:block}
+.pill{padding:3px 10px;border-radius:20px;font-size:10.5px;font-weight:700;letter-spacing:.4px;
+      white-space:nowrap;flex:none}
+.pill.ok{background:rgba(16,185,129,.16);color:#6ee7b7;border:1px solid rgba(16,185,129,.35)}
+.pill.env{background:rgba(255,255,255,.08);color:#cbd5e1;border:1px solid rgba(255,255,255,.16)}
+@media(max-width:1180px){ .hmeta .opt{display:none} }
+@media(max-width:900px){ .hmeta{display:none} }
+
+.layout{display:flex;align-items:flex-start;min-height:calc(100vh - var(--headh))}
+nav{width:var(--navw);flex:0 0 var(--navw);background:#fff;border-right:1px solid var(--line);
+    padding:var(--s2) 10px var(--s4);position:sticky;top:var(--headh);
+    height:calc(100vh - var(--headh));overflow-y:auto;z-index:40}
+nav .grp{font-size:9.5px;letter-spacing:.9px;color:var(--mute2);font-weight:700;
+         padding:var(--s3) 10px var(--s1);text-transform:uppercase}
+nav .grp:first-child{padding-top:var(--s1)}
+nav button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:none;
+           padding:8px 10px;border-radius:8px;cursor:pointer;font:inherit;color:#334155;font-weight:500;
+           font-size:13.5px;line-height:1.3}
+nav button:hover{background:#f1f5f9}
+nav button.on{background:var(--accentbg);color:var(--accent);font-weight:650}
+nav .count{margin-left:auto;font-size:10.5px;background:#eef2f7;color:var(--mute);
+           padding:1px 7px;border-radius:10px;font-weight:600;flex:none}
+nav button.on .count{background:#dbeafe;color:var(--accent)}
+
+main{flex:1 1 auto;min-width:0;padding:var(--s4) var(--s4) 64px;max-width:1560px}
+@media(max-width:1000px){
+  .layout{flex-direction:column}
+  nav{width:100%;flex:none;height:auto;position:static;border-right:0;border-bottom:1px solid var(--line);
+      display:flex;flex-wrap:wrap;gap:4px;padding:10px}
+  nav .grp{display:none}
+  nav button{width:auto}
+  main{padding:var(--s3) var(--s3) 48px}
+}
+
+h1{font-size:20px;margin:0 0 3px;letter-spacing:-.2px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+h2{font-size:14.5px;margin:var(--s4) 0 var(--s2);letter-spacing:-.1px}
+h3{font-size:12px;margin:0 0 var(--s2);color:var(--mute);text-transform:uppercase;letter-spacing:.6px;
+   font-weight:700;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+h3 .n{text-transform:none;letter-spacing:0;font-weight:400;color:var(--mute2)}
+.sub{color:var(--mute);margin:0 0 var(--s4);font-size:13px;max-width:82ch}
+.panel{display:none;animation:fade .16s ease-out}
+.panel.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+/* ============================ cards ============================ */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(212px,1fr));gap:var(--s2);
+       align-items:stretch}
+.cards.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cards.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:640px){.cards.c3,.cards.c2{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 15px;
+      box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0}
+.card .lab{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.6px;
+           font-weight:700;line-height:1.35}
+.card .val{font-size:25px;font-weight:700;letter-spacing:-.7px;margin:6px 0 4px;
+           font-variant-numeric:tabular-nums;line-height:1.15;word-break:break-word}
+.card .val.sm{font-size:17px;letter-spacing:-.2px;padding-top:5px}
+.card .hint{font-size:11.5px;color:var(--mute2);line-height:1.45;margin-top:auto}
+.card.crit{border-left:3px solid var(--crit)} .card.crit .val{color:var(--crit)}
+.card.warn{border-left:3px solid var(--warn)} .card.warn .val{color:var(--warn)}
+.card.good{border-left:3px solid var(--ok)}   .card.good .val{color:var(--ok)}
+.card.blue{border-left:3px solid var(--accent)} .card.blue .val{color:var(--accent)}
+
+.box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:var(--s3);
+     box-shadow:var(--shadow);margin-bottom:var(--s2);min-width:0;overflow:hidden}
+.grid2{display:grid;grid-template-columns:minmax(0,1.32fr) minmax(0,1fr);gap:var(--s2);
+       align-items:start;margin-bottom:0}
+.grid2.even{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media(max-width:1180px){.grid2,.grid2.even{grid-template-columns:minmax(0,1fr)}}
+.stack{margin-top:var(--s2)}
+
+/* ============================ tables ============================ */
+.tw{overflow-x:auto;margin:0 -2px;-webkit-overflow-scrolling:touch}
+.tw.tall{max-height:460px;overflow-y:auto}
+table{width:100%;border-collapse:collapse;font-size:12.8px}
+th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--mute);
+   font-weight:700;padding:8px 9px;border-bottom:1px solid var(--line2);white-space:nowrap;
+   background:#fafbfd;position:sticky;top:0;z-index:2}
+.tw:not(.tall) th{position:static}
+td{padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#f8fafc}
+tr.clk{cursor:pointer}
+tr.clk:hover{background:var(--accentbg)}
+.num{text-align:right;font-variant-numeric:tabular-nums;
+     font-family:ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+td.wrap{white-space:normal;min-width:180px}
+.tag{display:inline-block;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;
+     letter-spacing:.3px;white-space:nowrap;line-height:1.5}
+.t-crit{background:var(--critbg);color:var(--crit)} .t-warn{background:var(--warnbg);color:var(--warn)}
+.t-info{background:#f1f5f9;color:var(--mute)} .t-ok{background:var(--okbg);color:var(--ok)}
+.t-blue{background:var(--accentbg);color:var(--accent)}
+.flagchip{display:inline-block;background:#f1f5f9;color:#475569;border:1px solid var(--line);
+          padding:1px 6px;border-radius:5px;font-size:9.8px;margin:1px 3px 1px 0;font-weight:600;
+          white-space:nowrap}
+.sku{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:650;color:var(--accent);white-space:nowrap}
+
+/* ============================ controls ============================ */
+.ctrls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:var(--s2)}
+.ctrls .grow{flex:1 1 auto}
+input[type=text],select{border:1px solid var(--line2);border-radius:8px;padding:7px 10px;font:inherit;
+                        font-size:13px;background:#fff;color:var(--ink);min-width:0;max-width:100%}
+input[type=text]{min-width:190px}
+select{min-width:150px}
+input[type=text]:focus,select:focus{outline:2px solid #bfdbfe;outline-offset:0;border-color:var(--accent)}
+.seg{display:flex;border:1px solid var(--line2);border-radius:8px;overflow:hidden;background:#fff;flex:none}
+.seg button{border:0;background:none;padding:7px 12px;cursor:pointer;font:inherit;color:var(--mute);
+            font-weight:600;font-size:12.5px;white-space:nowrap}
+.seg button + button{border-left:1px solid var(--line)}
+.seg button.on{background:var(--navy);color:#fff}
+.btn{border:1px solid var(--line2);background:#fff;border-radius:8px;padding:7px 12px;cursor:pointer;
+     font:inherit;font-weight:600;font-size:12.5px;color:#334155;white-space:nowrap}
+.btn:hover{background:#f8fafc;border-color:var(--mute2)}
+.btn.pri{background:var(--navy);color:#fff;border-color:var(--navy)}
+.muted{color:var(--mute)} .small{font-size:11.8px}
+.count-note{font-size:11.8px;color:var(--mute);margin-left:auto;white-space:nowrap}
+
+/* ============================ drawer ============================ */
+.scrim{position:fixed;inset:0;background:rgba(15,23,42,.42);opacity:0;pointer-events:none;
+       transition:opacity .18s;z-index:80}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:min(720px,96vw);background:#fff;z-index:90;
+        box-shadow:-8px 0 30px rgba(15,23,42,.16);transform:translateX(100%);transition:transform .22s;
+        overflow-y:auto;overflow-x:hidden;padding:22px 24px 60px}
+.drawer.on{transform:none}
+.drawer h1{padding-right:44px}
+.drawer .x{position:absolute;top:14px;right:16px;border:0;background:#f1f5f9;border-radius:7px;
+           width:30px;height:30px;cursor:pointer;font-size:17px;color:var(--mute);line-height:1;z-index:2}
+.drawer .x:hover{background:#e2e8f0}
+.calc{background:var(--navy);color:#e2e8f0;border-radius:9px;padding:14px 16px;
+      font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;line-height:1.85;
+      overflow-x:auto;white-space:pre-wrap;word-break:break-word}
+.calc .g{color:#6ee7b7}.calc .r{color:#fda4af}.calc .b{color:#93c5fd}.calc .d{color:#8296b0}
+pre.code{background:#0b1b32;color:#e2e8f0;border-radius:9px;padding:14px 16px;overflow-x:auto;
+         font-size:11.8px;line-height:1.6;margin:0;white-space:pre;tab-size:2}
+pre.code .c{color:#8296b0}.k{color:#93c5fd}.s{color:#6ee7b7}.n{color:#fda4af}
+
+/* ============================ misc ============================ */
+.bar{height:8px;border-radius:5px;background:#eef2f7;overflow:hidden;display:flex}
+.bar i{display:block;height:100%}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.8px;color:var(--mute);margin-top:9px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}
+.kv{display:grid;grid-template-columns:minmax(140px,190px) minmax(0,1fr);gap:6px 14px;font-size:12.8px;margin:0}
+.kv dt{color:var(--mute)} .kv dd{margin:0;font-weight:550;word-break:break-word}
+.feed{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);min-width:0}
+.feed:last-child{border:0;padding-bottom:0}
+.feed .ic{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;font-size:11px;
+          font-weight:800;color:#fff;flex:none}
+.feed .fx{flex:1 1 auto;min-width:0}
+.feed .fx b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.feed .fr{text-align:right;flex:none}
+.note{background:var(--accentbg);border-left:3px solid var(--accent);padding:11px 14px;
+      border-radius:0 8px 8px 0;font-size:12.5px;color:#1e3a8a;margin:var(--s2) 0;line-height:1.6}
+.note:last-child{margin-bottom:0}
+.note.warn{background:var(--warnbg);border-color:var(--warn);color:#78350f}
+.note.crit{background:var(--critbg);border-color:var(--crit);color:#881337}
+.note.ok{background:var(--okbg);border-color:var(--ok);color:#065f46}
+.empty{padding:40px 20px;text-align:center;color:var(--mute2);font-size:12.5px}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:0 0 var(--s3);overflow-x:auto}
+.tabs button{border:0;background:none;padding:9px 14px;cursor:pointer;font:inherit;font-weight:600;
+             color:var(--mute);border-bottom:2px solid transparent;font-size:12.8px;white-space:nowrap}
+.tabs button.on{color:var(--accent);border-color:var(--accent)}
+.spark{display:block;width:100%;height:56px}
+.stat{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--line);
+      font-size:12.8px}
+.stat:last-child{border:0}
+.stat b{font-variant-numeric:tabular-nums;white-space:nowrap}
+footer{border-top:1px solid var(--line);margin-top:var(--s4);padding-top:var(--s2);
+       font-size:11.5px;color:var(--mute2);display:flex;gap:var(--s3);flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><div class="logo">M</div>
+    <div>Inventory Visibility<small>Availability Reconciliation Platform</small></div></div>
+  <div class="hspace"></div>
+  <div class="hmeta">
+    <div>Run<br><b class="mono" id="hRun">—</b></div>
+    <div>Data as of<br><b id="hAsOf">—</b></div>
+    <div>Engine<br><b id="hVer">—</b></div>
+    <span class="pill env">PRODUCTION</span>
+    <span class="pill ok" id="hStatus">PUBLISHED</span>
+  </div>
+</header>
+
+<div class="layout">
+<nav>
+  <div class="grp">Operations</div>
+  <button class="on" data-p="cc">Command centre</button>
+  <button data-p="exc">Exception queue<span class="count" id="nExc">0</span></button>
+  <button data-p="inv">Inventory explorer<span class="count" id="nInv">0</span></button>
+  <div class="grp">Engine</div>
+  <button data-p="formula">Availability formula</button>
+  <button data-p="calc">Calculations</button>
+  <button data-p="feeds">Feeds &amp; extensibility</button>
+  <button data-p="quality">Data quality</button>
+  <div class="grp">Intelligence · advisory</div>
+  <button data-p="fcst">Forecast &amp; risk<span class="count" id="nRisk">0</span></button>
+  <button data-p="ai">AI layer</button>
+  <div class="grp">Integration</div>
+  <button data-p="api">API &amp; CLI</button>
+  <button data-p="arch">Architecture</button>
+</nav>
+
+<main>
+<section class="panel on" id="p-cc">
+  <h1>Morning command centre</h1>
+  <p class="sub">One reconciled sellable number per SKU, computed from every registered feed at
+     <span id="ccAsOf"></span>. Ops works this screen instead of the spreadsheet.</p>
+
+  <div class="box" id="ccSchedule" style="padding:12px 16px;display:flex;gap:26px;flex-wrap:wrap;
+       align-items:center;font-size:12.5px"></div>
+
+  <div class="cards" id="ccCards"></div>
+
+  <div class="grid2" style="margin-top:18px">
+    <div class="box">
+      <h3>The number ops used to read vs the number that is true</h3>
+      <div id="ccCompare"></div>
+      <div class="note crit" id="ccNote"></div>
+    </div>
+    <div class="box">
+      <h3>Where the units went</h3>
+      <div id="ccWaterfall"></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="box">
+      <h3>Highest exposure right now</h3>
+      <div class="tw"><table><thead><tr><th>SKU</th><th>Issue</th><th class="num">Units short</th>
+        <th class="num">Revenue at risk</th><th>Action</th></tr></thead>
+        <tbody id="ccTop"></tbody></table></div>
+    </div>
+    <div class="box">
+      <h3>Feed health</h3>
+      <div id="ccFeeds"></div>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="p-exc">
+  <h1>Exception queue</h1>
+  <p class="sub">Every flag carries a severity, the evidence rows that produced it, and the action that clears it.
+     This is the morning worklist — and the count trending down is data-quality debt being paid off.</p>
+  <div class="ctrls">
+    <div class="seg" id="excSev">
+      <button class="on" data-v="">All</button><button data-v="critical">Critical</button>
+      <button data-v="warning">Warning</button><button data-v="info">Info</button></div>
+    <select id="excFlag"></select>
+    <input type="text" id="excQ" placeholder="Search SKU or message…">
+    <button class="btn" id="excExport">Export CSV</button>
+    <span class="count-note" id="excCount"></span>
+  </div>
+  <div class="box" style="padding:0;overflow:hidden">
+    <div class="tw"><table><thead><tr><th style="width:86px">Severity</th><th style="width:180px">Flag</th>
+      <th style="width:104px">SKU</th><th style="min-width:280px">What it means</th>
+      <th style="min-width:240px">Suggested action</th></tr></thead>
+      <tbody id="excBody"></tbody></table></div>
+  </div>
+</section>
+
+<section class="panel" id="p-inv">
+  <h1>Inventory explorer</h1>
+  <p class="sub">Click any row for the arithmetic, the per-warehouse split and the source records behind the number.</p>
+  <div class="ctrls">
+    <input type="text" id="invQ" class="grow" placeholder="Search SKU or description…">
+    <select id="invFlag"><option value="">All SKUs</option>
+      <option value="OVERSOLD">Oversold only</option>
+      <option value="LOCATION_OVERSOLD">Location short</option>
+      <option value="NEGATIVE_ON_HAND">Negative on hand</option>
+      <option value="ORPHAN">Orphan SKUs</option>
+      <option value="EXCLUDED_FROM_PUBLISH">Excluded from publish</option>
+      <option value="BELOW_SAFETY_STOCK">Below safety stock</option>
+      <option value="STOCKOUT">Stockout</option></select>
+    <select id="invConf"><option value="">Any confidence</option>
+      <option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select>
+    <button class="btn" id="invExport">Export CSV</button>
+    <span class="count-note" id="invCount"></span>
+  </div>
+  <div class="box" style="padding:0;overflow:hidden">
+    <div class="tw"><table><thead><tr>
+      <th data-s="sku">SKU</th><th>Description</th>
+      <th class="num" data-s="available">Available</th><th class="num" data-s="atp_7d">ATP 7d</th>
+      <th class="num" data-s="on_hand">On hand</th><th class="num" data-s="reserved">Reserved</th>
+      <th class="num" data-s="inbound">Inbound</th><th>Confidence</th><th>Flags</th>
+    </tr></thead><tbody id="invBody"></tbody></table></div>
+  </div>
+  <p class="muted small" id="invMore" style="text-align:center"></p>
+</section>
+
+<section class="panel" id="p-formula">
+  <h1>The availability formula</h1>
+  <p class="sub">The formula is defined over <b>buckets in configuration</b>, not over sources in code.
+     Change a sign below and every number on this page recomputes — that is exactly what editing
+     <code>sources.yaml</code> does in production, with no deployment.</p>
+
+  <div class="note">Live sandbox. Toggling a sign here mirrors a one-line YAML change reviewed by Ops.
+     The classic mistake — counting inbound stock as sellable today — is one click away, and the impact is measurable.</div>
+
+  <div class="grid2">
+    <div class="box">
+      <h3>Bucket signs</h3>
+      <div class="tw"><table><thead><tr><th style="min-width:150px">Bucket</th><th>Owner</th><th style="width:196px">In available</th>
+        <th style="width:90px">In ATP</th><th class="num">Units</th></tr></thead>
+        <tbody id="fmBody"></tbody></table></div>
+      <div style="margin-top:14px;display:flex;gap:9px">
+        <button class="btn" id="fmReset">Reset to production config</button>
+        <button class="btn" id="fmNaive">Apply the naive formula</button>
+      </div>
+    </div>
+    <div class="box">
+      <h3>Impact of the current sign set</h3>
+      <div id="fmImpact"></div>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>Why inbound is excluded</h3>
+    <p class="small muted" style="max-width:80ch;margin:0 0 12px">
+      Units on a supplier PO are not sellable today. Adding them to <code>available</code> is the specific
+      arithmetic that produced this quarter's oversells. They are kept in a separate
+      <code>atp_7d</code> field with a date horizon, so the dashboard can honestly say
+      "80 now, 180 by Friday" without ever letting Friday's stock be sold on Wednesday.</p>
+    <pre class="code" id="fmYaml"></pre>
+  </div>
+</section>
+
+<section class="panel" id="p-feeds">
+  <h1>Feeds &amp; extensibility</h1>
+  <p class="sub">"Don't assume there will always be three sources." Returns was added as feed four with
+     a config block and one adapter class. Nothing in the pipeline, the flag engine, the CLI or the API
+     knows returns exist.</p>
+  <div id="feedCards" class="cards"></div>
+
+  <div class="box" style="margin-top:18px">
+    <h3>Registered feeds</h3>
+    <div class="tw"><table><thead><tr><th>Feed</th><th>Owns buckets</th><th>Criticality</th><th>Policy if missing</th>
+      <th>Exported</th><th>Age</th><th class="num">Records</th><th>State</th></tr></thead>
+      <tbody id="feedTable"></tbody></table></div>
+  </div>
+
+  <div class="grid2">
+    <div class="box">
+      <h3>Fail-closed vs fail-open</h3>
+      <p class="small muted" style="margin-top:0">Overstating availability costs chargebacks and a customer.
+         Understating it costs a little deferred revenue. So every ambiguity resolves downward, and the
+         missing-feed policy differs by whether the feed <i>subtracts</i> or <i>adds</i>.</p>
+      <div class="note crit"><b>Order feed missing → abort.</b> Losing RESERVED would inflate every number
+        on the dashboard. The run stops, the previous publication stays live, ops is paged.</div>
+      <div class="note"><b>Supplier feed missing → complete, degraded.</b> Only ATP is affected, and it can
+        only understate. The run finishes and raises DEGRADED_RUN.</div>
+      <pre class="code" id="failDemo"></pre>
+    </div>
+    <div class="box">
+      <h3>Adding feed five</h3>
+      <p class="small muted" style="margin-top:0">The entire integration surface for a new source:</p>
+      <pre class="code" id="extYaml"></pre>
+      <p class="small muted" style="margin:14px 0 8px"><b>Plus one adapter class.</b> It knows its own file
+         format and its own statuses, and nothing else in the system:</p>
+      <pre class="code" id="extPy"></pre>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="p-quality">
+  <h1>Data quality &amp; run manifest</h1>
+  <p class="sub">Bad rows are quarantined with a reason, never silently dropped and never allowed to crash the run.
+     If the quarantine rate crosses its threshold the run aborts rather than publish a quiet error.</p>
+  <div class="cards" id="qCards"></div>
+
+  <div class="grid2" style="margin-top:18px">
+    <div class="box">
+      <h3>Quarantined rows</h3>
+      <div class="tw"><table><thead><tr><th>Source</th><th>Record</th><th>Reason</th><th>Field</th><th>Raw value</th><th>Action</th></tr></thead>
+        <tbody id="qBody"></tbody></table></div>
+      <div class="note warn" style="margin-bottom:0">Every quarantined row is also raised in the exception
+        queue, so a slowly-degrading export cannot rot unnoticed.</div>
+    </div>
+    <div class="box">
+      <h3>Run manifest</h3>
+      <dl class="kv" id="qManifest"></dl>
+      <h3 style="margin-top:22px">Input fingerprints</h3>
+      <p class="small muted" style="margin-top:-4px">Same inputs produce a byte-identical run. Re-running after
+         a failure is always safe.</p>
+      <div class="tw"><table><thead><tr><th>Feed</th><th>SHA-256 (truncated)</th></tr></thead><tbody id="qHash"></tbody></table></div>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>Normalisation applied before the join</h3>
+    <p class="small muted" style="margin-top:0;max-width:80ch">Three systems, three spellings of the same SKU
+      and the same warehouse. Without this step the join silently misses and availability is computed against
+      a fraction of the real stock.</p>
+    <div class="tw"><table><thead><tr><th style="width:200px">Problem</th><th>Seen in the feeds</th><th>Canonical form</th><th>Consequence if skipped</th></tr></thead>
+      <tbody id="normBody"></tbody></table></div>
+  </div>
+</section>
+
+<section class="panel" id="p-fcst">
+  <h1>Forecast &amp; risk <span class="tag t-blue" style="vertical-align:middle">ADVISORY LAYER</span></h1>
+  <p class="sub">This layer sits <b>on top of</b> the reconciliation run and never inside it. It cannot
+     change <code>available</code>. What it adds is time: <code>available = 41</code> means nothing on
+     its own — it is three weeks of cover for one SKU and six hours for another.</p>
+
+  <div class="cards" id="fcCards"></div>
+
+  <div class="note" id="fcPredictiveNote"></div>
+
+  <div class="box">
+    <h3>Ranked worklist — what to actually do this morning</h3>
+    <div class="ctrls">
+      <div class="seg" id="rkFilter">
+        <button class="on" data-v="">All</button><button data-v="CRITICAL">Critical</button>
+        <button data-v="HIGH">High</button><button data-v="predicted">Predicted only</button></div>
+      <button class="btn" id="rkExport">Export CSV</button>
+      <span class="count-note" id="rkCount"></span>
+    </div>
+    <div class="tw"><table><thead><tr><th style="width:44px">#</th><th>SKU</th><th style="width:74px">Score</th>
+      <th style="width:88px">Band</th><th class="num">Available</th><th class="num">Cover p10</th>
+      <th>Stockout</th><th class="num">Revenue at risk</th><th>Why</th></tr></thead>
+      <tbody id="rkBody"></tbody></table></div>
+    <p class="small muted" style="margin-bottom:0">Click a row for the score decomposition. The score is a
+       transparent weighted sum declared in <code>sources.yaml</code> — a black-box 0–100 that ops cannot
+       interrogate gets ignored inside a week, and then so does everything else on this screen.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="box">
+      <h3>Demand model selection</h3>
+      <p class="small muted" style="margin-top:0">A distributor's catalogue is mostly <b>intermittent</b>
+         demand — long runs of zero days punctuated by small orders. Croston and its SBA bias correction
+         exist for exactly that shape. One global model over all SKUs would be the wrong answer.</p>
+      <div class="tw"><table><thead><tr><th>Demand pattern</th><th>SKUs</th><th>Model applied</th></tr></thead>
+        <tbody id="fcPatterns"></tbody></table></div>
+      <h3 style="margin-top:22px">Backtest — rolling origin, not a random split</h3>
+      <div id="fcQuality"></div>
+    </div>
+    <div class="box">
+      <h3>Supplier reliability — why ATP needs adjusting</h3>
+      <p class="small muted" style="margin-top:0">The engine flags a PO that is <i>provably</i> late.
+         This predicts the ones that are <i>going</i> to be, from each supplier's own record. ATP is only
+         ever as trustworthy as the supplier's ETA, and suppliers are optimistic.</p>
+      <div class="tw"><table><thead><tr><th>Supplier</th><th class="num">POs</th><th class="num">Median slip</th>
+        <th class="num">p90</th><th class="num">&gt;7d late</th><th>Slip risk</th></tr></thead>
+        <tbody id="fcSuppliers"></tbody></table></div>
+      <h3 style="margin-top:22px">Shrinkage — the cause the engine cannot see</h3>
+      <p class="small muted" style="margin-top:0">
+        <code>on_hand(t) = on_hand(t−1) + receipts − shipments + adjustments</code>. Anything left over is
+        unexplained. Every other flag says the number is being <i>used</i> wrongly; this one says the
+        warehouse count is itself drifting above reality.</p>
+      <div class="tw"><table><thead><tr><th>SKU</th><th>Loc</th><th class="num">30-day residual</th><th class="num">z</th>
+        <th>Reading</th></tr></thead><tbody id="fcShrink"></tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="p-ai">
+  <h1>Intelligence &amp; narrative services <span class="tag t-blue" id="aiProvider">SERVICE</span></h1>
+  <p class="sub"><b>Deterministic core, generative periphery.</b> The availability number is computed by the
+     engine and never by a model — it has to be auditable, idempotent and defensible, because it is what
+     justifies declining a customer's order. These services read the published run and produce narrative,
+     drafts and configuration proposals for a human to approve.</p>
+
+  <div class="cards" id="aiCards"></div>
+
+  <div class="grid2 stack">
+    <div class="box">
+      <h3>Daily operations brief <span class="n" id="aiBriefMeta"></span></h3>
+      <div id="aiBrief"></div>
+    </div>
+    <div class="box">
+      <h3>Output verification</h3>
+      <p class="small muted" style="margin-top:0">Generated text is not published until every figure in it
+         has been traced back to the structured facts the service was given. An untraceable number fails the
+         check and the brief is withheld rather than shown to ops.</p>
+      <div id="aiGuardrail"></div>
+      <h3 style="margin-top:22px">Service configuration</h3>
+      <dl class="kv" id="aiConfig"></dl>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="box">
+      <h3>Request payload <span class="n">what the service is given</span></h3>
+      <p class="small muted" style="margin-top:0">Structured engine output only — no source files, no free
+         text, no customer names beyond order identifiers. A bounded input is what keeps cost, latency and
+         disclosure predictable, and it is why the brief cannot leak anything the run did not already publish.</p>
+      <pre class="code" id="aiFacts" style="max-height:320px;overflow:auto"></pre>
+    </div>
+    <div class="box">
+      <h3>Generation instructions</h3>
+      <pre class="code" id="aiPrompt" style="max-height:320px;overflow:auto"></pre>
+    </div>
+  </div>
+
+  <h2 style="margin-top:30px">Source onboarding assistant</h2>
+  <p class="sub">The client warned that source count will grow. Adding a feed was already a config block and
+     an adapter class — this removes the slow part, which was never the code but a human reading an
+     unfamiliar export and working out which columns mean what and which statuses hold stock.</p>
+
+  <div class="grid2">
+    <div class="box">
+      <h3>Input <span class="n">a 3PL consignment export the system has never seen</span></h3>
+      <div class="tw"><table><thead id="mapSampleHead"></thead><tbody id="mapSample"></tbody></table></div>
+
+      <h3 style="margin-top:22px">Proposed field mapping</h3>
+      <div class="tw"><table><thead><tr><th>Canonical</th><th>Source column</th>
+        <th style="width:92px">Confidence</th><th>Note</th></tr></thead>
+        <tbody id="mapFields"></tbody></table></div>
+
+      <h3 style="margin-top:22px">Proposed status → bucket mapping</h3>
+      <div class="tw"><table><thead><tr><th>Source status</th><th>Bucket</th>
+        <th style="width:92px">Confidence</th><th>Note</th></tr></thead>
+        <tbody id="mapBuckets"></tbody></table></div>
+
+      <h3 style="margin-top:22px">New buckets requiring sign-off</h3>
+      <div class="tw"><table><thead><tr><th>Bucket</th><th class="num">Available sign</th>
+        <th class="num">ATP sign</th><th style="width:92px">Confidence</th><th>Why it needs a decision</th></tr></thead>
+        <tbody id="mapNewBuckets"></tbody></table></div>
+    </div>
+    <div class="box">
+      <h3>Open questions <span class="n">where the value actually is</span></h3>
+      <p class="small muted" style="margin-top:0">On this file the assistant surfaced the same double-count
+         trap that caused Inventory Visibility's original oversell — as a question, not a silent assumption. Anything
+         under 0.80 confidence is escalated rather than mapped, because
+         <b>silent confidence is the dangerous failure, not a raised wrong guess</b>.</p>
+      <div id="mapQuestions"></div>
+      <h3 style="margin-top:22px">Proposal checks</h3>
+      <div id="mapValidation"></div>
+      <div class="note" id="mapNext"></div>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>Ownership boundary <span class="n">what is computed, what is generated, what stays human</span></h3>
+    <div class="tw"><table><thead><tr><th style="width:250px">Task</th><th style="width:210px">Owned by</th>
+      <th>Why</th></tr></thead><tbody id="aiGuardTable"></tbody></table></div>
+  </div>
+</section>
+
+<section class="panel" id="p-api">
+  <h1>Integration surface</h1>
+  <p class="sub">One core library. The CLI and the API are both thin callers of it — logic is never duplicated.
+     The API serves the last good published run rather than computing on request, so a failing 06:00 job can
+     never make the dashboard show inflated numbers.</p>
+  <div class="tabs" id="apiTabs">
+    <button class="on" data-t="rest">REST API</button><button data-t="cli">CLI</button>
+  </div>
+  <div id="api-rest">
+    <div class="grid2">
+      <div class="box">
+        <h3>Endpoints</h3>
+        <div class="tw"><table><thead><tr><th style="width:56px">Verb</th><th>Path</th><th>Purpose</th></tr></thead>
+          <tbody id="apiRows"></tbody></table></div>
+        <p class="small muted" style="margin-bottom:0">Every response carries <code>run_id</code> and
+          <code>stale</code>, so the dashboard greys itself out when data is old rather than lying quietly.</p>
+      </div>
+      <div class="box">
+        <h3>Live response <span class="muted small mono" id="apiSel"></span></h3>
+        <pre class="code" id="apiOut" style="max-height:520px;overflow:auto"></pre>
+      </div>
+    </div>
+  </div>
+  <div id="api-cli" style="display:none">
+    <div class="box"><h3>Command line — the 06:00 cron and ops debugging</h3>
+      <pre class="code" id="cliOut"></pre>
+      <div class="note"><b>Exit codes are the contract with the scheduler.</b>
+        <code>0</code> clean · <code>1</code> warnings · <code>2</code> critical exceptions ·
+        <code>3</code> run aborted. Cron and CI act on those without parsing stdout.</div>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="p-arch">
+  <h1>How it fits together</h1>
+  <p class="sub">The root cause was never data volume. Three systems each publish a field called "quantity",
+     the three mean different things, and nobody owned the definition of "available".</p>
+  <div class="box"><pre class="code" style="font-size:12px" id="archArt"></pre></div>
+  <div class="grid2">
+    <div class="box"><h3>Design decisions worth defending</h3><div id="archNotes"></div></div>
+    <div class="box"><h3>Delivery phasing</h3>
+      <div class="tw"><table><thead><tr><th style="width:52px">Phase</th><th>Scope</th><th style="width:96px">Duration</th></tr></thead>
+        <tbody id="archPhases"></tbody></table></div>
+      <div class="note" style="margin-bottom:0">Phase 1 runs in <b>shadow mode</b> beside the existing spreadsheet.
+        Every difference it finds is a real oversell ops was missing — which is also the ROI evidence for the rest.</div>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="p-calc">
+  <h1>How every number is calculated</h1>
+  <p class="sub">Each formula below is the exact arithmetic the engine runs, shown with a real row
+     from today's published run. Nothing here is illustrative — the values match the cards above.</p>
+
+  <div class="note">Deterministic core: same inputs → byte-identical outputs. Every figure traces to source rows.</div>
+
+  <div class="box">
+    <h3>1 · Availability (the one true number)</h3>
+    <pre class="code">available = Σ ( quantity × available_sign[bucket] )
+          = on_hand − reserved − unsellable − safety_stock</pre>
+    <p class="small muted" style="margin:8px 0 0">Example — <b>MSD-2077</b> (Wiper blade Heavy duty):</p>
+    <pre class="code">available = 812 − 1017 − 0 − 0  =  −205
+published = max(0, −205)       =   0     ← can't sell a negative
+raw_available kept as −205               ← the shortfall IS the signal</pre>
+  </div>
+
+  <div class="box">
+    <h3>2 · Available to promise (future)</h3>
+    <pre class="code">atp_7d = available + Σ ( INBOUND where eta ≤ today + 7 days )</pre>
+    <p class="small muted" style="margin:8px 0 0">Inbound has <code>available_sign = 0</code> so it never
+       inflates today's number — it only counts toward ATP, with a date attached.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="box">
+      <h3>3 · Oversold shortfall</h3>
+      <pre class="code">sellable_on_hand = on_hand − unsellable
+shortfall        = reserved − sellable_on_hand</pre>
+      <p class="small muted" style="margin:8px 0 0">MSD-2077: <code>1017 − 812 = 205 units short</code></p>
+    </div>
+
+    <div class="box">
+      <h3>4 · Revenue at risk</h3>
+      <pre class="code">exposure = shortfall × unit_price</pre>
+      <p class="small muted" style="margin:8px 0 0">MSD-2077: <code>205 × $84.16 = $17,252.80</code><br>
+         Card total = Σ exposure over 22 oversold SKUs = <b>$109,484</b></p>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>5 · The overstatement (naive vs true)</h3>
+    <pre class="code">naive             = total_on_hand + total_inbound
+                  = 293,135 + 16,173  =  309,308
+
+overstatement_u   = naive − total_available
+                  = 309,308 − 209,160 =  100,148
+overstatement_pct = 100,148 / 309,308 × 100  =  32.4%</pre>
+  </div>
+
+  <div class="grid2">
+    <div class="box">
+      <h3>6 · Feed health</h3>
+      <pre class="code">age_hours = now − feed.export_time
+stale     = age_hours > feed.sla_hours</pre>
+      <p class="small muted" style="margin:8px 0 0">WMS: 1.25h old, SLA 6h → healthy. Snapshot skew =
+         <code>max(as_of) − min(as_of)</code> = 110 min today.</p>
+    </div>
+
+    <div class="box">
+      <h3>7 · Risk score (advisory, 0–100)</h3>
+      <pre class="code">score = Σ ( component × weight )   # weights in YAML, not a model</pre>
+      <p class="small muted" style="margin:8px 0 0">MSD-2077: 30 (stockout) + 28 (oversold) + 12 (penalty)
+         + 11 (revenue) = <b>81.0</b></p>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>8 · Confidence &amp; days of cover</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Quantity</th><th>Formula</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><b>confidence</b></td><td class="mono small">high if ≥2 sources &amp; no flags; else medium/low</td><td class="small muted">how much to trust the row</td></tr>
+        <tr><td><b>days_of_cover</b></td><td class="mono small">available ÷ demand_rate (p10)</td><td class="small muted">time, not quantity — "lasts until the PO?"</td></tr>
+        <tr><td><b>safety_stock</b></td><td class="mono small">applied once, at the primary location</td><td class="small muted">a per-SKU buffer, not per-warehouse</td></tr>
+      </tbody></table></div>
+  </div>
+</section>
+<footer id="appFooter"></footer>
+</main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer"><button class="x" id="drawerX">×</button><div id="drawerBody"></div></aside>

@@ -1,0 +1,7155 @@
+{
+ "as_of": "2026-09-09T06:00:00Z",
+ "source_system": "NetSuite OM",
+ "export_id": "OM-EXP-20260909-0600",
+ "orders": [
+  {
+   "order_id": "SO-4349",
+   "status": "PACKED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2230",
+     "warehouse": "WH3",
+     "qty": 476
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4254",
+   "status": "ALLOCATED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2185",
+     "warehouse": "WH2",
+     "qty": 51
+    },
+    {
+     "sku": "MSD-2074",
+     "warehouse": "WH2",
+     "qty": 149
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4192",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2039",
+     "warehouse": "WH2",
+     "qty": 25
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4184",
+   "status": "ALLOCATED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2003",
+     "warehouse": "WH2",
+     "qty": 35
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4263",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2168",
+     "warehouse": "WH3",
+     "qty": 236
+    },
+    {
+     "sku": "MSD-2014",
+     "warehouse": "WH3",
+     "qty": 49
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4419",
+   "status": "ALLOCATED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2053",
+     "warehouse": "WH2",
+     "qty": 126
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4425",
+   "status": "PACKED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-18",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2191",
+     "warehouse": "WH1",
+     "qty": 137
+    },
+    {
+     "sku": "MSD-2196",
+     "warehouse": "WH2",
+     "qty": 286
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4070",
+   "status": "SHIPPED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2204",
+     "warehouse": "WH2",
+     "qty": 76
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4153",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2228",
+     "warehouse": "WH2",
+     "qty": 23
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4388",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2088",
+     "warehouse": "WH2",
+     "qty": 213
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4316",
+   "status": "PENDING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2228",
+     "warehouse": "WH2",
+     "qty": 48
+    },
+    {
+     "sku": "MSD-2163",
+     "warehouse": "WH2",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4057",
+   "status": "CLOSED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2213",
+     "warehouse": "WH3",
+     "qty": 193
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4272",
+   "status": "PICKING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2065",
+     "warehouse": "WH1",
+     "qty": 4
+    },
+    {
+     "sku": "MSD-2094",
+     "warehouse": "WH1",
+     "qty": 63
+    },
+    {
+     "sku": "MSD-2091",
+     "warehouse": "WH2",
+     "qty": 59
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4156",
+   "status": "PACKED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2126",
+     "warehouse": "WH2",
+     "qty": 379
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4065",
+   "status": "CLOSED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2062",
+     "warehouse": "WH2",
+     "qty": 114
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4369",
+   "status": "PACKED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2101",
+     "warehouse": "WH3",
+     "qty": 42
+    },
+    {
+     "sku": "MSD-2190",
+     "warehouse": "WH3",
+     "qty": 76
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4411",
+   "status": "PACKED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2113",
+     "warehouse": "WH2",
+     "qty": 16
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4090",
+   "status": "DRAFT",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-10",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2017",
+     "warehouse": "WH2",
+     "qty": 96
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4402",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-09",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2151",
+     "warehouse": "WH3",
+     "qty": 109
+    },
+    {
+     "sku": "MSD-2092",
+     "warehouse": "WH1",
+     "qty": 32
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4180",
+   "status": "ALLOCATED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2218",
+     "warehouse": "WH1",
+     "qty": 106
+    },
+    {
+     "sku": "MSD-2103",
+     "warehouse": "WH1",
+     "qty": 137
+    },
+    {
+     "sku": "MSD-2028",
+     "warehouse": "WH2",
+     "qty": 361
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4177",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-09",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2197",
+     "warehouse": "WH2",
+     "qty": 291
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4324",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2096",
+     "warehouse": "WH1",
+     "qty": 27
+    },
+    {
+     "sku": "MSD-2184",
+     "warehouse": "WH3",
+     "qty": 99
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4230",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2046",
+     "warehouse": "WH1",
+     "qty": 429
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4093",
+   "status": "SHIPPED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2090",
+     "warehouse": "WH1",
+     "qty": 133
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4328",
+   "status": "PICKING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2075",
+     "warehouse": "WH2",
+     "qty": 13
+    },
+    {
+     "sku": "MSD-2087",
+     "warehouse": "WH3",
+     "qty": 94
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4111",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2131",
+     "warehouse": "WH1",
+     "qty": 61
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4298",
+   "status": "PICKING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2188",
+     "warehouse": "WH3",
+     "qty": 255
+    },
+    {
+     "sku": "MSD-2055",
+     "warehouse": "WH1",
+     "qty": 354
+    },
+    {
+     "sku": "MSD-2138",
+     "warehouse": "WH1",
+     "qty": 136
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4139",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2010",
+     "warehouse": "WH3",
+     "qty": 21
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4136",
+   "status": "PICKING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2224",
+     "warehouse": "WH3",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4412",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2081",
+     "warehouse": "WH1",
+     "qty": 112
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4246",
+   "status": "PICKING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2081",
+     "warehouse": "WH1",
+     "qty": 210
+    },
+    {
+     "sku": "MSD-2048",
+     "warehouse": "WH2",
+     "qty": 84
+    },
+    {
+     "sku": "MSD-2158",
+     "warehouse": "WH1",
+     "qty": 11
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4290",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2160",
+     "warehouse": "WH3",
+     "qty": 2
+    },
+    {
+     "sku": "MSD-2131",
+     "warehouse": "WH1",
+     "qty": 55
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4228",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2008",
+     "warehouse": "WH1",
+     "qty": 57
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4208",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2148",
+     "warehouse": "WH1",
+     "qty": 181
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4319",
+   "status": "ALLOCATED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2093",
+     "warehouse": "WH3",
+     "qty": 218
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4201",
+   "status": "PACKED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2100",
+     "warehouse": "WH2",
+     "qty": 74
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4200",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2045",
+     "warehouse": "WH3",
+     "qty": 47
+    },
+    {
+     "sku": "MSD-2134",
+     "warehouse": "WH3",
+     "qty": 157
+    },
+    {
+     "sku": "MSD-2108",
+     "warehouse": "WH1",
+     "qty": 83
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4146",
+   "status": "PACKED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2196",
+     "warehouse": "WH3",
+     "qty": 10
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4188",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2180",
+     "warehouse": "WH3",
+     "qty": 167
+    },
+    {
+     "sku": "MSD-2019",
+     "warehouse": "WH3",
+     "qty": 7
+    },
+    {
+     "sku": "MSD-2172",
+     "warehouse": "WH2",
+     "qty": 89
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4409",
+   "status": "PACKED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2225",
+     "warehouse": "WH3",
+     "qty": 103
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4072",
+   "status": "CANCELLED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2204",
+     "warehouse": "WH2",
+     "qty": 191
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4334",
+   "status": "PICKING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2164",
+     "warehouse": "WH1",
+     "qty": 218
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4249",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2104",
+     "warehouse": "WH1",
+     "qty": 297
+    },
+    {
+     "sku": "MSD-2008",
+     "warehouse": "WH3",
+     "qty": 283
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4398",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2126",
+     "warehouse": "WH1",
+     "qty": 166
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4339",
+   "status": "ALLOCATED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2019",
+     "warehouse": "WH3",
+     "qty": 21
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4040",
+   "status": "DRAFT",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2229",
+     "warehouse": "WH2",
+     "qty": 45
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4027",
+   "status": "CANCELLED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2129",
+     "warehouse": "WH1",
+     "qty": 42
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4389",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2226",
+     "warehouse": "WH1",
+     "qty": 486
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4038",
+   "status": "DRAFT",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2036",
+     "warehouse": "WH2",
+     "qty": 64
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4354",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2006",
+     "warehouse": "WH1",
+     "qty": 55
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4158",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2184",
+     "warehouse": "WH3",
+     "qty": 145
+    },
+    {
+     "sku": "MSD-2247",
+     "warehouse": "WH1",
+     "qty": 82
+    },
+    {
+     "sku": "MSD-2029",
+     "warehouse": "WH2",
+     "qty": 430
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4104",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2115",
+     "warehouse": "WH3",
+     "qty": 239
+    },
+    {
+     "sku": "MSD-2206",
+     "warehouse": "WH2",
+     "qty": 105
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4190",
+   "status": "PENDING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2007",
+     "warehouse": "WH2",
+     "qty": 228
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4223",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2058",
+     "warehouse": "WH2",
+     "qty": 21
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4033",
+   "status": "DRAFT",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2244",
+     "warehouse": "WH3",
+     "qty": 10
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4327",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2091",
+     "warehouse": "WH2",
+     "qty": 128
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4181",
+   "status": "PICKING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2154",
+     "warehouse": "WH2",
+     "qty": 64
+    },
+    {
+     "sku": "MSD-2189",
+     "warehouse": "WH1",
+     "qty": 410
+    },
+    {
+     "sku": "MSD-2113",
+     "warehouse": "WH2",
+     "qty": 7
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4424",
+   "status": "PICKING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2008",
+     "warehouse": "WH2",
+     "qty": 7
+    },
+    {
+     "sku": "MSD-2154",
+     "warehouse": "WH2",
+     "qty": 91
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4359",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2191",
+     "warehouse": "WH2",
+     "qty": 53
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4127",
+   "status": "PICKING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2026",
+     "warehouse": "WH3",
+     "qty": 380
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4018",
+   "status": "CANCELLED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2111",
+     "warehouse": "WH1",
+     "qty": 133
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4209",
+   "status": "PICKING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2003",
+     "warehouse": "WH2",
+     "qty": 51
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4162",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2200",
+     "warehouse": "WH1",
+     "qty": 10
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4097",
+   "status": "CLOSED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2048",
+     "warehouse": "WH2",
+     "qty": 94
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4351",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2198",
+     "warehouse": "WH2",
+     "qty": 56
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4306",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2130",
+     "warehouse": "WH1",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4277",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2207",
+     "warehouse": "WH3",
+     "qty": 470
+    },
+    {
+     "sku": "MSD-2106",
+     "warehouse": "WH1",
+     "qty": 164
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4058",
+   "status": "CLOSED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2208",
+     "warehouse": "WH2",
+     "qty": 37
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4329",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2179",
+     "warehouse": "WH2",
+     "qty": 365
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4120",
+   "status": "PACKED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2068",
+     "warehouse": "WH2",
+     "qty": 9
+    },
+    {
+     "sku": "MSD-2077",
+     "warehouse": "WH1",
+     "qty": 213
+    },
+    {
+     "sku": "MSD-2144",
+     "warehouse": "WH3",
+     "qty": 400
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4234",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2111",
+     "warehouse": "WH2",
+     "qty": 164
+    },
+    {
+     "sku": "MSD-2178",
+     "warehouse": "WH3",
+     "qty": 213
+    },
+    {
+     "sku": "MSD-2038",
+     "warehouse": "WH1",
+     "qty": 55
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4288",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2130",
+     "warehouse": "WH3",
+     "qty": 8
+    },
+    {
+     "sku": "MSD-2176",
+     "warehouse": "WH1",
+     "qty": 3
+    },
+    {
+     "sku": "MSD-2085",
+     "warehouse": "WH3",
+     "qty": 310
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4034",
+   "status": "CANCELLED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2014",
+     "warehouse": "WH3",
+     "qty": 186
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4043",
+   "status": "SHIPPED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2196",
+     "warehouse": "WH2",
+     "qty": 157
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4239",
+   "status": "ALLOCATED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2069",
+     "warehouse": "WH3",
+     "qty": 5
+    },
+    {
+     "sku": "MSD-2053",
+     "warehouse": "WH1",
+     "qty": 172
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4084",
+   "status": "CLOSED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2164",
+     "warehouse": "WH1",
+     "qty": 30
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4312",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-18",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2229",
+     "warehouse": "WH2",
+     "qty": 1
+    },
+    {
+     "sku": "MSD-2168",
+     "warehouse": "WH3",
+     "qty": 339
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4051",
+   "status": "SHIPPED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2002",
+     "warehouse": "WH3",
+     "qty": 189
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4138",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2063",
+     "warehouse": "WH3",
+     "qty": 194
+    },
+    {
+     "sku": "MSD-2159",
+     "warehouse": "WH3",
+     "qty": 25
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4212",
+   "status": "ALLOCATED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2186",
+     "warehouse": "WH2",
+     "qty": 221
+    },
+    {
+     "sku": "MSD-2183",
+     "warehouse": "WH3",
+     "qty": 143
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4075",
+   "status": "SHIPPED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-18",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2117",
+     "warehouse": "WH3",
+     "qty": 53
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4077",
+   "status": "CLOSED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2016",
+     "warehouse": "WH2",
+     "qty": 106
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4152",
+   "status": "ALLOCATED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2029",
+     "warehouse": "WH2",
+     "qty": 240
+    },
+    {
+     "sku": "MSD-2145",
+     "warehouse": "WH1",
+     "qty": 260
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4270",
+   "status": "PENDING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2020",
+     "warehouse": "WH3",
+     "qty": 292
+    },
+    {
+     "sku": "MSD-2168",
+     "warehouse": "WH3",
+     "qty": 468
+    },
+    {
+     "sku": "MSD-2035",
+     "warehouse": "WH2",
+     "qty": 48
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4256",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2221",
+     "warehouse": "WH2",
+     "qty": 158
+    },
+    {
+     "sku": "MSD-2202",
+     "warehouse": "WH3",
+     "qty": 24
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4323",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2236",
+     "warehouse": "WH3",
+     "qty": 111
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4375",
+   "status": "PACKED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2170",
+     "warehouse": "WH2",
+     "qty": 110
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4381",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2217",
+     "warehouse": "WH3",
+     "qty": 388
+    },
+    {
+     "sku": "MSD-2045",
+     "warehouse": "WH3",
+     "qty": 147
+    },
+    {
+     "sku": "MSD-2211",
+     "warehouse": "WH2",
+     "qty": 23
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4269",
+   "status": "PACKED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2127",
+     "warehouse": "WH3",
+     "qty": 13
+    },
+    {
+     "sku": "MSD-2011",
+     "warehouse": "WH2",
+     "qty": 173
+    },
+    {
+     "sku": "MSD-2191",
+     "warehouse": "WH1",
+     "qty": 380
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4183",
+   "status": "ALLOCATED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2237",
+     "warehouse": "WH2",
+     "qty": 331
+    },
+    {
+     "sku": "MSD-2093",
+     "warehouse": "WH2",
+     "qty": 167
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4037",
+   "status": "CLOSED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2145",
+     "warehouse": "WH2",
+     "qty": 79
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4140",
+   "status": "PACKED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2132",
+     "warehouse": "WH1",
+     "qty": 251
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4176",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2034",
+     "warehouse": "WH3",
+     "qty": 430
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4387",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2172",
+     "warehouse": "WH2",
+     "qty": 45
+    },
+    {
+     "sku": "MSD-2082",
+     "warehouse": "WH3",
+     "qty": 142
+    },
+    {
+     "sku": "MSD-2158",
+     "warehouse": "WH1",
+     "qty": 10
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4338",
+   "status": "PACKED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2091",
+     "warehouse": "WH2",
+     "qty": 50
+    },
+    {
+     "sku": "MSD-2217",
+     "warehouse": "WH1",
+     "qty": 116
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4302",
+   "status": "ALLOCATED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2087",
+     "warehouse": "WH3",
+     "qty": 343
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4313",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2095",
+     "warehouse": "WH2",
+     "qty": 35
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4109",
+   "status": "PICKING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-18",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2046",
+     "warehouse": "WH3",
+     "qty": 29
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4050",
+   "status": "SHIPPED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2179",
+     "warehouse": "WH2",
+     "qty": 144
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4032",
+   "status": "SHIPPED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-09",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2122",
+     "warehouse": "WH3",
+     "qty": 200
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4207",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2138",
+     "warehouse": "WH1",
+     "qty": 155
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4224",
+   "status": "PICKING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2167",
+     "warehouse": "WH2",
+     "qty": 70
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4258",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2218",
+     "warehouse": "WH3",
+     "qty": 249
+    },
+    {
+     "sku": "MSD-2064",
+     "warehouse": "WH3",
+     "qty": 266
+    },
+    {
+     "sku": "MSD-2036",
+     "warehouse": "WH1",
+     "qty": 113
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4023",
+   "status": "CANCELLED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2137",
+     "warehouse": "WH2",
+     "qty": 25
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4300",
+   "status": "ALLOCATED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2092",
+     "warehouse": "WH2",
+     "qty": 183
+    },
+    {
+     "sku": "MSD-2182",
+     "warehouse": "WH3",
+     "qty": 213
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4096",
+   "status": "SHIPPED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2153",
+     "warehouse": "WH1",
+     "qty": 21
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4173",
+   "status": "PENDING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2228",
+     "warehouse": "WH2",
+     "qty": 62
+    },
+    {
+     "sku": "MSD-2187",
+     "warehouse": "WH1",
+     "qty": 6
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4289",
+   "status": "ALLOCATED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2126",
+     "warehouse": "WH2",
+     "qty": 321
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4342",
+   "status": "PENDING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2135",
+     "warehouse": "WH3",
+     "qty": 6
+    },
+    {
+     "sku": "MSD-2100",
+     "warehouse": "WH2",
+     "qty": 184
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4144",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-10",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2136",
+     "warehouse": "WH1",
+     "qty": 66
+    },
+    {
+     "sku": "MSD-2041",
+     "warehouse": "WH2",
+     "qty": 52
+    },
+    {
+     "sku": "MSD-2187",
+     "warehouse": "WH3",
+     "qty": 4
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4245",
+   "status": "ALLOCATED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2158",
+     "warehouse": "WH1",
+     "qty": 19
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4197",
+   "status": "PICKING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2022",
+     "warehouse": "WH3",
+     "qty": 159
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4073",
+   "status": "SHIPPED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2065",
+     "warehouse": "WH1",
+     "qty": 92
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4267",
+   "status": "ALLOCATED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2190",
+     "warehouse": "WH3",
+     "qty": 345
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4406",
+   "status": "PICKING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2134",
+     "warehouse": "WH3",
+     "qty": 167
+    },
+    {
+     "sku": "MSD-2229",
+     "warehouse": "WH2",
+     "qty": 13
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4392",
+   "status": "PACKED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2070",
+     "warehouse": "WH3",
+     "qty": 137
+    },
+    {
+     "sku": "MSD-2084",
+     "warehouse": "WH3",
+     "qty": 387
+    },
+    {
+     "sku": "MSD-2141",
+     "warehouse": "WH2",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4166",
+   "status": "PICKING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2010",
+     "warehouse": "WH3",
+     "qty": 32
+    },
+    {
+     "sku": "MSD-2072",
+     "warehouse": "WH1",
+     "qty": 151
+    },
+    {
+     "sku": "MSD-2160",
+     "warehouse": "WH2",
+     "qty": 298
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4013",
+   "status": "CANCELLED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-11",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2247",
+     "warehouse": "WH1",
+     "qty": 81
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4198",
+   "status": "PENDING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2138",
+     "warehouse": "WH1",
+     "qty": 42
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4347",
+   "status": "PICKING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2237",
+     "warehouse": "WH3",
+     "qty": 269
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4147",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2104",
+     "warehouse": "WH3",
+     "qty": 196
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4260",
+   "status": "PENDING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2159",
+     "warehouse": "WH3",
+     "qty": 350
+    },
+    {
+     "sku": "MSD-2237",
+     "warehouse": "WH2",
+     "qty": 266
+    },
+    {
+     "sku": "MSD-2005",
+     "warehouse": "WH2",
+     "qty": 308
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4213",
+   "status": "PACKED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2249",
+     "warehouse": "WH2",
+     "qty": 213
+    },
+    {
+     "sku": "MSD-2033",
+     "warehouse": "WH2",
+     "qty": 2
+    },
+    {
+     "sku": "MSD-2187",
+     "warehouse": "WH3",
+     "qty": 5
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4348",
+   "status": "PACKED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2093",
+     "warehouse": "WH3",
+     "qty": 217
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4307",
+   "status": "PICKING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-18",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2206",
+     "warehouse": "WH2",
+     "qty": 217
+    },
+    {
+     "sku": "MSD-2029",
+     "warehouse": "WH2",
+     "qty": 142
+    },
+    {
+     "sku": "MSD-2243",
+     "warehouse": "WH2",
+     "qty": 99
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4311",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2222",
+     "warehouse": "WH2",
+     "qty": 363
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4271",
+   "status": "ALLOCATED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2205",
+     "warehouse": "WH2",
+     "qty": 25
+    },
+    {
+     "sku": "MSD-2194",
+     "warehouse": "WH3",
+     "qty": 106
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4377",
+   "status": "PACKED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2066",
+     "warehouse": "WH3",
+     "qty": 33
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4252",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2016",
+     "warehouse": "WH2",
+     "qty": 445
+    },
+    {
+     "sku": "MSD-2181",
+     "warehouse": "WH1",
+     "qty": 59
+    },
+    {
+     "sku": "MSD-2093",
+     "warehouse": "WH1",
+     "qty": 185
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4292",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-10",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2135",
+     "warehouse": "WH2",
+     "qty": 347
+    },
+    {
+     "sku": "MSD-2024",
+     "warehouse": "WH2",
+     "qty": 72
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4045",
+   "status": "DRAFT",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2101",
+     "warehouse": "WH3",
+     "qty": 54
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4417",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2100",
+     "warehouse": "WH2",
+     "qty": 187
+    },
+    {
+     "sku": "MSD-2045",
+     "warehouse": "WH3",
+     "qty": 283
+    },
+    {
+     "sku": "MSD-2134",
+     "warehouse": "WH3",
+     "qty": 61
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4250",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2070",
+     "warehouse": "WH1",
+     "qty": 14
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4346",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2024",
+     "warehouse": "WH2",
+     "qty": 265
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4149",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2072",
+     "warehouse": "WH1",
+     "qty": 67
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4019",
+   "status": "DRAFT",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2214",
+     "warehouse": "WH2",
+     "qty": 119
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4266",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2042",
+     "warehouse": "WH3",
+     "qty": 106
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4100",
+   "status": "DRAFT",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2141",
+     "warehouse": "WH3",
+     "qty": 133
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4141",
+   "status": "PENDING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2175",
+     "warehouse": "WH2",
+     "qty": 115
+    },
+    {
+     "sku": "MSD-2105",
+     "warehouse": "WH1",
+     "qty": 174
+    },
+    {
+     "sku": "MSD-2070",
+     "warehouse": "WH3",
+     "qty": 197
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4372",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2078",
+     "warehouse": "WH2",
+     "qty": 52
+    },
+    {
+     "sku": "MSD-2123",
+     "warehouse": "WH1",
+     "qty": 184
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4431",
+   "status": "PENDING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2237",
+     "warehouse": "WH3",
+     "qty": 367
+    },
+    {
+     "sku": "MSD-2199",
+     "warehouse": "WH1",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4145",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2221",
+     "warehouse": "WH3",
+     "qty": 75
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4275",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2010",
+     "warehouse": "WH2",
+     "qty": 37
+    },
+    {
+     "sku": "MSD-2176",
+     "warehouse": "WH2",
+     "qty": 129
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4413",
+   "status": "PENDING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2049",
+     "warehouse": "WH2",
+     "qty": 39
+    },
+    {
+     "sku": "MSD-2035",
+     "warehouse": "WH2",
+     "qty": 416
+    },
+    {
+     "sku": "MSD-2182",
+     "warehouse": "WH3",
+     "qty": 155
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4099",
+   "status": "SHIPPED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2047",
+     "warehouse": "WH3",
+     "qty": 34
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4044",
+   "status": "SHIPPED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2241",
+     "warehouse": "WH3",
+     "qty": 122
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4285",
+   "status": "PICKING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2202",
+     "warehouse": "WH3",
+     "qty": 94
+    },
+    {
+     "sku": "MSD-2224",
+     "warehouse": "WH2",
+     "qty": 50
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4110",
+   "status": "PACKED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2062",
+     "warehouse": "WH2",
+     "qty": 371
+    },
+    {
+     "sku": "MSD-2118",
+     "warehouse": "WH2",
+     "qty": 122
+    },
+    {
+     "sku": "MSD-2222",
+     "warehouse": "WH2",
+     "qty": 247
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4119",
+   "status": "PICKING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2092",
+     "warehouse": "WH3",
+     "qty": 19
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4159",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2199",
+     "warehouse": "WH1",
+     "qty": 8
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4137",
+   "status": "PICKING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2216",
+     "warehouse": "WH3",
+     "qty": 101
+    },
+    {
+     "sku": "MSD-2217",
+     "warehouse": "WH3",
+     "qty": 318
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4321",
+   "status": "PACKED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2028",
+     "warehouse": "WH2",
+     "qty": 168
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4066",
+   "status": "CANCELLED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2215",
+     "warehouse": "WH3",
+     "qty": 58
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4280",
+   "status": "ALLOCATED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2040",
+     "warehouse": "WH3",
+     "qty": 203
+    },
+    {
+     "sku": "MSD-2071",
+     "warehouse": "WH2",
+     "qty": 2
+    },
+    {
+     "sku": "MSD-2072",
+     "warehouse": "WH2",
+     "qty": 57
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4403",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-11",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2134",
+     "warehouse": "WH3",
+     "qty": 195
+    },
+    {
+     "sku": "MSD-2190",
+     "warehouse": "WH3",
+     "qty": 408
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4001",
+   "status": "ALLOCATED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2018",
+     "warehouse": "WH3",
+     "qty": 140
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4355",
+   "status": "PICKING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2129",
+     "warehouse": "WH2",
+     "qty": 28
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4101",
+   "status": "SHIPPED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2210",
+     "warehouse": "WH1",
+     "qty": 168
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4007",
+   "status": "ALLOCATED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2187",
+     "warehouse": "WH1",
+     "qty": 101
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4336",
+   "status": "PENDING",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2160",
+     "warehouse": "WH1",
+     "qty": 106
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4340",
+   "status": "PACKED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2038",
+     "warehouse": "WH3",
+     "qty": 66
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4248",
+   "status": "PENDING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2232",
+     "warehouse": "WH1",
+     "qty": 300
+    },
+    {
+     "sku": "MSD-2001",
+     "warehouse": "WH3",
+     "qty": 183
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4150",
+   "status": "PENDING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2241",
+     "warehouse": "WH2",
+     "qty": 48
+    },
+    {
+     "sku": "MSD-2091",
+     "warehouse": "WH2",
+     "qty": 8
+    },
+    {
+     "sku": "MSD-2014",
+     "warehouse": "WH3",
+     "qty": 32
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4326",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2074",
+     "warehouse": "WH1",
+     "qty": 151
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4062",
+   "status": "DRAFT",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2205",
+     "warehouse": "WH2",
+     "qty": 198
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4325",
+   "status": "PICKING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-10",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2068",
+     "warehouse": "WH3",
+     "qty": 49
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4244",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2232",
+     "warehouse": "WH1",
+     "qty": 119
+    },
+    {
+     "sku": "MSD-2237",
+     "warehouse": "WH3",
+     "qty": 392
+    },
+    {
+     "sku": "MSD-2178",
+     "warehouse": "WH3",
+     "qty": 119
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4380",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2123",
+     "warehouse": "WH1",
+     "qty": 206
+    },
+    {
+     "sku": "MSD-2201",
+     "warehouse": "WH1",
+     "qty": 372
+    },
+    {
+     "sku": "MSD-2235",
+     "warehouse": "WH3",
+     "qty": 99
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4164",
+   "status": "PICKING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2137",
+     "warehouse": "WH3",
+     "qty": 63
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4353",
+   "status": "PICKING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2054",
+     "warehouse": "WH2",
+     "qty": 334
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4422",
+   "status": "PENDING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2137",
+     "warehouse": "WH2",
+     "qty": 263
+    },
+    {
+     "sku": "MSD-2054",
+     "warehouse": "WH2",
+     "qty": 348
+    },
+    {
+     "sku": "MSD-2027",
+     "warehouse": "WH3",
+     "qty": 197
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4055",
+   "status": "DRAFT",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2143",
+     "warehouse": "WH2",
+     "qty": 99
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4088",
+   "status": "CANCELLED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2189",
+     "warehouse": "WH1",
+     "qty": 70
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4132",
+   "status": "PICKING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2221",
+     "warehouse": "WH3",
+     "qty": 132
+    },
+    {
+     "sku": "MSD-2104",
+     "warehouse": "WH2",
+     "qty": 44
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4238",
+   "status": "ALLOCATED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2148",
+     "warehouse": "WH1",
+     "qty": 291
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4273",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2246",
+     "warehouse": "WH2",
+     "qty": 133
+    },
+    {
+     "sku": "MSD-2063",
+     "warehouse": "WH3",
+     "qty": 283
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4317",
+   "status": "PICKING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2124",
+     "warehouse": "WH1",
+     "qty": 238
+    },
+    {
+     "sku": "MSD-2014",
+     "warehouse": "WH3",
+     "qty": 46
+    },
+    {
+     "sku": "MSD-2068",
+     "warehouse": "WH3",
+     "qty": 312
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4259",
+   "status": "PICKING",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2019",
+     "warehouse": "WH3",
+     "qty": 30
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4046",
+   "status": "CLOSED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2054",
+     "warehouse": "WH2",
+     "qty": 121
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4203",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2211",
+     "warehouse": "WH2",
+     "qty": 23
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4189",
+   "status": "PICKING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2116",
+     "warehouse": "WH3",
+     "qty": 249
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4414",
+   "status": "PACKED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2132",
+     "warehouse": "WH1",
+     "qty": 394
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4255",
+   "status": "PICKING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2010",
+     "warehouse": "WH2",
+     "qty": 249
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4187",
+   "status": "PICKING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2151",
+     "warehouse": "WH3",
+     "qty": 162
+    },
+    {
+     "sku": "MSD-2210",
+     "warehouse": "WH2",
+     "qty": 231
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4064",
+   "status": "CLOSED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2237",
+     "warehouse": "WH3",
+     "qty": 19
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4196",
+   "status": "ALLOCATED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2093",
+     "warehouse": "WH2",
+     "qty": 98
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4237",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2121",
+     "warehouse": "WH1",
+     "qty": 121
+    },
+    {
+     "sku": "MSD-2108",
+     "warehouse": "WH1",
+     "qty": 43
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4407",
+   "status": "PICKING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2225",
+     "warehouse": "WH2",
+     "qty": 99
+    },
+    {
+     "sku": "MSD-2168",
+     "warehouse": "WH3",
+     "qty": 176
+    },
+    {
+     "sku": "MSD-2010",
+     "warehouse": "WH2",
+     "qty": 236
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4186",
+   "status": "PICKING",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2174",
+     "warehouse": "WH3",
+     "qty": 6
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4039",
+   "status": "DRAFT",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2050",
+     "warehouse": "WH1",
+     "qty": 18
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4015",
+   "status": "CLOSED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2142",
+     "warehouse": "WH3",
+     "qty": 176
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4222",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2158",
+     "warehouse": "WH1",
+     "qty": 19
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4003",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2071",
+     "warehouse": "WH2",
+     "qty": 89
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4399",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2073",
+     "warehouse": "WH1",
+     "qty": 35
+    },
+    {
+     "sku": "MSD-2132",
+     "warehouse": "WH1",
+     "qty": 190
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4199",
+   "status": "PACKED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2114",
+     "warehouse": "WH2",
+     "qty": 14
+    },
+    {
+     "sku": "MSD-2209",
+     "warehouse": "WH1",
+     "qty": 275
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4335",
+   "status": "PENDING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-10",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2028",
+     "warehouse": "WH2",
+     "qty": 53
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4242",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2146",
+     "warehouse": "WH2",
+     "qty": 310
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4006",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2158",
+     "warehouse": "WH1",
+     "qty": 160
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4386",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2092",
+     "warehouse": "WH3",
+     "qty": 183
+    },
+    {
+     "sku": "MSD-2021",
+     "warehouse": "WH1",
+     "qty": 135
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4010",
+   "status": "ALLOCATED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-9001",
+     "warehouse": "WH1",
+     "qty": 60
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4024",
+   "status": "CLOSED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-11",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2067",
+     "warehouse": "WH2",
+     "qty": 78
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4383",
+   "status": "PICKING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2097",
+     "warehouse": "WH1",
+     "qty": 249
+    },
+    {
+     "sku": "MSD-2160",
+     "warehouse": "WH3",
+     "qty": 8
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4131",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2082",
+     "warehouse": "WH2",
+     "qty": 23
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4103",
+   "status": "PICKING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2104",
+     "warehouse": "WH3",
+     "qty": 109
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4076",
+   "status": "CANCELLED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2116",
+     "warehouse": "WH1",
+     "qty": 87
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4126",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2184",
+     "warehouse": "WH1",
+     "qty": 451
+    },
+    {
+     "sku": "MSD-2159",
+     "warehouse": "WH3",
+     "qty": 219
+    },
+    {
+     "sku": "MSD-2108",
+     "warehouse": "WH2",
+     "qty": 309
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4106",
+   "status": "PENDING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2056",
+     "warehouse": "WH2",
+     "qty": 145
+    },
+    {
+     "sku": "MSD-2120",
+     "warehouse": "WH2",
+     "qty": 119
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4236",
+   "status": "ALLOCATED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2101",
+     "warehouse": "WH3",
+     "qty": 67
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4247",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2245",
+     "warehouse": "WH3",
+     "qty": 113
+    },
+    {
+     "sku": "MSD-2142",
+     "warehouse": "WH3",
+     "qty": 364
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4305",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-10",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2209",
+     "warehouse": "WH1",
+     "qty": 395
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4397",
+   "status": "PENDING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2085",
+     "warehouse": "WH3",
+     "qty": 77
+    },
+    {
+     "sku": "MSD-2067",
+     "warehouse": "WH2",
+     "qty": 214
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4009",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2229",
+     "warehouse": "WH2",
+     "qty": 113
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4296",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2016",
+     "warehouse": "WH2",
+     "qty": 362
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4331",
+   "status": "PACKED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2047",
+     "warehouse": "WH2",
+     "qty": 357
+    },
+    {
+     "sku": "MSD-2125",
+     "warehouse": "WH2",
+     "qty": 216
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4179",
+   "status": "PICKING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2168",
+     "warehouse": "WH3",
+     "qty": 194
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4284",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2060",
+     "warehouse": "WH2",
+     "qty": 75
+    },
+    {
+     "sku": "MSD-2242",
+     "warehouse": "WH3",
+     "qty": 29
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4274",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2081",
+     "warehouse": "WH3",
+     "qty": 71
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4102",
+   "status": "SHIPPED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2048",
+     "warehouse": "WH1",
+     "qty": 60
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4069",
+   "status": "DRAFT",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2007",
+     "warehouse": "WH3",
+     "qty": 186
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4002",
+   "status": "ALLOCATED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2044",
+     "warehouse": "WH2",
+     "qty": 164
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4430",
+   "status": "ALLOCATED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2076",
+     "warehouse": "WH1",
+     "qty": 239
+    },
+    {
+     "sku": "MSD-2077",
+     "warehouse": "WH1",
+     "qty": 165
+    },
+    {
+     "sku": "MSD-2210",
+     "warehouse": "WH1",
+     "qty": 129
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4124",
+   "status": "PENDING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2060",
+     "warehouse": "WH2",
+     "qty": 50
+    },
+    {
+     "sku": "MSD-2176",
+     "warehouse": "WH3",
+     "qty": 123
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4220",
+   "status": "PACKED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2036",
+     "warehouse": "WH2",
+     "qty": 54
+    },
+    {
+     "sku": "MSD-2246",
+     "warehouse": "WH2",
+     "qty": 166
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4361",
+   "status": "PACKED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2115",
+     "warehouse": "WH2",
+     "qty": 327
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4330",
+   "status": "ALLOCATED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2235",
+     "warehouse": "WH2",
+     "qty": 151
+    },
+    {
+     "sku": "MSD-2026",
+     "warehouse": "WH3",
+     "qty": 308
+    },
+    {
+     "sku": "MSD-2002",
+     "warehouse": "WH3",
+     "qty": 327
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4410",
+   "status": "PENDING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2220",
+     "warehouse": "WH1",
+     "qty": 27
+    },
+    {
+     "sku": "MSD-2114",
+     "warehouse": "WH1",
+     "qty": 59
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4235",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2007",
+     "warehouse": "WH2",
+     "qty": 157
+    },
+    {
+     "sku": "MSD-2068",
+     "warehouse": "WH2",
+     "qty": 29
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4400",
+   "status": "ALLOCATED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2004",
+     "warehouse": "WH3",
+     "qty": 154
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4125",
+   "status": "PENDING",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2199",
+     "warehouse": "WH1",
+     "qty": 6
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4029",
+   "status": "SHIPPED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2061",
+     "warehouse": "WH3",
+     "qty": 103
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4295",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2130",
+     "warehouse": "WH2",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4194",
+   "status": "PENDING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2035",
+     "warehouse": "WH2",
+     "qty": 272
+    },
+    {
+     "sku": "MSD-2101",
+     "warehouse": "WH3",
+     "qty": 51
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4314",
+   "status": "PENDING",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2152",
+     "warehouse": "WH1",
+     "qty": 27
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4205",
+   "status": "ALLOCATED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2103",
+     "warehouse": "WH2",
+     "qty": 5
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4374",
+   "status": "PACKED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2014",
+     "warehouse": "WH1",
+     "qty": 44
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4091",
+   "status": "CLOSED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2132",
+     "warehouse": "WH1",
+     "qty": 13
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4025",
+   "status": "DRAFT",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2124",
+     "warehouse": "WH1",
+     "qty": 36
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4017",
+   "status": "DRAFT",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2029",
+     "warehouse": "WH2",
+     "qty": 176
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4206",
+   "status": "ALLOCATED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2082",
+     "warehouse": "WH3",
+     "qty": 16
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4276",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2209",
+     "warehouse": "WH3",
+     "qty": 43
+    },
+    {
+     "sku": "MSD-2193",
+     "warehouse": "WH2",
+     "qty": 261
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4036",
+   "status": "SHIPPED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-09",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2014",
+     "warehouse": "WH1",
+     "qty": 36
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4262",
+   "status": "ALLOCATED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2097",
+     "warehouse": "WH1",
+     "qty": 259
+    },
+    {
+     "sku": "MSD-2015",
+     "warehouse": "WH3",
+     "qty": 176
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4371",
+   "status": "PICKING",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2004",
+     "warehouse": "WH1",
+     "qty": 34
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4047",
+   "status": "CLOSED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2116",
+     "warehouse": "WH3",
+     "qty": 30
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4108",
+   "status": "PICKING",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2096",
+     "warehouse": "WH1",
+     "qty": 27
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4121",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2188",
+     "warehouse": "WH1",
+     "qty": 103
+    },
+    {
+     "sku": "MSD-2032",
+     "warehouse": "WH3",
+     "qty": 305
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4086",
+   "status": "CLOSED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2111",
+     "warehouse": "WH2",
+     "qty": 110
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4012",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-LEGACY-0042",
+     "warehouse": "WH1",
+     "qty": 45
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4074",
+   "status": "CANCELLED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2066",
+     "warehouse": "WH3",
+     "qty": 186
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4163",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2143",
+     "warehouse": "WH2",
+     "qty": 112
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4278",
+   "status": "PENDING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2246",
+     "warehouse": "WH2",
+     "qty": 49
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4420",
+   "status": "PENDING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2087",
+     "warehouse": "WH3",
+     "qty": 247
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4016",
+   "status": "DRAFT",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2166",
+     "warehouse": "WH3",
+     "qty": 21
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4035",
+   "status": "CANCELLED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2152",
+     "warehouse": "WH1",
+     "qty": 65
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4155",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2029",
+     "warehouse": "WH1",
+     "qty": 180
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4078",
+   "status": "CANCELLED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2132",
+     "warehouse": "WH1",
+     "qty": 128
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4367",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2130",
+     "warehouse": "WH3",
+     "qty": 9
+    },
+    {
+     "sku": "MSD-2046",
+     "warehouse": "WH3",
+     "qty": 42
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4114",
+   "status": "PACKED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2135",
+     "warehouse": "WH1",
+     "qty": 352
+    },
+    {
+     "sku": "MSD-2045",
+     "warehouse": "WH3",
+     "qty": 163
+    },
+    {
+     "sku": "MSD-2055",
+     "warehouse": "WH2",
+     "qty": 401
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4195",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2182",
+     "warehouse": "WH3",
+     "qty": 154
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4229",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2205",
+     "warehouse": "WH2",
+     "qty": 91
+    },
+    {
+     "sku": "MSD-2246",
+     "warehouse": "WH2",
+     "qty": 27
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4415",
+   "status": "ALLOCATED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2196",
+     "warehouse": "WH3",
+     "qty": 28
+    },
+    {
+     "sku": "MSD-2164",
+     "warehouse": "WH1",
+     "qty": 286
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4382",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2150",
+     "warehouse": "WH2",
+     "qty": 18
+    },
+    {
+     "sku": "MSD-2185",
+     "warehouse": "WH1",
+     "qty": 252
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4357",
+   "status": "PICKING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2238",
+     "warehouse": "WH2",
+     "qty": 284
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4123",
+   "status": "PENDING",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2041",
+     "warehouse": "WH2",
+     "qty": 78
+    },
+    {
+     "sku": "MSD-2216",
+     "warehouse": "WH1",
+     "qty": 139
+    },
+    {
+     "sku": "MSD-2086",
+     "warehouse": "WH2",
+     "qty": 19
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4014",
+   "status": "SHIPPED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2070",
+     "warehouse": "WH3",
+     "qty": 43
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4395",
+   "status": "PACKED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2214",
+     "warehouse": "WH2",
+     "qty": 268
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4068",
+   "status": "DRAFT",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2066",
+     "warehouse": "WH3",
+     "qty": 22
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4215",
+   "status": "PENDING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2150",
+     "warehouse": "WH1",
+     "qty": 382
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4172",
+   "status": "PENDING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2133",
+     "warehouse": "WH1",
+     "qty": 24
+    },
+    {
+     "sku": "MSD-2058",
+     "warehouse": "WH3",
+     "qty": 112
+    },
+    {
+     "sku": "MSD-2103",
+     "warehouse": "WH1",
+     "qty": 110
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4320",
+   "status": "PICKING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2123",
+     "warehouse": "WH1",
+     "qty": 47
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4079",
+   "status": "DRAFT",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2244",
+     "warehouse": "WH3",
+     "qty": 110
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4310",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2019",
+     "warehouse": "WH3",
+     "qty": 27
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4175",
+   "status": "PICKING",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2243",
+     "warehouse": "WH2",
+     "qty": 170
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4130",
+   "status": "ALLOCATED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2140",
+     "warehouse": "WH1",
+     "qty": 159
+    },
+    {
+     "sku": "MSD-2173",
+     "warehouse": "WH3",
+     "qty": 402
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4345",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2091",
+     "warehouse": "WH2",
+     "qty": 76
+    },
+    {
+     "sku": "MSD-2033",
+     "warehouse": "WH3",
+     "qty": 13
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4042",
+   "status": "CANCELLED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2040",
+     "warehouse": "WH3",
+     "qty": 98
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4216",
+   "status": "PICKING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2140",
+     "warehouse": "WH1",
+     "qty": 113
+    },
+    {
+     "sku": "MSD-2157",
+     "warehouse": "WH2",
+     "qty": 70
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4378",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2104",
+     "warehouse": "WH1",
+     "qty": 24
+    },
+    {
+     "sku": "MSD-2190",
+     "warehouse": "WH3",
+     "qty": 386
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4095",
+   "status": "SHIPPED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2167",
+     "warehouse": "WH2",
+     "qty": 20
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4404",
+   "status": "PENDING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2180",
+     "warehouse": "WH3",
+     "qty": 171
+    },
+    {
+     "sku": "MSD-2243",
+     "warehouse": "WH2",
+     "qty": 316
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4376",
+   "status": "PACKED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-18",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2073",
+     "warehouse": "WH1",
+     "qty": 193
+    },
+    {
+     "sku": "MSD-2236",
+     "warehouse": "WH2",
+     "qty": 27
+    },
+    {
+     "sku": "MSD-2028",
+     "warehouse": "WH2",
+     "qty": 253
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4385",
+   "status": "PICKING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2205",
+     "warehouse": "WH2",
+     "qty": 39
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4233",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2161",
+     "warehouse": "WH3",
+     "qty": 49
+    },
+    {
+     "sku": "MSD-2191",
+     "warehouse": "WH2",
+     "qty": 110
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4418",
+   "status": "ALLOCATED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2191",
+     "warehouse": "WH1",
+     "qty": 397
+    },
+    {
+     "sku": "MSD-2113",
+     "warehouse": "WH3",
+     "qty": 371
+    },
+    {
+     "sku": "MSD-2172",
+     "warehouse": "WH2",
+     "qty": 37
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4054",
+   "status": "DRAFT",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2056",
+     "warehouse": "WH2",
+     "qty": 15
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4350",
+   "status": "ALLOCATED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2224",
+     "warehouse": "WH3",
+     "qty": 6
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4343",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2085",
+     "warehouse": "WH3",
+     "qty": 193
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4291",
+   "status": "PICKING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2104",
+     "warehouse": "WH1",
+     "qty": 86
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4081",
+   "status": "CLOSED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-10",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2219",
+     "warehouse": "WH2",
+     "qty": 127
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4135",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2203",
+     "warehouse": "WH2",
+     "qty": 22
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4080",
+   "status": "SHIPPED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2015",
+     "warehouse": "WH3",
+     "qty": 45
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4063",
+   "status": "SHIPPED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2152",
+     "warehouse": "WH1",
+     "qty": 128
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4022",
+   "status": "SHIPPED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2004",
+     "warehouse": "WH1",
+     "qty": 190
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4115",
+   "status": "ALLOCATED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2076",
+     "warehouse": "WH1",
+     "qty": 155
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4264",
+   "status": "PACKED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2152",
+     "warehouse": "WH1",
+     "qty": 55
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4308",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2138",
+     "warehouse": "WH1",
+     "qty": 138
+    },
+    {
+     "sku": "MSD-2185",
+     "warehouse": "WH2",
+     "qty": 347
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4087",
+   "status": "CANCELLED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2247",
+     "warehouse": "WH1",
+     "qty": 68
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4094",
+   "status": "DRAFT",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2022",
+     "warehouse": "WH3",
+     "qty": 12
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4061",
+   "status": "CANCELLED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2169",
+     "warehouse": "WH1",
+     "qty": 143
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4344",
+   "status": "PICKING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2101",
+     "warehouse": "WH3",
+     "qty": 21
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4219",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2008",
+     "warehouse": "WH1",
+     "qty": 98
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4370",
+   "status": "PACKED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2069",
+     "warehouse": "WH3",
+     "qty": 21
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4098",
+   "status": "DRAFT",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2234",
+     "warehouse": "WH1",
+     "qty": 128
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4193",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2231",
+     "warehouse": "WH2",
+     "qty": 36
+    },
+    {
+     "sku": "MSD-2104",
+     "warehouse": "WH3",
+     "qty": 23
+    },
+    {
+     "sku": "MSD-2151",
+     "warehouse": "WH3",
+     "qty": 125
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4214",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2141",
+     "warehouse": "WH3",
+     "qty": 4
+    },
+    {
+     "sku": "MSD-2116",
+     "warehouse": "WH2",
+     "qty": 5
+    },
+    {
+     "sku": "MSD-2007",
+     "warehouse": "WH3",
+     "qty": 529
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4060",
+   "status": "CLOSED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2028",
+     "warehouse": "WH2",
+     "qty": 70
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4366",
+   "status": "PENDING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-09",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2077",
+     "warehouse": "WH1",
+     "qty": 145
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4021",
+   "status": "SHIPPED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-18",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2199",
+     "warehouse": "WH1",
+     "qty": 162
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4257",
+   "status": "ALLOCATED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2238",
+     "warehouse": "WH2",
+     "qty": 198
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4293",
+   "status": "ALLOCATED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-11",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2235",
+     "warehouse": "WH3",
+     "qty": 56
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4221",
+   "status": "PICKING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2088",
+     "warehouse": "WH3",
+     "qty": 134
+    },
+    {
+     "sku": "MSD-2198",
+     "warehouse": "WH3",
+     "qty": 203
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4113",
+   "status": "PENDING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2137",
+     "warehouse": "WH3",
+     "qty": 64
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4301",
+   "status": "PENDING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2246",
+     "warehouse": "WH2",
+     "qty": 140
+    },
+    {
+     "sku": "MSD-2123",
+     "warehouse": "WH1",
+     "qty": 378
+    },
+    {
+     "sku": "MSD-2002",
+     "warehouse": "WH3",
+     "qty": 166
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4160",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2077",
+     "warehouse": "WH1",
+     "qty": 158
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4151",
+   "status": "PICKING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2095",
+     "warehouse": "WH1",
+     "qty": 464
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4360",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2187",
+     "warehouse": "WH3",
+     "qty": 3
+    },
+    {
+     "sku": "MSD-2143",
+     "warehouse": "WH2",
+     "qty": 101
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4142",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2138",
+     "warehouse": "WH1",
+     "qty": 39
+    },
+    {
+     "sku": "MSD-2184",
+     "warehouse": "WH3",
+     "qty": 87
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4391",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2073",
+     "warehouse": "WH1",
+     "qty": 67
+    },
+    {
+     "sku": "MSD-2231",
+     "warehouse": "WH2",
+     "qty": 24
+    },
+    {
+     "sku": "MSD-2246",
+     "warehouse": "WH2",
+     "qty": 27
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4341",
+   "status": "PICKING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2229",
+     "warehouse": "WH2",
+     "qty": 3
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4056",
+   "status": "CLOSED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2092",
+     "warehouse": "WH1",
+     "qty": 17
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4299",
+   "status": "ALLOCATED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2154",
+     "warehouse": "WH1",
+     "qty": 145
+    },
+    {
+     "sku": "MSD-2114",
+     "warehouse": "WH2",
+     "qty": 14
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4211",
+   "status": "ALLOCATED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2101",
+     "warehouse": "WH3",
+     "qty": 49
+    },
+    {
+     "sku": "MSD-2076",
+     "warehouse": "WH1",
+     "qty": 163
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4368",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2007",
+     "warehouse": "WH2",
+     "qty": 113
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4053",
+   "status": "CANCELLED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-18",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2148",
+     "warehouse": "WH1",
+     "qty": 119
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4059",
+   "status": "CANCELLED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2142",
+     "warehouse": "WH3",
+     "qty": 39
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4052",
+   "status": "SHIPPED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2181",
+     "warehouse": "WH1",
+     "qty": 155
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4178",
+   "status": "PENDING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2065",
+     "warehouse": "WH1",
+     "qty": 1
+    },
+    {
+     "sku": "MSD-2119",
+     "warehouse": "WH1",
+     "qty": 94
+    },
+    {
+     "sku": "MSD-2114",
+     "warehouse": "WH3",
+     "qty": 82
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4133",
+   "status": "PENDING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2076",
+     "warehouse": "WH1",
+     "qty": 84
+    },
+    {
+     "sku": "MSD-2189",
+     "warehouse": "WH2",
+     "qty": 221
+    },
+    {
+     "sku": "MSD-2131",
+     "warehouse": "WH3",
+     "qty": 15
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4358",
+   "status": "PICKING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2048",
+     "warehouse": "WH1",
+     "qty": 82
+    },
+    {
+     "sku": "MSD-2188",
+     "warehouse": "WH3",
+     "qty": 74
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4283",
+   "status": "PACKED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2157",
+     "warehouse": "WH3",
+     "qty": 390
+    },
+    {
+     "sku": "MSD-2169",
+     "warehouse": "WH1",
+     "qty": 3
+    },
+    {
+     "sku": "MSD-2033",
+     "warehouse": "WH3",
+     "qty": 19
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4168",
+   "status": "PACKED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2132",
+     "warehouse": "WH1",
+     "qty": 56
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4231",
+   "status": "PENDING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2249",
+     "warehouse": "WH3",
+     "qty": 92
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4401",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2055",
+     "warehouse": "WH3",
+     "qty": 492
+    },
+    {
+     "sku": "MSD-2175",
+     "warehouse": "WH2",
+     "qty": 108
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4379",
+   "status": "PICKING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2218",
+     "warehouse": "WH1",
+     "qty": 28
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4116",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2125",
+     "warehouse": "WH2",
+     "qty": 105
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4226",
+   "status": "PACKED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2036",
+     "warehouse": "WH2",
+     "qty": 137
+    },
+    {
+     "sku": "MSD-2124",
+     "warehouse": "WH1",
+     "qty": 44
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4396",
+   "status": "PACKED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2004",
+     "warehouse": "WH3",
+     "qty": 296
+    },
+    {
+     "sku": "MSD-2001",
+     "warehouse": "WH3",
+     "qty": 262
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4204",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2205",
+     "warehouse": "WH2",
+     "qty": 68
+    },
+    {
+     "sku": "MSD-2212",
+     "warehouse": "WH2",
+     "qty": 14
+    },
+    {
+     "sku": "MSD-2241",
+     "warehouse": "WH2",
+     "qty": 25
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4393",
+   "status": "ALLOCATED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2230",
+     "warehouse": "WH3",
+     "qty": 377
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4218",
+   "status": "PACKED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2076",
+     "warehouse": "WH1",
+     "qty": 59
+    },
+    {
+     "sku": "MSD-2230",
+     "warehouse": "WH2",
+     "qty": 84
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4148",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2246",
+     "warehouse": "WH2",
+     "qty": 66
+    },
+    {
+     "sku": "MSD-2242",
+     "warehouse": "WH3",
+     "qty": 31
+    },
+    {
+     "sku": "MSD-2154",
+     "warehouse": "WH2",
+     "qty": 386
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4161",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-11",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2185",
+     "warehouse": "WH2",
+     "qty": 122
+    },
+    {
+     "sku": "MSD-2070",
+     "warehouse": "WH1",
+     "qty": 15
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4287",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2164",
+     "warehouse": "WH1",
+     "qty": 244
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4286",
+   "status": "PENDING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2161",
+     "warehouse": "WH2",
+     "qty": 289
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4281",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2056",
+     "warehouse": "WH2",
+     "qty": 24
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4117",
+   "status": "PENDING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2134",
+     "warehouse": "WH3",
+     "qty": 222
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4261",
+   "status": "PENDING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2080",
+     "warehouse": "WH3",
+     "qty": 10
+    },
+    {
+     "sku": "MSD-2088",
+     "warehouse": "WH2",
+     "qty": 80
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4362",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-09",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2247",
+     "warehouse": "WH1",
+     "qty": 134
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4129",
+   "status": "ALLOCATED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2230",
+     "warehouse": "WH1",
+     "qty": 5
+    },
+    {
+     "sku": "MSD-2236",
+     "warehouse": "WH3",
+     "qty": 56
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4251",
+   "status": "PICKING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2031",
+     "warehouse": "WH1",
+     "qty": 52
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4232",
+   "status": "PICKING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2099",
+     "warehouse": "WH3",
+     "qty": 253
+    },
+    {
+     "sku": "MSD-2126",
+     "warehouse": "WH1",
+     "qty": 284
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4240",
+   "status": "ALLOCATED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2015",
+     "warehouse": "WH2",
+     "qty": 137
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4174",
+   "status": "PENDING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-09",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2074",
+     "warehouse": "WH2",
+     "qty": 456
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4227",
+   "status": "PENDING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2070",
+     "warehouse": "WH3",
+     "qty": 36
+    },
+    {
+     "sku": "MSD-2007",
+     "warehouse": "WH3",
+     "qty": 521
+    },
+    {
+     "sku": "MSD-2006",
+     "warehouse": "WH1",
+     "qty": 12
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4031",
+   "status": "CLOSED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2093",
+     "warehouse": "WH2",
+     "qty": 126
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4008",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2203",
+     "warehouse": "WH2",
+     "qty": 174
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4265",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-18",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2142",
+     "warehouse": "WH3",
+     "qty": 64
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4092",
+   "status": "SHIPPED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2180",
+     "warehouse": "WH3",
+     "qty": 138
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4169",
+   "status": "PICKING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2085",
+     "warehouse": "WH3",
+     "qty": 89
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4170",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2126",
+     "warehouse": "WH1",
+     "qty": 122
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4134",
+   "status": "PACKED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2069",
+     "warehouse": "WH1",
+     "qty": 104
+    },
+    {
+     "sku": "MSD-2045",
+     "warehouse": "WH3",
+     "qty": 439
+    },
+    {
+     "sku": "MSD-2030",
+     "warehouse": "WH1",
+     "qty": 308
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4171",
+   "status": "PENDING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2229",
+     "warehouse": "WH2",
+     "qty": 8
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4428",
+   "status": "PACKED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2151",
+     "warehouse": "WH3",
+     "qty": 12
+    },
+    {
+     "sku": "MSD-2023",
+     "warehouse": "WH1",
+     "qty": 14
+    },
+    {
+     "sku": "MSD-2140",
+     "warehouse": "WH1",
+     "qty": 131
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4105",
+   "status": "PACKED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2146",
+     "warehouse": "WH2",
+     "qty": 42
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4426",
+   "status": "PICKING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2037",
+     "warehouse": "WH2",
+     "qty": 289
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4067",
+   "status": "CANCELLED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2047",
+     "warehouse": "WH3",
+     "qty": 10
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4041",
+   "status": "DRAFT",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2037",
+     "warehouse": "WH2",
+     "qty": 196
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4082",
+   "status": "CANCELLED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2089",
+     "warehouse": "WH2",
+     "qty": 135
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4352",
+   "status": "PICKING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2013",
+     "warehouse": "WH2",
+     "qty": 302
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4089",
+   "status": "DRAFT",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2042",
+     "warehouse": "WH1",
+     "qty": 185
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4191",
+   "status": "PICKING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-11",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2203",
+     "warehouse": "WH2",
+     "qty": 22
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4322",
+   "status": "ALLOCATED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2152",
+     "warehouse": "WH1",
+     "qty": 11
+    },
+    {
+     "sku": "MSD-2064",
+     "warehouse": "WH2",
+     "qty": 169
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4294",
+   "status": "PACKED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2242",
+     "warehouse": "WH3",
+     "qty": 33
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4432",
+   "status": "PICKING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-15",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2094",
+     "warehouse": "WH3",
+     "qty": 335
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4128",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2125",
+     "warehouse": "WH2",
+     "qty": 229
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4253",
+   "status": "PACKED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2121",
+     "warehouse": "WH1",
+     "qty": 76
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4028",
+   "status": "SHIPPED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2136",
+     "warehouse": "WH1",
+     "qty": 33
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4268",
+   "status": "PICKING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2063",
+     "warehouse": "WH3",
+     "qty": 260
+    },
+    {
+     "sku": "MSD-2067",
+     "warehouse": "WH2",
+     "qty": 487
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4405",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2186",
+     "warehouse": "WH2",
+     "qty": 87
+    },
+    {
+     "sku": "MSD-2238",
+     "warehouse": "WH2",
+     "qty": 502
+    },
+    {
+     "sku": "MSD-2040",
+     "warehouse": "WH3",
+     "qty": 164
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4020",
+   "status": "CANCELLED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2070",
+     "warehouse": "WH1",
+     "qty": 33
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4384",
+   "status": "PENDING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2228",
+     "warehouse": "WH2",
+     "qty": 17
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4303",
+   "status": "PENDING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2200",
+     "warehouse": "WH1",
+     "qty": 26
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4107",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2238",
+     "warehouse": "WH1",
+     "qty": 122
+    },
+    {
+     "sku": "MSD-2184",
+     "warehouse": "WH3",
+     "qty": 39
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4143",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2105",
+     "warehouse": "WH2",
+     "qty": 115
+    },
+    {
+     "sku": "MSD-2091",
+     "warehouse": "WH3",
+     "qty": 425
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4423",
+   "status": "PENDING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-10",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2068",
+     "warehouse": "WH3",
+     "qty": 327
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4157",
+   "status": "PICKING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2231",
+     "warehouse": "WH2",
+     "qty": 28
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4394",
+   "status": "PENDING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2077",
+     "warehouse": "WH1",
+     "qty": 336
+    },
+    {
+     "sku": "MSD-2202",
+     "warehouse": "WH3",
+     "qty": 288
+    },
+    {
+     "sku": "MSD-2008",
+     "warehouse": "WH3",
+     "qty": 274
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4282",
+   "status": "ALLOCATED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-18",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2120",
+     "warehouse": "WH2",
+     "qty": 142
+    },
+    {
+     "sku": "MSD-2244",
+     "warehouse": "WH3",
+     "qty": 142
+    },
+    {
+     "sku": "MSD-2137",
+     "warehouse": "WH3",
+     "qty": 9
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4083",
+   "status": "CLOSED",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2058",
+     "warehouse": "WH2",
+     "qty": 19
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4182",
+   "status": "PENDING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2235",
+     "warehouse": "WH2",
+     "qty": 193
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4048",
+   "status": "CANCELLED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2092",
+     "warehouse": "WH1",
+     "qty": 73
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4225",
+   "status": "PENDING",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2083",
+     "warehouse": "WH2",
+     "qty": 112
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4202",
+   "status": "PENDING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2070",
+     "warehouse": "WH3",
+     "qty": 298
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4315",
+   "status": "PACKED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2059",
+     "warehouse": "WH2",
+     "qty": 142
+    },
+    {
+     "sku": "MSD-2245",
+     "warehouse": "WH3",
+     "qty": 24
+    },
+    {
+     "sku": "MSD-2111",
+     "warehouse": "WH2",
+     "qty": 103
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4429",
+   "status": "PACKED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-10",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2004",
+     "warehouse": "WH3",
+     "qty": 299
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4243",
+   "status": "PICKING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2193",
+     "warehouse": "WH2",
+     "qty": 298
+    },
+    {
+     "sku": "MSD-2192",
+     "warehouse": "WH1",
+     "qty": 91
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4004",
+   "status": "ALLOCATED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2096",
+     "warehouse": "WH1",
+     "qty": 131
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4217",
+   "status": "PACKED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-18",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2058",
+     "warehouse": "WH3",
+     "qty": 118
+    },
+    {
+     "sku": "MSD-2058",
+     "warehouse": "WH3",
+     "qty": 103
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4279",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2114",
+     "warehouse": "WH1",
+     "qty": 49
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4390",
+   "status": "PICKING",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-13",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2124",
+     "warehouse": "WH1",
+     "qty": 143
+    },
+    {
+     "sku": "MSD-2152",
+     "warehouse": "WH1",
+     "qty": 46
+    },
+    {
+     "sku": "MSD-2098",
+     "warehouse": "WH3",
+     "qty": 342
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4421",
+   "status": "ALLOCATED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2084",
+     "warehouse": "WH3",
+     "qty": 36
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4318",
+   "status": "PENDING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2228",
+     "warehouse": "WH2",
+     "qty": 48
+    },
+    {
+     "sku": "MSD-2164",
+     "warehouse": "WH1",
+     "qty": 289
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4011",
+   "status": "PICKING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-9002",
+     "warehouse": "WH2",
+     "qty": 24
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4427",
+   "status": "PICKING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2031",
+     "warehouse": "WH1",
+     "qty": 77
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4165",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2057",
+     "warehouse": "WH2",
+     "qty": 77
+    },
+    {
+     "sku": "MSD-2005",
+     "warehouse": "WH2",
+     "qty": 99
+    },
+    {
+     "sku": "MSD-2149",
+     "warehouse": "WH1",
+     "qty": 185
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4373",
+   "status": "PACKED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-16",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2062",
+     "warehouse": "WH2",
+     "qty": 23
+    },
+    {
+     "sku": "MSD-2124",
+     "warehouse": "WH1",
+     "qty": 46
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4337",
+   "status": "ALLOCATED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-17",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2032",
+     "warehouse": "WH1",
+     "qty": 12
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4118",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2125",
+     "warehouse": "WH2",
+     "qty": 136
+    },
+    {
+     "sku": "MSD-2094",
+     "warehouse": "WH3",
+     "qty": 216
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4333",
+   "status": "PICKING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2060",
+     "warehouse": "WH2",
+     "qty": 192
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4005",
+   "status": "ALLOCATED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2130",
+     "warehouse": "WH3",
+     "qty": 53
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4408",
+   "status": "PICKING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-12",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2105",
+     "warehouse": "WH1",
+     "qty": 95
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4210",
+   "status": "ALLOCATED",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-16",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2071",
+     "warehouse": "WH2",
+     "qty": 6
+    },
+    {
+     "sku": "MSD-2116",
+     "warehouse": "WH3",
+     "qty": 196
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4297",
+   "status": "PACKED",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2059",
+     "warehouse": "WH2",
+     "qty": 113
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4112",
+   "status": "PENDING",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2132",
+     "warehouse": "WH1",
+     "qty": 330
+    },
+    {
+     "sku": "MSD-2073",
+     "warehouse": "WH1",
+     "qty": 30
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4363",
+   "status": "PACKED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2210",
+     "warehouse": "WH2",
+     "qty": 281
+    },
+    {
+     "sku": "MSD-2147",
+     "warehouse": "WH3",
+     "qty": 91
+    },
+    {
+     "sku": "MSD-2247",
+     "warehouse": "WH1",
+     "qty": 154
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4364",
+   "status": "PENDING",
+   "customer": "Maple Ridge Schools",
+   "promised_date": "2026-09-10",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2079",
+     "warehouse": "WH2",
+     "qty": 220
+    },
+    {
+     "sku": "MSD-2038",
+     "warehouse": "WH1",
+     "qty": 139
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4416",
+   "status": "PACKED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2034",
+     "warehouse": "WH3",
+     "qty": 41
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4185",
+   "status": "ALLOCATED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2177",
+     "warehouse": "WH1",
+     "qty": 276
+    },
+    {
+     "sku": "MSD-2205",
+     "warehouse": "WH2",
+     "qty": 73
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4085",
+   "status": "CANCELLED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2232",
+     "warehouse": "WH1",
+     "qty": 105
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4241",
+   "status": "PENDING",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-09",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2220",
+     "warehouse": "WH1",
+     "qty": 96
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4071",
+   "status": "DRAFT",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-11",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2076",
+     "warehouse": "WH2",
+     "qty": 171
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4154",
+   "status": "PENDING",
+   "customer": "Halvern Retail Group",
+   "promised_date": "2026-09-12",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2043",
+     "warehouse": "WH1",
+     "qty": 309
+    },
+    {
+     "sku": "MSD-2122",
+     "warehouse": "WH3",
+     "qty": 35
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4122",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2216",
+     "warehouse": "WH1",
+     "qty": 220
+    },
+    {
+     "sku": "MSD-2091",
+     "warehouse": "WH3",
+     "qty": 201
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4356",
+   "status": "PACKED",
+   "customer": "Trentwood Motors",
+   "promised_date": "2026-09-14",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2197",
+     "warehouse": "WH2",
+     "qty": 484
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4309",
+   "status": "PICKING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-13",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2200",
+     "warehouse": "WH1",
+     "qty": 5
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4365",
+   "status": "PENDING",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-11",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2004",
+     "warehouse": "WH3",
+     "qty": 51
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4026",
+   "status": "CLOSED",
+   "customer": "Duvall Construction",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2004",
+     "warehouse": "WH3",
+     "qty": 21
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4049",
+   "status": "DRAFT",
+   "customer": "Kingsford Hospitals",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2114",
+     "warehouse": "WH2",
+     "qty": 13
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4304",
+   "status": "PICKING",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-17",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2040",
+     "warehouse": "WH3",
+     "qty": 190
+    },
+    {
+     "sku": "MSD-2185",
+     "warehouse": "WH1",
+     "qty": 101
+    },
+    {
+     "sku": "MSD-2087",
+     "warehouse": "WH3",
+     "qty": 82
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4167",
+   "status": "PACKED",
+   "customer": "Bexley Trade Co",
+   "promised_date": "2026-09-14",
+   "otif_penalty": true,
+   "lines": [
+    {
+     "sku": "MSD-2245",
+     "warehouse": "WH3",
+     "qty": 73
+    },
+    {
+     "sku": "MSD-2040",
+     "warehouse": "WH3",
+     "qty": 96
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4030",
+   "status": "SHIPPED",
+   "customer": "Orion Facilities",
+   "promised_date": "2026-09-15",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2107",
+     "warehouse": "WH1",
+     "qty": 151
+    }
+   ]
+  },
+  {
+   "order_id": "SO-4332",
+   "status": "ALLOCATED",
+   "customer": "PrimeMart Wholesale",
+   "promised_date": "2026-09-18",
+   "otif_penalty": false,
+   "lines": [
+    {
+     "sku": "MSD-2005",
+     "warehouse": "WH2",
+     "qty": 289
+    }
+   ]
+  }
+ ]
+}

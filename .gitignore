@@ -1,0 +1,75 @@
+# ── Environment & Secrets ──────────────────────────────────────────────
+.env
+.env.*
+*.env
+secrets.yaml
+secrets.json
+*_secret*
+*_secrets*
+config/secrets/
+
+# AI / LLM API keys
+openai_key*
+anthropic_key*
+llm_config.json
+.llmrc
+
+# ── Interview & Internal Guides (never publish) ─────────────────────────
+INTERVIEW-GUIDE*
+interview_guide*
+*interview*guide*
+DEMO-RUNBOOK*
+
+# ── Run Outputs (generated, not source) ────────────────────────────────
+runs/
+*.run.json
+
+# ── Python ─────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.whl
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ── Virtual Environments ────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# ── Testing & Coverage ─────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.log
+
+# ── OS & Editor ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ── Compiled / Archives ────────────────────────────────────────────────
+*.zip
+*.tar.gz
+*.pyc

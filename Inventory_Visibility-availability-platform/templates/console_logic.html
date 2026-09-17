@@ -1,0 +1,686 @@
+<script>
+const RUN = __RUN_DATA__;
+const $  = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const fmt = n => (n === null || n === undefined) ? '—' : Number(n).toLocaleString();
+const money = n => '$' + Number(n||0).toLocaleString(undefined,{maximumFractionDigits:0});
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ITEMS = RUN.items, EXC = RUN.exceptions, K = RUN.kpis;
+const ITEM = Object.fromEntries(ITEMS.map(i => [i.sku, i]));
+const sevClass = s => ({critical:'t-crit',warning:'t-warn',info:'t-info'}[s] || 't-info');
+
+/* Weekly demand history drawn against the forecast rate. Inline SVG so the
+   console stays a single file with no chart library and no network. */
+function sparkline(values, forecastLevel){
+  if(!values || values.length < 2) return '<p class="small muted">No demand history for this SKU.</p>';
+  const w = 460, h = 90, pad = 6;
+  const max = Math.max(...values, forecastLevel || 0, 1);
+  const x = i => pad + i * (w - pad * 2) / (values.length - 1);
+  const y = v => h - pad - (v / max) * (h - pad * 2);
+  const bars = values.map((v,i) => {
+    const bw = Math.max((w - pad * 2) / values.length - 3, 3);
+    return '<rect x="' + (x(i) - bw / 2) + '" y="' + y(v) + '" width="' + bw +
+           '" height="' + Math.max(h - pad - y(v), 0) + '" rx="1.5" fill="#cbd5e1"/>';
+  }).join('');
+  const fy = y(forecastLevel || 0);
+  const line = forecastLevel ? '<line x1="' + pad + '" x2="' + (w - pad) + '" y1="' + fy + '" y2="' + fy +
+    '" stroke="#1d4ed8" stroke-width="1.6" stroke-dasharray="4 3"/>' +
+    '<text x="' + (w - pad) + '" y="' + Math.max(fy - 5, 10) + '" text-anchor="end" font-size="10" ' +
+    'fill="#1d4ed8" font-family="ui-monospace,Menlo,monospace">forecast ' + forecastLevel + '/wk</text>' : '';
+  return '<svg class="spark" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none">' +
+         bars + line + '</svg>' +
+         '<div class="legend"><span><i style="background:#cbd5e1"></i>weekly units shipped, last ' +
+         values.length + ' weeks</span><span><i style="background:#1d4ed8"></i>modelled rate</span></div>';
+}
+
+/* ---------------- export helpers ---------------- */
+function toCsv(rows){
+  const cell = v => {
+    const t = v === null || v === undefined ? '' : String(v);
+    return /[",\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t;
+  };
+  return rows.map(r => r.map(cell).join(',')).join('\n');
+}
+function download(filename, text){
+  const url = URL.createObjectURL(new Blob([text], {type:'text/csv;charset=utf-8'}));
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+  document.body.removeChild(a); setTimeout(() => URL.revokeObjectURL(url), 400);
+}
+const stamp = () => RUN.run_id.replace(/[^A-Za-z0-9_-]/g, '');
+
+/* ---------------- header + nav ---------------- */
+$('#hRun').textContent = RUN.run_id;
+$('#hAsOf').textContent = RUN.generated_at.replace('T',' ').slice(0,16) + ' UTC';
+$('#hVer').textContent = 'v' + RUN.engine_version;
+$('#hStatus').textContent = RUN.status === 'OK' ? 'PUBLISHED' : RUN.status;
+$('#ccAsOf').textContent = RUN.generated_at.replace('T',' ').slice(0,16) + ' UTC';
+$('#nExc').textContent = EXC.length;
+$('#nInv').textContent = ITEMS.length;
+
+$('#ccSchedule').innerHTML = [
+  ['Reconciliation run', RUN.generated_at.replace('T',' ').slice(0,16) + ' UTC'],
+  ['Next scheduled run', 'tomorrow 06:15 UTC'],
+  ['Feeds reconciled', RUN.sources.length + ' of ' + RUN.sources.length],
+  ['Rows processed', fmt(RUN.manifest.rows_in)],
+  ['Run outcome', RUN.status + ' · exit ' + RUN.exit_code],
+].map(x => '<div><span class="muted">' + x[0] + '</span><br><b>' + x[1] + '</b></div>').join('') +
+  '<div style="margin-left:auto"><button class="btn" id="ccExport">Export availability</button></div>';
+
+$('#appFooter').innerHTML =
+  '<span>Inventory Visibility Availability Platform v' + RUN.engine_version + '</span>' +
+  '<span class="mono">' + RUN.run_id + '</span>' +
+  '<span>' + fmt(RUN.manifest.rows_in) + ' rows in · ' + fmt(RUN.manifest.accepted) + ' accepted · ' +
+  RUN.manifest.quarantined + ' quarantined</span>' +
+  '<span>Availability computed by the engine; advisory layers are labelled as such.</span>';
+$$('nav button').forEach(b => b.onclick = () => {
+  $$('nav button').forEach(x => x.classList.remove('on')); b.classList.add('on');
+  $$('.panel').forEach(p => p.classList.remove('on')); $('#p-' + b.dataset.p).classList.add('on');
+  window.scrollTo(0,0);
+});
+
+/* ---------------- command centre ---------------- */
+$('#ccCards').innerHTML = [
+  ['blue','True available today', fmt(K.total_available) + ' u',
+   'Across ' + fmt(K.skus) + ' SKUs and 3 warehouses, after reservations, damage and safety stock.'],
+  ['crit','Availability overstated by', fmt(K.overstatement_units) + ' u',
+   'What the old WMS + inbound eyeball reading showed, minus reality — ' + K.overstatement_pct + '% too high.'],
+  ['crit','Revenue at risk', money(K.revenue_at_risk),
+   K.oversold_skus + ' SKUs already promised beyond stock, ' + fmt(K.units_short) + ' units short.'],
+  ['warn','Orders exposed to penalties', fmt(K.orders_with_penalty_exposure),
+   'Open orders on oversold SKUs carrying an OTIF chargeback clause.'],
+  ['warn','Open exceptions', RUN.summary.critical + ' / ' + RUN.summary.warning,
+   'Critical / warning. Worked from the exception queue each morning.'],
+  ['good','Manual reconciliation', '0 min',
+   'Down from about an hour of spreadsheet work per day. Run time: under two seconds.'],
+].map(([c,l,v,h]) => '<div class="card ' + c + '"><div class="lab">' + l + '</div><div class="val">' + v + '</div><div class="hint">' + h + '</div></div>').join('');
+
+const naive = K.naive_number, truth = K.total_available;
+const otherLoss = naive - K.total_reserved - K.total_inbound - truth;
+$('#ccCompare').innerHTML =
+  '<div class="tw"><table><tbody>' +
+  '<tr><td><b>What ops read from the WMS export</b><br><span class="small muted">On hand, plus anything showing as inbound</span></td>' +
+  '<td class="num" style="font-size:21px;font-weight:700;color:var(--crit)">' + fmt(naive) + '</td></tr>' +
+  '<tr><td>less units already reserved by open orders</td><td class="num">−' + fmt(K.total_reserved) + '</td></tr>' +
+  '<tr><td>less inbound stock that has not arrived</td><td class="num">−' + fmt(K.total_inbound) + '</td></tr>' +
+  '<tr><td>less damaged, blocked and safety stock</td><td class="num">−' + fmt(otherLoss) + '</td></tr>' +
+  '<tr style="background:var(--okbg)"><td><b>Available to sell today</b><br><span class="small muted">The one number the dashboard now publishes</span></td>' +
+  '<td class="num" style="font-size:21px;font-weight:700;color:var(--ok)">' + fmt(truth) + '</td></tr>' +
+  '</tbody></table></div>';
+$('#ccNote').innerHTML = '<b>This gap is the oversell.</b> Selling against the top number instead of the bottom one is how ' +
+  K.oversold_skus + ' SKUs came to be promised beyond stock, exposing ' + money(K.revenue_at_risk) +
+  ' of revenue and ' + fmt(K.orders_with_penalty_exposure) + ' penalty-bearing orders.';
+
+const segs = [['Sellable today', truth, '#047857'], ['Reserved by open orders', K.total_reserved, '#b45309'],
+              ['Inbound, not yet here', K.total_inbound, '#1d4ed8'],
+              ['Damaged / blocked / buffer', Math.max(otherLoss, 0), '#be123c']];
+const tot = segs.reduce((a,s) => a + s[1], 0) || 1;
+$('#ccWaterfall').innerHTML =
+  '<div class="bar">' + segs.map(s => '<i style="width:' + (s[1]/tot*100) + '%;background:' + s[2] + '"></i>').join('') + '</div>' +
+  '<div class="legend">' + segs.map(s => '<span><i style="background:' + s[2] + '"></i>' + s[0] + ' — <b>' + fmt(s[1]) + '</b></span>').join('') + '</div>' +
+  '<div class="tw"><table style="margin-top:16px"><tbody>' + segs.map(s =>
+    '<tr><td><i style="display:inline-block;width:9px;height:9px;border-radius:2px;background:' + s[2] + ';margin-right:8px"></i>' + s[0] + '</td>' +
+    '<td class="num">' + fmt(s[1]) + '</td><td class="num muted">' + (s[1]/tot*100).toFixed(1) + '%</td></tr>').join('') + '</tbody></table></div>';
+
+$('#ccTop').innerHTML = EXC.filter(e => e.flag === 'OVERSOLD')
+  .sort((a,b) => (b.detail.revenue_at_risk||0) - (a.detail.revenue_at_risk||0)).slice(0,8)
+  .map(e => '<tr class="clk" onclick="openSku(\'' + e.sku + '\')">' +
+      '<td class="sku">' + e.sku + '</td><td><span class="tag t-crit">OVERSOLD</span></td>' +
+      '<td class="num">' + fmt(e.detail.shortfall) + '</td><td class="num">' + money(e.detail.revenue_at_risk) + '</td>' +
+      '<td class="small muted">' + esc(e.suggested_action) + '</td></tr>').join('')
+  || '<tr><td colspan="5" class="empty">No oversold SKUs in this run.</td></tr>';
+
+$('#ccFeeds').innerHTML = RUN.sources.map(s => {
+  const state = !s.loaded ? ['MISSING','t-crit','#be123c'] : (s.stale ? ['STALE','t-warn','#b45309'] : ['HEALTHY','t-ok','#047857']);
+  return '<div class="feed"><div class="ic" style="background:' + state[2] + '">' + s.name.slice(0,2).toUpperCase() + '</div>' +
+    '<div class="fx"><b>' + esc(s.label) + '</b><div class="small muted">owns ' + (s.authority.join(', ') || '—') + ' · ' +
+    (s.criticality === 'required' ? 'fail-closed' : 'fail-open') + '</div></div>' +
+    '<div class="fr"><span class="tag ' + state[1] + '">' + state[0] + '</span>' +
+    '<div class="small muted mono">' + (s.as_of||'').slice(11,16) + ' · ' + (s.age_hours ?? '—') + 'h old</div></div></div>';
+}).join('');
+
+/* ---------------- exception queue ---------------- */
+let eSev = '', eFlag = '', eQ = '';
+$('#excFlag').innerHTML = '<option value="">All flags</option>' +
+  [...new Set(EXC.map(e => e.flag))].sort().map(f =>
+    '<option value="' + f + '">' + f + ' (' + EXC.filter(e => e.flag === f).length + ')</option>').join('');
+function renderExc(){
+  const rows = EXC.filter(e => (!eSev || e.severity === eSev) && (!eFlag || e.flag === eFlag) &&
+    (!eQ || (e.sku + e.message + e.flag).toLowerCase().includes(eQ)));
+  $('#excCount').textContent = rows.length + ' of ' + EXC.length + ' exceptions';
+  $('#excCount').className = 'count-note';
+  $('#excBody').innerHTML = rows.slice(0,400).map(e =>
+    '<tr class="' + (e.sku !== '*' ? 'clk' : '') + '" ' + (e.sku !== '*' ? 'onclick="openSku(\'' + e.sku + '\')"' : '') + '>' +
+    '<td><span class="tag ' + sevClass(e.severity) + '">' + e.severity.toUpperCase() + '</span></td>' +
+    '<td class="mono small">' + e.flag + '</td>' +
+    '<td class="sku">' + (e.sku === '*' ? '<span class="muted">run-level</span>' : e.sku) + '</td>' +
+    '<td>' + esc(e.message) + '</td><td class="small muted">' + esc(e.suggested_action) + '</td></tr>').join('')
+    || '<tr><td colspan="5" class="empty">Nothing matches this filter.</td></tr>';
+}
+$$('#excSev button').forEach(b => b.onclick = () => {
+  $$('#excSev button').forEach(x => x.classList.remove('on')); b.classList.add('on'); eSev = b.dataset.v; renderExc(); });
+$('#excFlag').onchange = e => { eFlag = e.target.value; renderExc(); };
+$('#excQ').oninput = e => { eQ = e.target.value.toLowerCase(); renderExc(); };
+renderExc();
+$('#excExport').onclick = () => download('exceptions_' + stamp() + '.csv', toCsv(
+  [['severity','flag','sku','message','suggested_action','evidence']].concat(
+    EXC.filter(e => (!eSev || e.severity === eSev) && (!eFlag || e.flag === eFlag) &&
+      (!eQ || (e.sku + e.message + e.flag).toLowerCase().includes(eQ)))
+      .map(e => [e.severity, e.flag, e.sku, e.message, e.suggested_action, (e.evidence||[]).join('|')]))));
+
+/* ---------------- inventory explorer ---------------- */
+let iQ = '', iFlag = '', iConf = '', iSort = 'sku', iDesc = false;
+const iLimit = 120;
+function renderInv(){
+  const rows = ITEMS.filter(i =>
+    (!iQ || (i.sku + ' ' + i.description).toLowerCase().includes(iQ)) &&
+    (!iFlag || i.flags.some(f => f.startsWith(iFlag))) &&
+    (!iConf || i.confidence === iConf)
+  ).sort((a,b) => {
+    const get = o => ({sku:o.sku, available:o.available, atp_7d:o.atp_7d,
+      on_hand:(o.breakdown.on_hand === null ? -1 : o.breakdown.on_hand),
+      reserved:o.breakdown.reserved, inbound:o.breakdown.inbound})[iSort];
+    const x = get(a), y = get(b);
+    const r = typeof x === 'string' ? x.localeCompare(y) : x - y;
+    return iDesc ? -r : r;
+  });
+  $('#invCount').textContent = rows.length + ' of ' + ITEMS.length + ' SKUs';
+  $('#invCount').className = 'count-note';
+  $('#invBody').innerHTML = rows.slice(0,iLimit).map(i =>
+    '<tr class="clk" onclick="openSku(\'' + i.sku + '\')">' +
+    '<td class="sku">' + i.sku + '</td><td>' + esc(i.description) + '</td>' +
+    '<td class="num"><b>' + fmt(i.available) + '</b>' + (i.raw_available < 0 ? ' <span class="tag t-crit">' + i.raw_available + '</span>' : '') + '</td>' +
+    '<td class="num muted">' + fmt(i.atp_7d) + '</td><td class="num">' + fmt(i.breakdown.on_hand) + '</td>' +
+    '<td class="num">' + fmt(i.breakdown.reserved) + '</td><td class="num muted">' + fmt(i.breakdown.inbound) + '</td>' +
+    '<td><span class="tag ' + (i.confidence==='high'?'t-ok':i.confidence==='medium'?'t-warn':'t-crit') + '">' + i.confidence + '</span></td>' +
+    '<td>' + (i.flags.filter(f => !f.startsWith('MISSING_IN_SOURCE')).slice(0,3)
+          .map(f => '<span class="flagchip">' + f + '</span>').join('') || '<span class="muted small">clean</span>') + '</td></tr>').join('')
+    || '<tr><td colspan="9" class="empty">Nothing matches this filter.</td></tr>';
+  $('#invMore').textContent = rows.length > iLimit ?
+    'Showing first ' + iLimit + ' of ' + rows.length + '. Narrow the filter or search for a SKU.' : '';
+}
+$('#invQ').oninput = e => { iQ = e.target.value.toLowerCase(); renderInv(); };
+$('#invFlag').onchange = e => { iFlag = e.target.value; renderInv(); };
+$('#invConf').onchange = e => { iConf = e.target.value; renderInv(); };
+$$('#p-inv th[data-s]').forEach(th => { th.style.cursor = 'pointer';
+  th.onclick = () => { iDesc = iSort === th.dataset.s ? !iDesc : true; iSort = th.dataset.s; renderInv(); }; });
+renderInv();
+
+const availabilityCsv = () => toCsv(
+  [['sku','description','available','raw_available','atp_7d','on_hand','reserved','unsellable',
+    'safety_stock','inbound','confidence','flags','sources_seen']].concat(
+    ITEMS.map(i => [i.sku, i.description, i.available, i.raw_available, i.atp_7d,
+      i.breakdown.on_hand, i.breakdown.reserved, i.breakdown.unsellable, i.breakdown.safety_stock,
+      i.breakdown.inbound, i.confidence, i.flags.join('|'), i.sources_seen.join('|')])));
+$('#invExport').onclick = () => download('inventory_' + stamp() + '.csv', availabilityCsv());
+$('#ccExport').onclick  = () => download('availability_' + stamp() + '.csv', availabilityCsv());
+
+/* ---------------- SKU drawer (lineage) ---------------- */
+window.openSku = function(sku){
+  const i = ITEM[sku];
+  if(!i) return;
+  const b = i.breakdown, exc = EXC.filter(e => e.sku === sku);
+  const calc =
+    '<span class="d">available = on_hand − reserved − unsellable − safety_stock</span>\n' +
+    '          = ' + (b.on_hand === null ? 'null' : b.on_hand) + ' − ' + b.reserved + ' − ' + b.unsellable + ' − ' + b.safety_stock + '\n' +
+    '          = <span class="' + (i.raw_available < 0 ? 'r' : 'g') + '">' + fmt(i.raw_available) + '</span>' +
+    (i.raw_available < 0 ? '   <span class="d">→ published 0 (clamped; shortfall kept as raw_available)</span>' : '') + '\n\n' +
+    '<span class="d">atp_7d    = available + inbound arriving inside the 7 day horizon</span>\n' +
+    '          = ' + fmt(i.available) + ' + ' + fmt(b.inbound) + ' = <span class="b">' + fmt(i.atp_7d) + '</span>';
+
+  let html =
+    '<h1 style="margin-bottom:2px"><span class="sku" style="font-size:20px">' + sku + '</span></h1>' +
+    '<p class="sub" style="margin-bottom:16px">' + esc(i.description) + ' · ' + i.category + ' · class ' + i.abc_class +
+    ' · unit price ' + money(i.unit_price) + '</p>' +
+    '<div class="cards c3">' +
+    '<div class="card ' + (i.available > 0 ? 'good' : 'crit') + '"><div class="lab">Available</div><div class="val">' + fmt(i.available) + '</div></div>' +
+    '<div class="card blue"><div class="lab">ATP 7 day</div><div class="val">' + fmt(i.atp_7d) + '</div></div>' +
+    '<div class="card"><div class="lab">Confidence</div><div class="val" style="font-size:20px;padding-top:8px">' + i.confidence + '</div></div></div>' +
+    '<h2>The arithmetic</h2><div class="calc">' + calc + '</div>';
+
+  if(i.by_location.length){
+    html += '<h2>By warehouse</h2><div class="tw"><table><thead><tr><th>Location</th><th class="num">On hand</th><th class="num">Reserved</th>' +
+      '<th class="num">Damaged</th><th class="num">Buffer</th><th class="num">Available</th><th class="num">Inbound</th></tr></thead><tbody>' +
+      i.by_location.map(l => '<tr><td><b>' + l.location + '</b></td><td class="num">' + fmt(l.on_hand) + '</td>' +
+        '<td class="num">' + fmt(l.reserved) + '</td><td class="num">' + fmt(l.unsellable) + '</td><td class="num">' + fmt(l.safety_stock) + '</td>' +
+        '<td class="num"><b style="color:' + (l.raw_available < 0 ? 'var(--crit)' : 'var(--ok)') + '">' + fmt(l.raw_available) + '</b></td>' +
+        '<td class="num muted">' + fmt(l.inbound) + '</td></tr>').join('') + '</tbody></table></div>';
+  }
+  if(exc.length){
+    html += '<h2>Exceptions</h2>' + exc.map(e =>
+      '<div class="note ' + (e.severity === 'critical' ? 'crit' : 'warn') + '"><b>' + e.flag + '</b> — ' + esc(e.message) +
+      '<br><span class="small">→ ' + esc(e.suggested_action) + '</span></div>').join('');
+  }
+  if(i.reserved_detail.length){
+    html += '<h2>Reserved by — lineage back to source records</h2>' +
+      '<div class="tw"><table><thead><tr><th>Order</th><th>Customer</th><th>Status</th><th>Promised</th><th class="num">Qty</th><th>Loc</th></tr></thead><tbody>' +
+      i.reserved_detail.slice(0,14).map(r => '<tr><td class="mono small">' + r.order_id +
+        (r.otif_penalty ? ' <span class="tag t-crit">OTIF</span>' : '') + '</td>' +
+        '<td class="small">' + esc(r.customer) + '</td><td class="small muted">' + r.status + '</td>' +
+        '<td class="small muted">' + (r.promised_date || '') + '</td><td class="num">' + fmt(r.qty) + '</td>' +
+        '<td class="small">' + r.location + '</td></tr>').join('') + '</tbody></table></div>';
+  }
+  if(i.inbound_detail.length){
+    html += '<h2>Inbound — ATP only, never sellable today</h2>' +
+      '<div class="tw"><table><thead><tr><th>PO</th><th>Supplier</th><th>ETA</th><th class="num">Qty</th><th>Loc</th></tr></thead><tbody>' +
+      i.inbound_detail.map(d => '<tr><td class="mono small">' + d.po_id + '</td><td class="small">' + esc(d.supplier) + '</td>' +
+        '<td class="small">' + d.eta + '</td><td class="num">' + fmt(d.qty) + '</td><td class="small">' + d.location + '</td></tr>').join('') +
+      '</tbody></table>';
+  }
+  html += '<h2>Provenance</h2><p class="small muted" style="margin-top:0">Seen in feeds: ' +
+    (i.sources_seen.map(s => '<span class="flagchip">' + s + '</span>').join('') || '—') +
+    ((i.missing_sources && i.missing_sources.length) ? ' · absent from: ' + i.missing_sources.map(s => '<span class="flagchip">' + s + '</span>').join('') : '') +
+    '</p><p class="small mono muted">' + (i.evidence.map(e => esc(e)).join('  ·  ') || 'no source records') + '</p>';
+
+  $('#drawerBody').innerHTML = html;
+  $('#drawer').classList.add('on'); $('#scrim').classList.add('on');
+};
+$('#drawerX').onclick = $('#scrim').onclick = () => {
+  $('#drawer').classList.remove('on'); $('#scrim').classList.remove('on'); };
+
+/* ---------------- formula sandbox ---------------- */
+const PROD = JSON.parse(JSON.stringify(RUN.config.buckets));
+let SIGNS = JSON.parse(JSON.stringify(PROD));
+const BKEY = {ON_HAND:'on_hand', RESERVED:'reserved', UNSELLABLE:'unsellable',
+  SAFETY_STOCK:'safety_stock', INBOUND:'inbound', RETURN_IN_TRANSIT:'return_in_transit',
+  RETURN_PENDING_QC:'return_pending_qc'};
+const bucketTotal = bk => ITEMS.reduce((a,i) => a + (i.breakdown[BKEY[bk]] || 0), 0);
+function recompute(){
+  let total = 0, oversold = 0, negative = 0;
+  for(const i of ITEMS){
+    let v = 0;
+    for(const bk in BKEY) v += (i.breakdown[BKEY[bk]] || 0) * ((SIGNS[bk] && SIGNS[bk].available_sign) || 0);
+    if(v < 0){ negative++; oversold += -v; }
+    total += Math.max(v, 0);
+  }
+  return {total: total, oversold: oversold, negative: negative};
+}
+function renderFormula(){
+  $('#fmBody').innerHTML = Object.keys(SIGNS).map(bk => {
+    const d = SIGNS[bk];
+    return '<tr><td><b>' + bk + '</b><div class="small muted">' + d.label + '</div></td>' +
+      '<td class="small muted">' + d.owner + '</td>' +
+      '<td><div class="seg" style="display:inline-flex">' +
+      [[1,'add'],[0,'ignore'],[-1,'subtract']].map(o =>
+        '<button class="' + (d.available_sign === o[0] ? 'on' : '') + '" onclick="setSign(\'' + bk + '\',' + o[0] + ')" ' +
+        'style="padding:5px 9px;font-size:11px">' + o[1] + '</button>').join('') + '</div></td>' +
+      '<td><span class="tag ' + (d.atp_sign > 0 ? 't-blue' : d.atp_sign < 0 ? 't-warn' : 't-info') + '">' +
+      (d.atp_sign > 0 ? '+' : '') + d.atp_sign + '</span></td>' +
+      '<td class="num">' + fmt(bucketTotal(bk)) + '</td></tr>';
+  }).join('');
+
+  const r = recompute(), delta = r.total - K.total_available;
+  const changed = JSON.stringify(SIGNS) !== JSON.stringify(PROD);
+  let impact =
+    '<div class="cards c2">' +
+    '<div class="card ' + (changed && delta > 0 ? 'crit' : 'blue') + '"><div class="lab">Published available</div>' +
+    '<div class="val">' + fmt(r.total) + '</div><div class="hint">' +
+    (changed ? (delta > 0 ? '+' : '') + fmt(delta) + ' vs production config' : 'matches production configuration') + '</div></div>' +
+    '<div class="card ' + (r.negative ? 'warn' : 'good') + '"><div class="lab">SKUs computing negative</div>' +
+    '<div class="val">' + fmt(r.negative) + '</div><div class="hint">' + fmt(r.oversold) +
+    ' units of shortfall, clamped to zero on publish.</div></div></div>';
+  if(changed && delta > 0){
+    impact += '<div class="note crit" style="margin-bottom:0"><b>This configuration would oversell.</b> ' +
+      'It publishes ' + fmt(delta) + ' more units than exist as sellable stock — precisely the failure Inventory Visibility is ' +
+      'paying fulfilment penalties for. In production this diff is shown by ' +
+      '<code>inv-visibility reconcile --dry-run --diff-against last</code> before anyone can merge it.</div>';
+  } else if(changed){
+    impact += '<div class="note" style="margin-bottom:0">This configuration is more conservative than production: ' +
+      fmt(-delta) + ' fewer units published. Safe, but it defers revenue.</div>';
+  } else {
+    impact += '<div class="note" style="margin-bottom:0">Production configuration. Inbound stock and in-transit ' +
+      'returns contribute <b>zero</b> to today\'s sellable number and appear only in ATP.</div>';
+  }
+  $('#fmImpact').innerHTML = impact;
+
+  $('#fmYaml').innerHTML = '<span class="c"># config/sources.yaml — the formula, in review-able configuration</span>\n' +
+    '<span class="k">buckets</span>:\n' +
+    Object.keys(SIGNS).map(bk => '  <span class="k">' + bk + '</span>:' + ' '.repeat(Math.max(1, 20 - bk.length)) +
+      '{ available_sign: <span class="n">' + String(SIGNS[bk].available_sign).padStart(2) +
+      '</span>, atp_sign: <span class="n">' + String(SIGNS[bk].atp_sign).padStart(2) + '</span> }').join('\n') +
+    '\n\n<span class="c"># available = Σ(quantity × available_sign[bucket])</span>\n' +
+    '<span class="c"># atp(d)    = available + Σ(INBOUND where eta ≤ d)</span>';
+}
+window.setSign = function(bk, v){ SIGNS[bk].available_sign = v; renderFormula(); };
+$('#fmReset').onclick = () => { SIGNS = JSON.parse(JSON.stringify(PROD)); renderFormula(); };
+$('#fmNaive').onclick = () => { SIGNS.INBOUND.available_sign = 1; SIGNS.RETURN_IN_TRANSIT.available_sign = 1;
+  SIGNS.UNSELLABLE.available_sign = 0; SIGNS.SAFETY_STOCK.available_sign = 0; renderFormula(); };
+renderFormula();
+
+/* ---------------- feeds ---------------- */
+$('#feedCards').innerHTML = RUN.sources.map(s => {
+  const st = !s.loaded ? ['crit','MISSING'] : (s.stale ? ['warn','STALE'] : ['good','HEALTHY']);
+  const stats = Object.keys(s.stats || {}).map(k => k.replace(/_/g,' ') + ': <b>' + fmt(s.stats[k]) + '</b>').join('<br>');
+  return '<div class="card ' + st[0] + '"><div class="lab">' + esc(s.label) + '</div>' +
+    '<div class="val" style="font-size:18px;padding-top:6px">' + st[1] + '</div>' +
+    '<div class="hint">' + (stats || s.error || '') + '</div></div>';
+}).join('');
+$('#feedTable').innerHTML = RUN.sources.map(s =>
+  '<tr><td><b>' + s.name + '</b><div class="small muted">' + esc(s.label) + '</div></td>' +
+  '<td>' + s.authority.map(a => '<span class="flagchip">' + a + '</span>').join('') + '</td>' +
+  '<td><span class="tag ' + (s.criticality === 'required' ? 't-crit' : 't-info') + '">' + s.criticality + '</span></td>' +
+  '<td class="small">' + (s.criticality === 'required' ? 'Abort the run — losing it inflates availability'
+                                                       : 'Complete, degrade ATP, raise a flag') + '</td>' +
+  '<td class="mono small">' + (s.as_of||'').replace('T',' ').slice(0,16) + '</td>' +
+  '<td class="num">' + (s.age_hours ?? '—') + 'h</td><td class="num">' + fmt(s.records || 0) + '</td>' +
+  '<td><span class="tag ' + (!s.loaded ? 't-crit' : s.stale ? 't-warn' : 't-ok') + '">' +
+  (!s.loaded ? 'MISSING' : s.stale ? 'STALE' : 'OK') + '</span></td></tr>').join('');
+$('#failDemo').innerHTML = __FAIL_DEMO__;
+$('#extYaml').innerHTML = __EXT_YAML__;
+$('#extPy').innerHTML = __EXT_PY__;
+
+/* ---------------- data quality ---------------- */
+const M = RUN.manifest;
+$('#qCards').innerHTML = [
+  ['blue','Rows ingested', fmt(M.rows_in), 'Across ' + RUN.sources.length + ' feeds.'],
+  ['good','Accepted', fmt(M.accepted), 'Normalised and aggregated into the ledger.'],
+  ['warn','Quarantined', fmt(M.quarantined), M.quarantine_pct + '% — abort threshold is ' + RUN.config.run.quarantine_abort_pct + '%.'],
+  ['blue','SKUs published', fmt(K.skus), fmt(K.low_confidence_skus) + ' carry reduced confidence.'],
+].map(c => '<div class="card ' + c[0] + '"><div class="lab">' + c[1] + '</div><div class="val">' + c[2] + '</div><div class="hint">' + c[3] + '</div></div>').join('');
+$('#qBody').innerHTML = (RUN.quarantine || []).map(q =>
+  '<tr><td>' + q.source + '</td><td class="mono small">' + esc(q.row_ref) + '</td>' +
+  '<td><span class="tag t-warn">' + q.reason + '</span></td><td class="small">' + (q.field || '') + '</td>' +
+  '<td class="mono small">' + esc(q.raw_value) + '</td><td class="small muted">' + q.action + '</td></tr>').join('')
+  || '<tr><td colspan="6" class="empty">No rows quarantined in this run.</td></tr>';
+$('#qManifest').innerHTML = [
+  ['Run identifier', RUN.run_id], ['Generated at', RUN.generated_at],
+  ['Engine version', 'v' + RUN.engine_version], ['Status', RUN.status],
+  ['Exit code', RUN.exit_code + ' (' + ({0:'clean',1:'warnings',2:'critical',3:'aborted'}[RUN.exit_code]) + ')'],
+  ['ATP horizon', RUN.config.run.atp_horizon_days + ' days'],
+  ['Staleness SLA', RUN.config.run.staleness_sla_hours + ' hours'],
+  ['Snapshot skew warning', RUN.config.run.snapshot_skew_warn_minutes + ' minutes'],
+].map(r => '<dt>' + r[0] + '</dt><dd class="mono small">' + esc(r[1]) + '</dd>').join('');
+$('#qHash').innerHTML = Object.keys(M.inputs).map(k =>
+  '<tr><td>' + k + '</td><td class="mono small muted">' + M.inputs[k] + '</td></tr>').join('');
+$('#normBody').innerHTML = __NORM_ROWS__;
+
+/* ---------------- api ---------------- */
+const API = __API_SAMPLES__;
+$('#apiRows').innerHTML = API.map((a,ix) =>
+  '<tr class="clk" onclick="showApi(' + ix + ')"><td><span class="tag ' + (a.verb === 'GET' ? 't-blue' : 't-warn') + '">' + a.verb + '</span></td>' +
+  '<td class="mono small">' + esc(a.path) + '</td><td class="small muted">' + esc(a.desc) + '</td></tr>').join('');
+window.showApi = ix => { $('#apiOut').textContent = API[ix].sample; $('#apiSel').textContent = API[ix].path; };
+window.showApi(0);
+$('#cliOut').innerHTML = __CLI_OUT__;
+$$('#apiTabs button').forEach(b => b.onclick = () => {
+  $$('#apiTabs button').forEach(x => x.classList.remove('on')); b.classList.add('on');
+  $('#api-rest').style.display = b.dataset.t === 'rest' ? '' : 'none';
+  $('#api-cli').style.display = b.dataset.t === 'cli' ? '' : 'none'; });
+
+/* ================= LAYER 7 — advisory intelligence ================= */
+const INTEL = __INTEL_DATA__;
+const RANKED = (INTEL && INTEL.risk) ? INTEL.risk.ranked : [];
+const FQ = (INTEL && INTEL.forecast_quality) ? INTEL.forecast_quality : {};
+const pct = n => (n === null || n === undefined) ? '—' : (Number(n) * 100).toFixed(0) + '%';
+
+if(INTEL){
+  $('#nRisk').textContent = RANKED.length;
+  const rs = INTEL.risk.summary;
+
+  $('#fcCards').innerHTML = [
+    ['crit','On the worklist', fmt(rs.scored),
+     rs.critical + ' critical, ' + rs.high + ' high. Ranked, so ops works ten items instead of ' + EXC.length + '.'],
+    ['blue','Predicted, not yet broken', fmt(rs.predictive_only),
+     'No deterministic flag fires on these. The engine sees nothing wrong — the forecast does.'],
+    ['warn','Revenue at risk, top 10', money(rs.top_10_revenue_at_risk),
+     'Concentrated exposure. Working the top of this list is where the money is.'],
+    ['good','Forecast accuracy', (FQ.median_wape !== undefined ? FQ.median_wape : '—'),
+     'Median WAPE over a 14-day horizon vs ' + FQ.median_naive_wape + ' for the naive baseline.'],
+    ['blue','Suppliers profiled', fmt(Object.keys(INTEL.supplier_profiles || {}).length),
+     'From closed PO receipt history. Drives the risk-adjusted ATP.'],
+    ['warn','Shrinkage suspected', fmt((INTEL.shrinkage || []).length),
+     'SKU/location pairs losing stock with no transaction to explain it.'],
+  ].map(c => '<div class="card ' + c[0] + '"><div class="lab">' + c[1] + '</div><div class="val">' + c[2] +
+    '</div><div class="hint">' + c[3] + '</div></div>').join('');
+
+  const demoRow = RANKED.find(r => r.predictive_only && r.next_po) ||
+                  RANKED.find(r => r.predictive_only);
+  $('#fcPredictiveNote').innerHTML = demoRow
+    ? '<b>This is the whole pitch in one row.</b> <span class="sku">' + demoRow.sku + '</span> has ' +
+      fmt(demoRow.available) + ' units available and <b>no exception against it</b> — the reconciliation ' +
+      'engine sees nothing wrong. But demand is running at a rate that gives ' + demoRow.days_of_cover_p10 +
+      ' days of cover, so it runs dry around <b>' + demoRow.stockout_date_p10 + '</b>' +
+      (demoRow.next_po ? ', while the PO covering it (' + demoRow.next_po.po_id + ') is promised ' +
+        demoRow.next_po.eta_supplier + ' but predicted ' + demoRow.next_po.eta_predicted_p50 +
+        ' on that supplier\'s record' : ', with nothing on order to cover it') +
+      '. Same engine, same data — but preventing the chargeback instead of documenting it.'
+    : 'Every SKU on the worklist already carries a deterministic flag in this run.';
+
+  let rkF = '';
+  function renderRanked(){
+    const rows = RANKED.filter(r => !rkF ? true : (rkF === 'predicted' ? r.predictive_only : r.band === rkF));
+    $('#rkCount').textContent = rows.length + ' of ' + RANKED.length + ' scored SKUs';
+    $('#rkCount').className = 'count-note';
+    $('#rkBody').innerHTML = rows.slice(0,80).map(r =>
+      '<tr class="clk" onclick="openRisk(\'' + r.sku + '\')">' +
+      '<td class="num muted">' + r.rank + '</td><td class="sku">' + r.sku + '</td>' +
+      '<td class="num"><b>' + r.risk_score + '</b></td>' +
+      '<td><span class="tag ' + (r.band === 'CRITICAL' ? 't-crit' : r.band === 'HIGH' ? 't-warn' : 't-info') +
+      '">' + r.band + '</span>' + (r.predictive_only ? ' <span class="tag t-blue">PREDICTED</span>' : '') + '</td>' +
+      '<td class="num">' + fmt(r.available) + '</td>' +
+      '<td class="num">' + (r.days_of_cover_p10 === null ? '—' : r.days_of_cover_p10 + 'd') + '</td>' +
+      '<td class="small muted">' + (r.stockout_date_p10 || '—') + '</td>' +
+      '<td class="num">' + money(r.revenue_at_risk) + '</td>' +
+      '<td>' + r.reason_codes.slice(0,3).map(c => '<span class="flagchip">' + c + '</span>').join('') + '</td></tr>').join('')
+      || '<tr><td colspan="9" class="empty">Nothing matches this filter.</td></tr>';
+  }
+  $$('#rkFilter button').forEach(b => b.onclick = () => {
+    $$('#rkFilter button').forEach(x => x.classList.remove('on')); b.classList.add('on');
+    rkF = b.dataset.v; renderRanked(); });
+  renderRanked();
+  $('#rkExport').onclick = () => download('worklist_' + stamp() + '.csv', toCsv(
+    [['rank','sku','description','risk_score','band','available','days_of_cover_p10',
+      'stockout_date_p10','revenue_at_risk','reason_codes','deterministic_flags','predicted_only']].concat(
+      RANKED.map(r => [r.rank, r.sku, r.description, r.risk_score, r.band, r.available,
+        r.days_of_cover_p10, r.stockout_date_p10, r.revenue_at_risk, r.reason_codes.join('|'),
+        r.deterministic_flags.join('|'), r.predictive_only]))));
+
+  window.openRisk = function(sku){
+    const r = RANKED.find(x => x.sku === sku); if(!r) return;
+    const fc = INTEL.forecasts[sku] || {};
+    const w = INTEL.risk.weights;
+    const rows = Object.keys(r.contributions).map(k =>
+      '<tr><td>' + k.replace(/_/g,' ') + '</td><td class="num muted">' + w[k] + '</td>' +
+      '<td class="num"><b>' + r.contributions[k] + '</b></td>' +
+      '<td style="min-width:110px"><div class="bar"><i style="width:' +
+      (w[k] ? (r.contributions[k] / w[k] * 100) : 0) + '%;background:var(--accent)"></i></div></td></tr>').join('');
+    let html =
+      '<h1 style="margin-bottom:2px"><span class="sku" style="font-size:20px">' + sku + '</span>' +
+      ' <span class="tag ' + (r.band === 'CRITICAL' ? 't-crit' : 't-warn') + '">' + r.band + '</span></h1>' +
+      '<p class="sub" style="margin-bottom:16px">' + esc(r.description) + ' · rank ' + r.rank +
+      ' of ' + RANKED.length + ' · advisory, computed after the availability number was published</p>' +
+      '<div class="cards c3">' +
+      '<div class="card blue"><div class="lab">Risk score</div><div class="val">' + r.risk_score + '</div></div>' +
+      '<div class="card"><div class="lab">Available</div><div class="val">' + fmt(r.available) + '</div></div>' +
+      '<div class="card ' + (r.days_of_cover_p10 !== null && r.days_of_cover_p10 < 7 ? 'crit' : 'good') + '">' +
+      '<div class="lab">Cover p10</div><div class="val">' + (r.days_of_cover_p10 === null ? '—' : r.days_of_cover_p10 + 'd') + '</div></div></div>' +
+      '<h2>Why it scores what it scores</h2>' +
+      '<div class="tw"><table><thead><tr><th>Component</th><th class="num">Weight</th>' +
+      '<th class="num">Contribution</th><th style="width:130px"></th></tr></thead>' +
+      '<tbody>' + rows + '</tbody></table></div>' +
+      '<p class="small muted">Reason codes: ' + r.reason_codes.map(c => '<span class="flagchip">' + c + '</span>').join('') + '</p>' +
+      '<h2>Demand history and modelled rate</h2>' + sparkline(fc.weekly_history, fc.weekly_forecast) +
+      '<h2>Forecast</h2><div class="calc">' +
+      '<span class="d">demand pattern</span>  ' + (fc.demand_pattern || '—') +
+      '   <span class="d">ADI</span> ' + (fc.adi ?? '—') + '  <span class="d">CV²</span> ' + (fc.cv2 ?? '—') + '\n' +
+      '<span class="d">model selected</span>  ' + (fc.model || '—') + '\n' +
+      '<span class="d">daily demand</span>    mean <span class="b">' + (fc.daily_demand_mean ?? '—') +
+      '</span>   p90 ' + (fc.daily_demand_p90 ?? '—') + '\n' +
+      '<span class="d">backtest WAPE</span>   ' + (fc.backtest_wape ?? '—') +
+      '   <span class="d">naive baseline</span> ' + (fc.naive_wape ?? '—') +
+      (fc.fell_back_to_naive ? '   <span class="r">model did not beat the baseline, baseline shipped</span>' : '') + '\n' +
+      '<span class="d">stockout p50/p10</span> ' + (fc.stockout_date_p50 || '—') + ' / <span class="r">' +
+      (fc.stockout_date_p10 || '—') + '</span></div>';
+    if(r.next_po){
+      html += '<h2>Inbound cover, adjusted for this supplier\'s record</h2>' +
+        '<div class="tw"><table><thead><tr><th>PO</th><th>Supplier</th><th>Promised</th>' +
+        '<th>Predicted p50</th><th>p90</th><th class="num">Slip risk</th></tr></thead><tbody>' +
+        '<tr><td class="mono small">' + r.next_po.po_id + '</td><td class="small">' + esc(r.next_po.supplier) + '</td>' +
+        '<td class="small">' + r.next_po.eta_supplier + '</td><td class="small"><b>' + r.next_po.eta_predicted_p50 + '</b></td>' +
+        '<td class="small muted">' + r.next_po.eta_predicted_p90 + '</td><td class="num">' + r.next_po.slip_risk + '</td></tr></tbody></table></div>' +
+        '<p class="small muted">' + esc(r.next_po.basis) + '</p>' +
+        '<div class="note"><b>ATP optimistic ' + fmt(r.atp_optimistic) + ' · risk-adjusted ' +
+        fmt(r.atp_risk_adjusted) + '.</b> Both are published. Ops needs the optimistic number for planning ' +
+        'and the adjusted one for promising.</div>';
+    }
+    if(r.shrinkage){
+      html += '<div class="note warn"><b>SHRINKAGE_SUSPECTED</b> — ' + esc(r.shrinkage.note) +
+        '<br><span class="small">→ ' + esc(r.shrinkage.suggested_action) + '</span></div>';
+    }
+    html += '<div class="note" style="margin-bottom:0">This entire panel is <b>advisory</b>. It was computed ' +
+      'after <code>available = ' + fmt(r.available) + '</code> was published and cannot change it. If the ' +
+      'forecast layer failed, that number would still publish.</div>';
+    $('#drawerBody').innerHTML = html;
+    $('#drawer').classList.add('on'); $('#scrim').classList.add('on');
+  };
+
+  const modelFor = {smooth:'seasonal_naive', intermittent:'croston_sba', lumpy:'croston_sba',
+                    erratic:'croston_sba', unknown:'category_fallback', no_demand:'—'};
+  $('#fcPatterns').innerHTML = Object.keys(FQ.by_pattern || {}).map(p =>
+    '<tr><td><b>' + p + '</b></td><td class="num">' + fmt(FQ.by_pattern[p]) + '</td>' +
+    '<td class="mono small muted">' + (modelFor[p] || '—') + '</td></tr>').join('');
+  $('#fcQuality').innerHTML =
+    [['SKUs backtested', fmt(FQ.skus_backtested)],
+     ['Median WAPE, 14-day horizon', '<b>' + FQ.median_wape + '</b>'],
+     ['Median WAPE, naive baseline', FQ.median_naive_wape],
+     ['Chosen model beat the baseline', FQ.beats_naive_pct + '%'],
+     ['Fell back to the baseline', fmt(FQ.fell_back_to_naive) + ' SKUs']]
+      .map(r => '<div class="stat"><span>' + r[0] + '</span><b>' + r[1] + '</b></div>').join('') +
+    '<div class="note" style="margin-bottom:0">If a model cannot beat the naive baseline, <b>the baseline ' +
+    'ships</b> — and that is reported rather than hidden. The win rate above is measured before the ' +
+    'substitution; measuring it after would make it 100% by construction, which is the kind of number ' +
+    'that quietly destroys trust in every other number on the page.</div>';
+
+  const profs = Object.values(INTEL.supplier_profiles || {}).sort((a,b) => b.slip_risk - a.slip_risk);
+  $('#fcSuppliers').innerHTML = profs.map(p =>
+    '<tr><td>' + esc(p.supplier) + '</td><td class="num muted">' + p.pos_observed + '</td>' +
+    '<td class="num">' + p.median_slip_days + 'd</td><td class="num">' + p.p90_slip_days + 'd</td>' +
+    '<td class="num">' + pct(p.share_over_7_days_late) + '</td>' +
+    '<td><span class="tag ' + (p.slip_risk >= 0.4 ? 't-crit' : p.slip_risk >= 0.15 ? 't-warn' : 't-ok') + '">' +
+    p.slip_risk + '</span></td></tr>').join('');
+  $('#fcShrink').innerHTML = (INTEL.shrinkage || []).map(s =>
+    '<tr><td class="sku">' + s.sku + '</td><td>' + s.location + '</td>' +
+    '<td class="num" style="color:var(--crit)"><b>' + s.residual_units + '</b></td>' +
+    '<td class="num">' + s.z + '</td><td class="small muted">' + esc(s.note) + '</td></tr>').join('')
+    || '<tr><td colspan="5" class="empty">No unexplained loss detected in the ledger window.</td></tr>';
+
+  /* ---------------- intelligence & narrative services ---------------- */
+  const B = INTEL.brief, MAP = INTEL.mapping_assistant;
+  const g = B.guardrail || {};
+
+  $('#aiProvider').textContent = (B.provider || 'service').toUpperCase() + ' · ' + B.status;
+  $('#aiBriefMeta').textContent = 'generated ' + RUN.generated_at.replace('T',' ').slice(0,16) +
+    ' UTC · delivered to Slack and email at 06:20';
+
+  $('#aiCards').innerHTML = [
+    ['good','Brief status', B.status, 'Published only after output verification passed.'],
+    ['blue','Figures verified', g.verified + '/' + g.numerals_in_output,
+     'Every number traced to the engine output that produced it.'],
+    ['blue','Generation time', (B.generated_in_ms ?? 0) + ' ms',
+     'Runs inside the batch. No inference sits in the dashboard read path.'],
+    ['blue','Request payload', (B.input_fields ?? 0) + ' fields · ' + fmt(B.input_chars ?? 0) + ' chars',
+     'Structured run output only, once per batch.'],
+  ].map(c => '<div class="card ' + c[0] + '"><div class="lab">' + c[1] + '</div><div class="val' +
+    (String(c[2]).length > 9 ? ' sm' : '') + '">' + c[2] + '</div><div class="hint">' + c[3] + '</div></div>').join('');
+
+  $('#aiBrief').innerHTML = (B.text || B.rejected_text || '').split('\n\n').map((p,i) =>
+    '<p style="' + (i === 0 ? 'font-weight:600;' : '') + 'margin:0 0 13px;line-height:1.65">' + esc(p) + '</p>').join('') +
+    '<p class="small muted" style="margin-bottom:0;padding-top:8px;border-top:1px solid var(--line)">' +
+    esc(B.note || '') + '</p>';
+
+  $('#aiGuardrail').innerHTML =
+    '<div class="note ' + (g.passed ? 'ok' : 'crit') + '" style="margin-top:0">' +
+    '<b>' + (g.passed ? 'Verification passed — brief published.' : 'Verification failed — brief withheld.') +
+    '</b> ' + g.verified + ' of ' + g.numerals_in_output + ' figures traced to the run output.</div>' +
+    (g.unverified && g.unverified.length ?
+      '<div class="note crit">Untraceable: ' + g.unverified.join(', ') + '</div>' : '') +
+    '<div class="stat"><span>Rule applied</span><b class="mono small">numerals ⊆ input facts</b></div>' +
+    '<div class="stat"><span>On failure</span><b>withhold, do not publish</b></div>' +
+    '<div class="stat"><span>Applies to</span><b>every provider</b></div>';
+
+  $('#aiConfig').innerHTML = [
+    ['Service', 'inventory-narrative'],
+    ['Provider', B.provider],
+    ['Mode', (B.mode || 'deterministic') + (B.deterministic ? ' · reproducible output' : '')],
+    ['Alternate provider', 'hosted-model · same interface, same verification'],
+    ['Invocation', 'once per reconciliation run'],
+    ['Cache key', B.cache_key || '—'],
+    ['On provider failure', 'availability publishes; brief marked unavailable'],
+  ].map(r => '<dt>' + r[0] + '</dt><dd class="' + (r[0] === 'Cache key' ? 'mono small' : '') + '">' +
+    esc(r[1]) + '</dd>').join('');
+
+  $('#aiFacts').textContent = JSON.stringify(B.facts_supplied, null, 2);
+  $('#aiPrompt').textContent = B.system_prompt || '';
+
+  const cols = Object.keys((MAP.sample_rows || [{}])[0] || {});
+  $('#mapSampleHead').innerHTML = '<tr>' + cols.map(c => '<th class="mono">' + c + '</th>').join('') + '</tr>';
+  $('#mapSample').innerHTML = (MAP.sample_rows || []).map(r =>
+    '<tr>' + cols.map(c => '<td class="mono small">' + esc(r[c]) + '</td>').join('') + '</tr>').join('');
+  const conf = c => '<span class="tag ' + (c >= 0.9 ? 't-ok' : c >= 0.8 ? 't-warn' : 't-crit') + '">' +
+    Number(c).toFixed(2) + '</span>';
+  $('#mapFields').innerHTML = (MAP.field_map || []).map(m =>
+    '<tr><td class="mono small"><b>' + m.canonical + '</b></td><td class="mono small">' + m.source_column + '</td>' +
+    '<td>' + conf(m.confidence) + '</td><td class="small muted wrap">' + esc(m.note || '') + '</td></tr>').join('');
+  $('#mapBuckets').innerHTML = (MAP.status_bucket_map || []).map(m =>
+    '<tr><td class="mono small">' + m.source_status + '</td>' +
+    '<td><span class="flagchip">' + m.bucket + '</span></td>' +
+    '<td>' + conf(m.confidence) + '</td><td class="small muted wrap">' + esc(m.note || '') + '</td></tr>').join('');
+  $('#mapNewBuckets').innerHTML = (MAP.new_buckets || []).map(b =>
+    '<tr><td><span class="flagchip">' + b.bucket + '</span></td>' +
+    '<td class="num">' + (b.available_sign > 0 ? '+' : '') + b.available_sign + '</td>' +
+    '<td class="num">' + (b.atp_sign > 0 ? '+' : '') + b.atp_sign + '</td>' +
+    '<td>' + conf(b.confidence) + '</td><td class="small muted wrap">' + esc(b.note || '') + '</td></tr>').join('')
+    || '<tr><td colspan="5" class="empty">This proposal needs no new buckets.</td></tr>';
+  $('#mapQuestions').innerHTML = (MAP.open_questions || []).map((q,i) =>
+    '<div class="note warn"><b>' + (i+1) + '.</b> ' + esc(q) + '</div>').join('');
+  const v = MAP.validation || {};
+  $('#mapValidation').innerHTML =
+    '<div class="stat"><span>Bucket names validated against the catalogue</span><b>' +
+    '<span class="tag ' + (v.passed ? 't-ok' : 't-crit') + '">' + (v.passed ? 'PASSED' : 'FAILED') + '</span></b></div>' +
+    '<div class="stat"><span>New buckets flagged for sign-off</span><b>' +
+    fmt((v.new_buckets_requiring_signoff || []).length) + '</b></div>' +
+    '<div class="stat"><span>Confidence below 0.80</span><b>escalated, not mapped</b></div>' +
+    '<div class="stat"><span>Applied at runtime</span><b><span class="tag t-crit">NEVER</span></b></div>' +
+    '<p class="small muted" style="margin:10px 0 0">Checked against: ' +
+    (v.catalogue || []).map(b => '<span class="flagchip">' + b + '</span>').join('') + '</p>';
+  $('#mapNext').innerHTML = '<b>Next step.</b> ' + esc(MAP.next_step || '');
+
+  $('#aiGuardTable').innerHTML = [
+    ['Compute <code>available</code>', 'Deterministic. Always.', 'Auditable, idempotent, legally defensible. This number is why an order gets declined.', 't-ok'],
+    ['Apply flag rules', 'Deterministic', 'Same reason. The rules are business policy, not judgement.', 't-ok'],
+    ['Demand forecast', 'Statistical models', 'Backtestable against a naive baseline. A generated opinion about demand cannot be.', 't-blue'],
+    ['Supplier ETA prediction', 'Statistics', 'Measurable against actual receipt dates.', 't-blue'],
+    ['Shrinkage detection', 'Statistics', 'A conservation identity with a noise band, not a narrative.', 't-blue'],
+    ['Risk score', 'Weighted formula in config', 'Must be explainable to ops line by line, or it gets ignored.', 't-blue'],
+    ['Rank and summarise exceptions', 'Narrative service', 'Language and prioritisation over facts it was given. No arithmetic.', 't-warn'],
+    ['Daily brief narrative', 'Narrative service', 'Text generated from supplied figures, every one verified before publishing.', 't-warn'],
+    ['Map a new source schema', 'Assistant → human-reviewed config PR', 'A proposal, validated against the catalogue. Never applied live.', 't-warn'],
+    ['Resolve orphan SKU aliases', 'Assistant + fuzzy match → human confirms', 'Suggestion only. A wrong alias silently moves stock between SKUs.', 't-warn'],
+    ['Natural-language query', 'Assistant → whitelisted API call', 'The engine computes; the service only translates in and narrates out.', 't-warn'],
+    ['Draft supplier and customer comms', 'Assistant → a human sends', 'Never auto-sent.', 't-warn'],
+    ['Change inventory or orders', 'Neither. Humans only.', 'Irreversible commercial actions with contractual money attached.', 't-crit'],
+  ].map(r => '<tr><td>' + r[0] + '</td><td><span class="tag ' + r[3] + '">' + r[1] + '</span></td>' +
+    '<td class="small muted">' + r[2] + '</td></tr>').join('');
+}
+
+/* ---------------- architecture ---------------- */
+$('#archArt').textContent = __ARCH_ART__;
+$('#archNotes').innerHTML = [
+  ['Ledger, not a formula', 'Every source contributes signed quantities into buckets. The formula is defined over buckets in config, so a new source never touches the aggregation engine.'],
+  ['Inbound is not availability', 'Inbound stock is excluded from available and kept in ATP with a date horizon. Mixing it in is the exact arithmetic that causes the oversell.'],
+  ['Conservative bias', 'Overstating costs chargebacks; understating costs a little deferred revenue. Every ambiguity resolves downward — unknown on hand publishes as zero, with a flag.'],
+  ['Null is not zero', 'on_hand: null means unknown — an item master sync problem. on_hand: 0 means genuinely out of stock. Different fixes, so different values.'],
+  ['Nothing double counted', 'Shipped order lines are already out of the WMS count; received POs are already in it; restocked returns likewise. All three are excluded by the same status-mapping mechanism.'],
+  ['Network number, location detail', 'The published figure is the network total clamped once, so it can never exceed real stock. A single short warehouse surfaces as LOCATION_OVERSOLD, whose fix is a transfer, not a sale.'],
+  ['Idempotent by construction', 'Full recompute from immutable snapshots, input hashes in the manifest. Same inputs, byte-identical output, safe to retry.'],
+].map(n => '<div style="margin-bottom:14px"><b>' + n[0] + '</b><div class="small muted">' + n[1] + '</div></div>').join('');
+$('#archPhases').innerHTML = [
+  ['0','Discovery: profile the feeds, agree which order statuses hold stock, document the manual process','3–5 days'],
+  ['1','Canonical model, adapters, availability formula, CLI, CSV/JSON output — run in shadow mode','2 weeks'],
+  ['2','Flag engine, exception queue, run manifest, lineage and explain','1 week'],
+  ['3','REST API, dashboard integration, scheduling, staleness alerting — spreadsheet retired','1–2 weeks'],
+  ['4','Returns adapter, ATP horizons, safety stock, reorder signals','1 week'],
+].map(p => '<tr><td><b>' + p[0] + '</b></td><td class="small">' + p[1] + '</td><td class="small muted">' + p[2] + '</td></tr>').join('');
+</script>
+</body>
+</html>

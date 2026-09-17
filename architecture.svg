@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L0,7 L10,3.5 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr-split" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L0,7 L10,3.5 z" fill="#f43f5e"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="760" fill="#0f172a" rx="16"/>
+
+  <!-- Title -->
+  <text x="480" y="44" text-anchor="middle" font-size="19" font-weight="700" fill="#f1f5f9">Inventory Visibility — ATP Reconciliation Architecture</text>
+  <text x="480" y="64" text-anchor="middle" font-size="12" fill="#64748b" letter-spacing="1">DETERMINISTIC CORE  ·  PROBABILISTIC PERIPHERY</text>
+
+  <!-- ═══════════════════ ROW 1: SOURCES ═══════════════════ -->
+  <text x="480" y="94" text-anchor="middle" font-size="10" font-weight="600" fill="#475569" letter-spacing="2">DATA SOURCES</text>
+
+  <!-- WMS box: x=60, w=240, cx=180 -->
+  <rect x="60"  y="104" width="240" height="76" rx="10" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="180" y="130" text-anchor="middle" font-size="14" font-weight="700" fill="#93c5fd">WMS</text>
+  <text x="180" y="150" text-anchor="middle" font-size="10" fill="#7dd3fc">Warehouse Management System</text>
+  <text x="180" y="168" text-anchor="middle" font-size="10" fill="#60a5fa">quantity_type: on_hand · CSV</text>
+
+  <!-- Order System box: x=360, w=240, cx=480 -->
+  <rect x="360" y="104" width="240" height="76" rx="10" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="480" y="130" text-anchor="middle" font-size="14" font-weight="700" fill="#93c5fd">Order System</text>
+  <text x="480" y="150" text-anchor="middle" font-size="10" fill="#7dd3fc">Customer Commitments (OMS)</text>
+  <text x="480" y="168" text-anchor="middle" font-size="10" fill="#60a5fa">quantity_type: reserved · JSON</text>
+
+  <!-- Supplier Feed box: x=660, w=240, cx=780 -->
+  <rect x="660" y="104" width="240" height="76" rx="10" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="780" y="130" text-anchor="middle" font-size="14" font-weight="700" fill="#93c5fd">Supplier Feed</text>
+  <text x="780" y="150" text-anchor="middle" font-size="10" fill="#7dd3fc">Inbound Shipments</text>
+  <text x="780" y="168" text-anchor="middle" font-size="10" fill="#60a5fa">quantity_type: incoming · CSV/API</text>
+
+  <!-- Arrows: sources → adapter -->
+  <line x1="180" y1="180" x2="180" y2="218" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="480" y1="180" x2="480" y2="218" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="780" y1="180" x2="780" y2="218" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════ ROW 2: ADAPTER ═══════════════════ -->
+  <rect x="60" y="224" width="840" height="72" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="480" y="250" text-anchor="middle" font-size="13" font-weight="700" fill="#a5b4fc">STEP 1–2 · ADAPTER LAYER</text>
+  <text x="480" y="269" text-anchor="middle" font-size="10" fill="#818cf8">Each source declares its quantity_type in sources.yaml · Schema validated · Rows tagged</text>
+  <text x="480" y="286" text-anchor="middle" font-size="10" fill="#6366f1">Output → { sku, quantity_type: on_hand | reserved | incoming, qty }</text>
+
+  <!-- Arrow adapter → normalize -->
+  <line x1="480" y1="296" x2="480" y2="330" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════ ROW 3: NORMALIZE ═══════════════════ -->
+  <rect x="60" y="336" width="840" height="72" rx="10" fill="#2d1b4e" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="480" y="362" text-anchor="middle" font-size="13" font-weight="700" fill="#d8b4fe">STEP 3–4 · NORMALIZE + AGGREGATE</text>
+  <text x="480" y="381" text-anchor="middle" font-size="10" fill="#c084fc">Common schema across all sources · Sum by (SKU, quantity_type)</text>
+  <text x="480" y="398" text-anchor="middle" font-size="12" font-weight="700" fill="#fbbf24">available  =  Σ on_hand  −  Σ reserved  +  Σ incoming</text>
+
+  <!-- Arrow normalize → flag -->
+  <line x1="480" y1="408" x2="480" y2="442" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════ ROW 4: FLAG ENGINE ═══════════════════ -->
+  <rect x="60" y="448" width="840" height="84" rx="10" fill="#3b0a1f" stroke="#f43f5e" stroke-width="1.5"/>
+  <text x="480" y="473" text-anchor="middle" font-size="13" font-weight="700" fill="#fda4af">STEP 5–6 · FLAG ENGINE</text>
+
+  <!-- 4 flags in a 2x2 grid, evenly spaced -->
+  <text x="210" y="494" text-anchor="middle" font-size="10" fill="#fecdd3">✗  Negative ATP (oversell)</text>
+  <text x="570" y="494" text-anchor="middle" font-size="10" fill="#fecdd3">✗  SKU in orders, missing from WMS</text>
+  <text x="210" y="513" text-anchor="middle" font-size="10" fill="#fecdd3">✗  Stale source data</text>
+  <text x="570" y="513" text-anchor="middle" font-size="10" fill="#fecdd3">✗  Cross-system qty mismatch</text>
+
+  <text x="480" y="527" text-anchor="middle" font-size="9" fill="#fb7185">Output → inventory.json  ·  exceptions.json  ·  run_manifest.json</text>
+
+  <!-- Arrows: flag engine → two bottom boxes (straight down, centred on each box) -->
+  <line x1="250" y1="532" x2="250" y2="576" stroke="#f43f5e" stroke-width="1.5" marker-end="url(#arr-split)"/>
+  <line x1="710" y1="532" x2="710" y2="576" stroke="#f43f5e" stroke-width="1.5" marker-end="url(#arr-split)"/>
+
+  <!-- ═══════════════════ ROW 5 LEFT: REST API (x=60 w=380 cx=250) ═══ -->
+  <rect x="60" y="582" width="380" height="112" rx="10" fill="#0c2340" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="250" y="608" text-anchor="middle" font-size="13" font-weight="700" fill="#7dd3fc">REST API  (FastAPI)</text>
+  <text x="250" y="628" text-anchor="middle" font-size="10" fill="#38bdf8">GET /v1/inventory  ·  /v1/exceptions  ·  /v1/runs</text>
+  <text x="250" y="646" text-anchor="middle" font-size="10" fill="#7dd3fc">Serves last good run only</text>
+  <text x="250" y="662" text-anchor="middle" font-size="10" fill="#7dd3fc">Never re-computes on read path</text>
+  <text x="250" y="682" text-anchor="middle" font-size="11" font-weight="600" fill="#fbbf24">→ Ops Dashboard  (ops-console.html)</text>
+
+  <!-- ═══════════════════ ROW 5 RIGHT: LAYER 7 (x=520 w=380 cx=710) ═══ -->
+  <rect x="520" y="582" width="380" height="112" rx="10" fill="#052e16" stroke="#34d399" stroke-width="1.5"/>
+  <text x="710" y="608" text-anchor="middle" font-size="13" font-weight="700" fill="#6ee7b7">LAYER 7 — Intelligence</text>
+  <text x="710" y="628" text-anchor="middle" font-size="10" fill="#a7f3d0">7a Demand Forecasting  ·  7b Supplier ETA</text>
+  <text x="710" y="646" text-anchor="middle" font-size="10" fill="#a7f3d0">7c Anomaly Detection  ·  7d Risk Scoring</text>
+  <text x="710" y="664" text-anchor="middle" font-size="10" fill="#6ee7b7">7e LLM Triage  ·  7f Source Mapping  ·  7g NL Query</text>
+  <text x="710" y="682" text-anchor="middle" font-size="10" font-weight="600" fill="#fbbf24">Reads outputs only — never computes ATP</text>
+
+  <!-- ═══════════════════ FOOTER LABELS ═══════════════════ -->
+  <rect x="60"  y="708" width="380" height="26" rx="6" fill="#1e3a5f" opacity="0.6"/>
+  <text x="250" y="726" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd" letter-spacing="1">DETERMINISTIC CORE — Steps 1–6</text>
+
+  <rect x="520" y="708" width="380" height="26" rx="6" fill="#052e16" opacity="0.6"/>
+  <text x="710" y="726" text-anchor="middle" font-size="10" font-weight="600" fill="#6ee7b7" letter-spacing="1">PROBABILISTIC PERIPHERY — Layer 7</text>
+
+  <!-- Divider between two bottom panels -->
+  <line x1="480" y1="576" x2="480" y2="740" stroke="#334155" stroke-width="1.5" stroke-dasharray="5,4"/>
+</svg>

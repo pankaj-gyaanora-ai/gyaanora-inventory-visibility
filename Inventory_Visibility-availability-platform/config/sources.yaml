@@ -1,0 +1,124 @@
+# ============================================================================
+# Inventory Visibility Availability Platform - runtime configuration
+#
+# The availability FORMULA is defined over BUCKETS in this file, not over
+# SOURCES in code. Adding a feed  = one block under `sources:` + one adapter.
+# Changing what counts as sellable = a sign change here, reviewed by Ops,
+# version controlled, no code deployment.
+# ============================================================================
+
+run:
+  timezone: UTC
+  as_of_override: 2026-09-09T06:15:00Z    # pinned so the demo is reproducible
+  atp_horizon_days: 7
+  staleness_sla_hours: 6                  # feed older than this => STALE_SOURCE
+  snapshot_skew_warn_minutes: 45          # feeds describing different moments
+  quarantine_abort_pct: 2.0               # abort rather than publish a silent error
+  default_safety_stock_pct: 0             # per-SKU override lives in item master
+
+# available_sign : contribution to TODAY's sellable number
+# atp_sign       : contribution to available-to-promise inside the horizon
+buckets:
+  ON_HAND:            { available_sign:  1, atp_sign:  1, label: "On hand",              owner: wms }
+  RESERVED:           { available_sign: -1, atp_sign: -1, label: "Reserved",             owner: orders }
+  UNSELLABLE:         { available_sign: -1, atp_sign: -1, label: "Damaged / blocked",    owner: wms }
+  SAFETY_STOCK:       { available_sign: -1, atp_sign: -1, label: "Safety stock",         owner: config }
+  INBOUND:            { available_sign:  0, atp_sign:  1, label: "Inbound (supplier)",   owner: shipments }
+  RETURN_IN_TRANSIT:  { available_sign:  0, atp_sign:  0, label: "Return in transit",    owner: returns }
+  RETURN_PENDING_QC:  { available_sign:  0, atp_sign:  0, label: "Return awaiting QC",   owner: returns }
+
+normalize:
+  sku_case: upper
+  sku_strip: true
+  sku_aliases:
+    MSD-LEGACY-0042: MSD-2042        # legacy code retired in the 2024 migration
+    MSD-LEGACY-0117: MSD-2117
+  location_aliases:
+    WH-1: WH1
+    WH-2: WH2
+    WH-3: WH3
+    "WAREHOUSE 1": WH1
+    W1: WH1
+    W2: WH2
+    W3: WH3
+  uom_conversions:
+    MSD-3301: { CASE: 12 }           # sold in cartons of twelve
+    MSD-3302: { CASE: 24 }
+    MSD-3303: { PALLET: 480 }
+    # MSD-3304 deliberately has NO rule -> UOM_UNKNOWN -> excluded from publish.
+    # Guessing between eaches and cases is a 12x availability error.
+
+sources:
+  - name: wms
+    label: Warehouse Management (Blue Yonder export)
+    adapter: inv_visibility.adapters.WmsCsvAdapter
+    path: data/wms_stock.csv
+    export_as_of: 2026-09-09T05:00:00Z
+    criticality: required          # subtractive base: missing it aborts the run
+    authority: [ON_HAND, UNSELLABLE]
+    sla_hours: 6
+    # The WMS export is one row per SKU per warehouse by schema. If two raw rows
+    # collapse onto the same cell after normalisation that is either bin-level
+    # detail or a duplicated export -- ambiguous. Both rows are kept and summed
+    # (the non-destructive choice) and the collision is raised for a human.
+    unique_per_cell: true
+
+  - name: orders
+    label: Order Management (NetSuite export)
+    adapter: inv_visibility.adapters.OrderJsonAdapter
+    path: data/orders.json
+    export_as_of: 2026-09-09T06:00:00Z
+    criticality: required          # subtractive: losing it would inflate availability
+    authority: [RESERVED]
+    sla_hours: 6
+    # Only these statuses hold stock. SHIPPED is excluded because WMS on-hand
+    # has ALREADY been decremented -- subtracting again double counts.
+    reserving_statuses: [PENDING, ALLOCATED, PICKING, PACKED]
+
+  - name: shipments
+    label: Supplier Inbound / ASN feed
+    adapter: inv_visibility.adapters.ShipmentCsvAdapter
+    path: data/supplier_shipments.csv
+    export_as_of: 2026-09-09T05:30:00Z
+    criticality: optional          # additive only: degrade ATP, never block the run
+    authority: [INBOUND]
+    sla_hours: 12
+    # RECEIVED is excluded: those units are already inside the WMS count.
+    open_statuses: [IN_TRANSIT, PARTIAL, BOOKED]
+
+  # ---- Added in month two. Proof of the extensibility claim. ----------------
+  # This block plus a 40-line adapter class was the entire change. No edit to
+  # pipeline.py, flags.py, engine.py, cli.py or api.py.
+  - name: returns
+    label: Returns / RMA portal
+    adapter: inv_visibility.adapters.ReturnsJsonAdapter
+    path: data/returns.json
+    export_as_of: 2026-09-09T04:10:00Z
+    criticality: optional
+    authority: [RETURN_IN_TRANSIT, RETURN_PENDING_QC]
+    sla_hours: 24
+    status_bucket_map:
+      IN_TRANSIT:          RETURN_IN_TRANSIT
+      RECEIVED_PENDING_QC: RETURN_PENDING_QC
+      QC_PASSED_RESTOCKED: IGNORE     # already counted in WMS on-hand
+      QC_FAILED_SCRAP:     IGNORE     # never re-enters sellable stock
+
+item_master:
+  path: data/item_master.csv
+
+flags:
+  low_cover_days: 7
+  overdue_inbound_grace_days: 1
+
+# Layer 7 (advisory) -- the risk score is a transparent weighted sum declared
+# here, not a model. Ops must be able to interrogate why a SKU ranks first, or
+# the ranked worklist gets ignored within a week.
+risk:
+  weights:
+    stockout_probability: 30
+    oversold_now:         28
+    revenue_at_risk:      16
+    penalty_exposure:     12
+    inbound_slip:          9
+    data_confidence:       5
+  revenue_at_risk_cap: 25000     # revenue exposure is capped before weighting

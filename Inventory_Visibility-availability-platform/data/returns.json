@@ -1,0 +1,420 @@
+{
+ "as_of": "2026-09-09T04:10:00Z",
+ "source_system": "Returns portal v2",
+ "returns": [
+  {
+   "rma_id": "RMA-5100",
+   "sku": "MSD-2166",
+   "warehouse": "WH2",
+   "qty": 31,
+   "status": "RECEIVED_PENDING_QC",
+   "reason": "Customer overordered",
+   "received_at": "2026-09-02"
+  },
+  {
+   "rma_id": "RMA-5101",
+   "sku": "MSD-2242",
+   "warehouse": "WH2",
+   "qty": 1,
+   "status": "RECEIVED_PENDING_QC",
+   "reason": "Customer overordered",
+   "received_at": "2026-09-05"
+  },
+  {
+   "rma_id": "RMA-5102",
+   "sku": "MSD-2120",
+   "warehouse": "WH3",
+   "qty": 26,
+   "status": "QC_FAILED_SCRAP",
+   "reason": "Quality complaint",
+   "received_at": "2026-09-05"
+  },
+  {
+   "rma_id": "RMA-5103",
+   "sku": "MSD-2137",
+   "warehouse": "WH2",
+   "qty": 21,
+   "status": "QC_FAILED_SCRAP",
+   "reason": "Customer overordered",
+   "received_at": "2026-09-01"
+  },
+  {
+   "rma_id": "RMA-5104",
+   "sku": "MSD-2008",
+   "warehouse": "WH3",
+   "qty": 3,
+   "status": "QC_PASSED_RESTOCKED",
+   "reason": "Wrong item shipped",
+   "received_at": "2026-09-09"
+  },
+  {
+   "rma_id": "RMA-5105",
+   "sku": "MSD-2109",
+   "warehouse": "WH1",
+   "qty": 15,
+   "status": "IN_TRANSIT",
+   "reason": "Customer overordered",
+   "received_at": "2026-09-07"
+  },
+  {
+   "rma_id": "RMA-5106",
+   "sku": "MSD-2163",
+   "warehouse": "WH3",
+   "qty": 13,
+   "status": "RECEIVED_PENDING_QC",
+   "reason": "Quality complaint",
+   "received_at": "2026-09-06"
+  },
+  {
+   "rma_id": "RMA-5107",
+   "sku": "MSD-2012",
+   "warehouse": "WH1",
+   "qty": 16,
+   "status": "IN_TRANSIT",
+   "reason": "Customer overordered",
+   "received_at": "2026-09-02"
+  },
+  {
+   "rma_id": "RMA-5108",
+   "sku": "MSD-2192",
+   "warehouse": "WH2",
+   "qty": 8,
+   "status": "RECEIVED_PENDING_QC",
+   "reason": "Damaged in transit",
+   "received_at": "2026-09-03"
+  },
+  {
+   "rma_id": "RMA-5109",
+   "sku": "MSD-2232",
+   "warehouse": "WH2",
+   "qty": 16,
+   "status": "IN_TRANSIT",
+   "reason": "Wrong item shipped",
+   "received_at": "2026-09-05"
+  },
+  {
+   "rma_id": "RMA-5110",
+   "sku": "MSD-2159",
+   "warehouse": "WH3",
+   "qty": 15,
+   "status": "QC_PASSED_RESTOCKED",
+   "reason": "Damaged in transit",
+   "received_at": "2026-08-30"
+  },
+  {
+   "rma_id": "RMA-5111",
+   "sku": "MSD-2030",
+   "warehouse": "WH1",
+   "qty": 15,
+   "status": "QC_PASSED_RESTOCKED",
+   "reason": "Wrong item shipped",
+   "received_at": "2026-08-28"
+  },
+  {
+   "rma_id": "RMA-5112",
+   "sku": "MSD-2077",
+   "warehouse": "WH3",
+   "qty": 13,
+   "status": "RECEIVED_PENDING_QC",
+   "reason": "Damaged in transit",
+   "received_at": "2026-08-30"
+  },
+  {
+   "rma_id": "RMA-5113",
+   "sku": "MSD-2012",
+   "warehouse": "WH3",
+   "qty": 22,
+   "status": "IN_TRANSIT",
+   "reason": "Quality complaint",
+   "received_at": "2026-08-29"
+  },
+  {
+   "rma_id": "RMA-5114",
+   "sku": "MSD-2046",
+   "warehouse": "WH3",
+   "qty": 33,
+   "status": "QC_FAILED_SCRAP",
+   "reason": "Customer overordered",
+   "received_at": "2026-08-29"
+  },
+  {
+   "rma_id": "RMA-5115",
+   "sku": "MSD-2041",
+   "warehouse": "WH3",
+   "qty": 20,
+   "status": "IN_TRANSIT",
+   "reason": "Wrong item shipped",
+   "received_at": "2026-09-03"
+  },
+  {
+   "rma_id": "RMA-5116",
+   "sku": "MSD-2091",
+   "warehouse": "WH2",
+   "qty": 33,
+   "status": "IN_TRANSIT",
+   "reason": "Customer overordered",
+   "received_at": "2026-09-09"
+  },
+  {
+   "rma_id": "RMA-5117",
+   "sku": "MSD-2008",
+   "warehouse": "WH3",
+   "qty": 19,
+   "status": "QC_FAILED_SCRAP",
+   "reason": "Damaged in transit",
+   "received_at": "2026-09-04"
+  },
+  {
+   "rma_id": "RMA-5118",
+   "sku": "MSD-2111",
+   "warehouse": "WH1",
+   "qty": 13,
+   "status": "IN_TRANSIT",
+   "reason": "Quality complaint",
+   "received_at": "2026-09-08"
+  },
+  {
+   "rma_id": "RMA-5119",
+   "sku": "MSD-2172",
+   "warehouse": "WH3",
+   "qty": 35,
+   "status": "RECEIVED_PENDING_QC",
+   "reason": "Damaged in transit",
+   "received_at": "2026-09-05"
+  },
+  {
+   "rma_id": "RMA-5120",
+   "sku": "MSD-2071",
+   "warehouse": "WH1",
+   "qty": 10,
+   "status": "QC_FAILED_SCRAP",
+   "reason": "Quality complaint",
+   "received_at": "2026-08-30"
+  },
+  {
+   "rma_id": "RMA-5121",
+   "sku": "MSD-2046",
+   "warehouse": "WH1",
+   "qty": 4,
+   "status": "QC_FAILED_SCRAP",
+   "reason": "Wrong item shipped",
+   "received_at": "2026-08-31"
+  },
+  {
+   "rma_id": "RMA-5122",
+   "sku": "MSD-2076",
+   "warehouse": "WH1",
+   "qty": 35,
+   "status": "QC_FAILED_SCRAP",
+   "reason": "Wrong item shipped",
+   "received_at": "2026-09-09"
+  },
+  {
+   "rma_id": "RMA-5123",
+   "sku": "MSD-2236",
+   "warehouse": "WH1",
+   "qty": 37,
+   "status": "RECEIVED_PENDING_QC",
+   "reason": "Customer overordered",
+   "received_at": "2026-09-01"
+  },
+  {
+   "rma_id": "RMA-5124",
+   "sku": "MSD-2246",
+   "warehouse": "WH2",
+   "qty": 18,
+   "status": "IN_TRANSIT",
+   "reason": "Quality complaint",
+   "received_at": "2026-09-08"
+  },
+  {
+   "rma_id": "RMA-5125",
+   "sku": "MSD-2217",
+   "warehouse": "WH2",
+   "qty": 39,
+   "status": "QC_FAILED_SCRAP",
+   "reason": "Damaged in transit",
+   "received_at": "2026-08-29"
+  },
+  {
+   "rma_id": "RMA-5126",
+   "sku": "MSD-2201",
+   "warehouse": "WH2",
+   "qty": 25,
+   "status": "RECEIVED_PENDING_QC",
+   "reason": "Damaged in transit",
+   "received_at": "2026-08-30"
+  },
+  {
+   "rma_id": "RMA-5127",
+   "sku": "MSD-2226",
+   "warehouse": "WH3",
+   "qty": 34,
+   "status": "QC_FAILED_SCRAP",
+   "reason": "Customer overordered",
+   "received_at": "2026-09-05"
+  },
+  {
+   "rma_id": "RMA-5128",
+   "sku": "MSD-2232",
+   "warehouse": "WH3",
+   "qty": 11,
+   "status": "RECEIVED_PENDING_QC",
+   "reason": "Wrong item shipped",
+   "received_at": "2026-08-30"
+  },
+  {
+   "rma_id": "RMA-5129",
+   "sku": "MSD-2156",
+   "warehouse": "WH1",
+   "qty": 9,
+   "status": "QC_PASSED_RESTOCKED",
+   "reason": "Customer overordered",
+   "received_at": "2026-08-30"
+  },
+  {
+   "rma_id": "RMA-5130",
+   "sku": "MSD-2114",
+   "warehouse": "WH3",
+   "qty": 27,
+   "status": "QC_PASSED_RESTOCKED",
+   "reason": "Quality complaint",
+   "received_at": "2026-09-08"
+  },
+  {
+   "rma_id": "RMA-5131",
+   "sku": "MSD-2158",
+   "warehouse": "WH3",
+   "qty": 4,
+   "status": "QC_PASSED_RESTOCKED",
+   "reason": "Quality complaint",
+   "received_at": "2026-08-30"
+  },
+  {
+   "rma_id": "RMA-5132",
+   "sku": "MSD-2225",
+   "warehouse": "WH3",
+   "qty": 12,
+   "status": "RECEIVED_PENDING_QC",
+   "reason": "Quality complaint",
+   "received_at": "2026-09-05"
+  },
+  {
+   "rma_id": "RMA-5133",
+   "sku": "MSD-2168",
+   "warehouse": "WH2",
+   "qty": 8,
+   "status": "RECEIVED_PENDING_QC",
+   "reason": "Customer overordered",
+   "received_at": "2026-08-31"
+  },
+  {
+   "rma_id": "RMA-5134",
+   "sku": "MSD-2032",
+   "warehouse": "WH2",
+   "qty": 10,
+   "status": "IN_TRANSIT",
+   "reason": "Wrong item shipped",
+   "received_at": "2026-09-01"
+  },
+  {
+   "rma_id": "RMA-5135",
+   "sku": "MSD-2075",
+   "warehouse": "WH1",
+   "qty": 16,
+   "status": "IN_TRANSIT",
+   "reason": "Customer overordered",
+   "received_at": "2026-09-05"
+  },
+  {
+   "rma_id": "RMA-5136",
+   "sku": "MSD-2242",
+   "warehouse": "WH2",
+   "qty": 12,
+   "status": "IN_TRANSIT",
+   "reason": "Damaged in transit",
+   "received_at": "2026-08-29"
+  },
+  {
+   "rma_id": "RMA-5137",
+   "sku": "MSD-2049",
+   "warehouse": "WH3",
+   "qty": 1,
+   "status": "QC_PASSED_RESTOCKED",
+   "reason": "Quality complaint",
+   "received_at": "2026-09-09"
+  },
+  {
+   "rma_id": "RMA-5138",
+   "sku": "MSD-2120",
+   "warehouse": "WH3",
+   "qty": 16,
+   "status": "IN_TRANSIT",
+   "reason": "Customer overordered",
+   "received_at": "2026-09-05"
+  },
+  {
+   "rma_id": "RMA-5139",
+   "sku": "MSD-2159",
+   "warehouse": "WH3",
+   "qty": 22,
+   "status": "QC_PASSED_RESTOCKED",
+   "reason": "Wrong item shipped",
+   "received_at": "2026-09-05"
+  },
+  {
+   "rma_id": "RMA-5140",
+   "sku": "MSD-2032",
+   "warehouse": "WH1",
+   "qty": 32,
+   "status": "IN_TRANSIT",
+   "reason": "Customer overordered",
+   "received_at": "2026-09-05"
+  },
+  {
+   "rma_id": "RMA-5141",
+   "sku": "MSD-2215",
+   "warehouse": "WH2",
+   "qty": 34,
+   "status": "IN_TRANSIT",
+   "reason": "Damaged in transit",
+   "received_at": "2026-09-03"
+  },
+  {
+   "rma_id": "RMA-5142",
+   "sku": "MSD-2059",
+   "warehouse": "WH2",
+   "qty": 31,
+   "status": "IN_TRANSIT",
+   "reason": "Damaged in transit",
+   "received_at": "2026-09-07"
+  },
+  {
+   "rma_id": "RMA-5143",
+   "sku": "MSD-2203",
+   "warehouse": "WH1",
+   "qty": 3,
+   "status": "IN_TRANSIT",
+   "reason": "Customer overordered",
+   "received_at": "2026-09-05"
+  },
+  {
+   "rma_id": "RMA-5144",
+   "sku": "MSD-2044",
+   "warehouse": "WH2",
+   "qty": 3,
+   "status": "IN_TRANSIT",
+   "reason": "Quality complaint",
+   "received_at": "2026-09-01"
+  },
+  {
+   "rma_id": "RMA-5145",
+   "sku": "MSD-2048",
+   "warehouse": "WH2",
+   "qty": 32,
+   "status": "QC_PASSED_RESTOCKED",
+   "reason": "Quality complaint",
+   "received_at": "2026-08-29"
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+sku,flag,severity,detail
+HDW-1000,MISSING_IN_SOURCE,warning,No record in orders; treated as unknown; not zero
+HDW-1007,OVERSOLD,critical,Committed beyond sellable stock (WH1 short 72)
+HDW-1014,OVERSOLD,critical,Committed beyond sellable stock (WH2 short 16)
+PKG-1110,OVERDUE_INBOUND,warning,PO-7703 was due 2026-09-08 and has not arrived
+CTN-1234,MISSING_IN_SOURCE,warning,No record in orders; treated as unknown; not zero
+FLT-1351,MISSING_IN_SOURCE,warning,No record in orders; treated as unknown; not zero
+BLT-1454,PREDICTED_STOCKOUT,critical,Runs dry about 2026-09-13; next inbound predicted None
+LUB-1557,MISSING_IN_SOURCE,warning,No record in orders; treated as unknown; not zero
+LUB-1557,SHRINKAGE_SUSPECTED,warning,Unexplained loss of roughly 2.0 units per day over 30 days
+LUB-1564,MISSING_IN_SOURCE,warning,No record in orders; treated as unknown; not zero
+LUB-1571,MISSING_IN_SOURCE,warning,No record in orders; treated as unknown; not zero
+SFT-1667,BELOW_SAFETY_STOCK,warning,Buffer of 60 units is fully consumed
+ELC-1777,PREDICTED_STOCKOUT,critical,Runs dry about 2026-09-12; next inbound predicted 2026-09-18
+ELC-1791,MISSING_IN_SOURCE,warning,No record in orders; treated as unknown; not zero
+FST-1887,MISSING_IN_SOURCE,warning,No record in orders; treated as unknown; not zero
+FST-1894,OVERSOLD,critical,Committed beyond sellable stock (WH1 short 5)
+FST-1915,MISSING_IN_SOURCE,warning,No record in orders; treated as unknown; not zero
+ADH-2025,MISSING_IN_SOURCE,warning,No record in orders; treated as unknown; not zero
+CTN-1241,EXCLUDED_UOM_UNKNOWN,critical,Stock rows dropped for an unmapped unit of measure while 13 units are committed. Add a conversion rule.
+CTN-1241,MISSING_IN_SOURCE,info,No record in wms; treated as unknown; not zero
+NEW-8801,ORPHAN_SKU_IN_ORDERS,critical,12 units committed to customers; no warehouse record
+NEW-8801,MISSING_IN_SOURCE,info,No record in wms; treated as unknown; not zero
+GHST-0001,ORPHAN_SKU_IN_SHIPMENTS,warning,20 units inbound for a SKU not in the item master
+GHST-0001,MISSING_IN_SOURCE,info,No record in wms; treated as unknown; not zero
+GHST-0001,MISSING_IN_SOURCE,info,No record in orders; treated as unknown; not zero
+GHST-0001,OVERDUE_INBOUND,warning,PO-7732 was due 2026-08-20 and has not arrived
+,STALE_SOURCE,warning,Returns portal feed is 58 hours old against a 6h agreement
+,SNAPSHOT_SKEW,warning,Current feeds span 60 minutes (Warehouse management 05:00; Supplier inbound 05:30; Order system 06:00). Reservations placed in that window are subtracted against an older count; which understates rather than oversells.
+,QTY_NOT_NUMERIC,warning,1 row(s): wms:row128
+,UOM_UNKNOWN,critical,2 row(s): wms:CTN-1241:WH1; wms:CTN-1241:WH2
+,DUPLICATE_RECORD,warning,1 row(s): wms:BLT-1447:WH1
