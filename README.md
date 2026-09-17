@@ -121,20 +121,29 @@ This is the key architectural decision. The available number must be:
 
 ---
 
-## Tech Stack
+## Tech Stack — Current
 
-| Layer | Technology | Why |
-|---|---|---|
-| **Language** | Python 3.10+ | Standard in data/supply-chain tooling; stdlib handles most of the engine |
-| **API** | FastAPI + Uvicorn | Async, auto-generates OpenAPI docs, minimal overhead |
-| **Data formats** | CSV · JSON · YAML | Matches real WMS and OMS export formats; no DB dependency |
-| **Config** | PyYAML (`sources.yaml`) | Declarative source registration — ops adds a source without touching code |
-| **Forecasting** | Python `statistics` stdlib | Classical linear regression and exponential smoothing — fully backtestable, no black box |
-| **Anomaly detection** | Conservation identity math | Deterministic inventory identity check, not ML — auditable and explainable |
-| **LLM / NL layer** | Pluggable (OpenAI / Anthropic) | Layer 7 only — never touches the ATP computation |
-| **Frontend** | Vanilla HTML + CSS + JS | Zero build step; opens directly in browser; no framework dependency |
-| **Testing** | pytest | Unit tests for engine, pipeline, and intelligence modules |
-| **No database** | Flat files (`runs/latest/`) | Every run is a self-contained JSON snapshot — portable, auditable, git-diffable |
+### Core Engine
+
+| Layer | Technology | Status | Why |
+|---|---|---|---|
+| **Language** | Python 3.10+ | ✅ Live | Standard in data/supply-chain tooling; stdlib handles most of the engine |
+| **API** | FastAPI + Uvicorn | ✅ Live | Async, auto-generates OpenAPI docs, minimal overhead |
+| **Data formats** | CSV · JSON · YAML | ✅ Live | Matches real WMS and OMS export formats; no DB dependency |
+| **Config** | PyYAML (`sources.yaml`) | ✅ Live | Declarative source registration — ops adds a source without touching code |
+| **Frontend** | Vanilla HTML + CSS + JS | ✅ Live | Zero build step; opens directly in browser; no framework dependency |
+| **Testing** | pytest | ✅ Live | Unit tests for engine, pipeline, and intelligence modules |
+| **Storage** | Flat files (`runs/latest/`) | ✅ Live | Every run is a self-contained JSON snapshot — portable, auditable, git-diffable |
+
+### Intelligence Layer (Layer 7)
+
+| Module | Technology | Status | What it does today |
+|---|---|---|---|
+| **Forecasting** | Python `statistics` stdlib | ✅ Live | Classical linear regression + exponential smoothing — backtestable, no black box |
+| **Anomaly detection** | Conservation identity math | ✅ Live | Deterministic inventory identity check — auditable, not ML |
+| **Risk scoring** | Rule-based weighted scoring | ✅ Live | Ranks SKUs by oversell / stockout probability |
+| **Supplier ETA** | Historical lead-time averages | ✅ Live | Predicts inbound arrival from past supplier patterns |
+| **LLM layer** | Pluggable — OpenAI / Anthropic Claude | ✅ Live | Exception triage briefs + natural language inventory queries |
 
 ### Why no database?
 
@@ -142,6 +151,51 @@ The engine intentionally avoids a database. Each reconciliation run produces a s
 - Any run can be replayed from its source files
 - The audit trail is plain JSON — no SQL needed to inspect it
 - The ops dashboard reads a file, not a query — fast and stable under load
+
+---
+
+## Future Stack — Roadmap
+
+These are the planned enhancements as the platform scales from a single-tenant engine to a production-grade multi-tenant SaaS.
+
+### Infrastructure & Storage
+
+| Enhancement | Technology | Why |
+|---|---|---|
+| **Persistent run storage** | PostgreSQL + TimescaleDB | Time-series ATP history, trend queries, multi-tenant isolation |
+| **Message queue** | Apache Kafka / AWS SQS | Real-time source ingestion instead of scheduled batch files |
+| **Caching** | Redis | Sub-millisecond API reads; cache last-good-run per tenant |
+| **Containerisation** | Docker + Kubernetes | Scalable deployment; isolated runs per customer |
+| **CI/CD** | GitHub Actions | Automated test, lint, and deploy on every merge |
+
+### Forecasting Upgrades
+
+| Current | Upgrade | Benefit |
+|---|---|---|
+| Linear regression (stdlib) | **Facebook Prophet** | Handles seasonality, holidays, trend breaks — no manual tuning |
+| Exponential smoothing | **XGBoost / LightGBM** | Learns from hundreds of SKU features simultaneously |
+| Single-step forecast | **LSTM / Temporal Fusion Transformer** | Multi-step horizon forecasting — "what will ATP be in 14 days?" |
+| No confidence intervals | **Probabilistic forecasting** | Risk-aware ATP — "80% chance we have > 200 units on Thursday" |
+
+### LLM & Agent Enhancements
+
+| Current | Upgrade | Benefit |
+|---|---|---|
+| One-shot triage briefs | **Agentic exception resolution** | LLM proposes a fix, human approves — closes the loop automatically |
+| Single LLM call | **RAG over run history** | "Why did SKU-1001 oversell last month?" answered from historical runs |
+| Text-only output | **Structured action proposals** | LLM outputs a JSON reorder proposal that feeds directly into procurement |
+| Manual NL queries | **Conversational ops assistant** | Slack/Teams bot — ops asks questions in plain English, gets ATP data back |
+| Single provider | **Multi-model routing** | Route cheap queries to Haiku, complex triage to Opus — cost optimised |
+
+### Frontend & Observability
+
+| Enhancement | Technology | Why |
+|---|---|---|
+| **React dashboard** | Next.js + Tailwind | Real-time WebSocket updates; filterable SKU explorer |
+| **Charts & trends** | Recharts / D3 | ATP trend lines, exception heat maps, supplier risk charts |
+| **Alerting** | PagerDuty / Slack webhooks | Push critical exceptions to ops in real time — no dashboard polling |
+| **Metrics** | Prometheus + Grafana | Track run latency, source freshness, exception rates over time |
+| **Audit log UI** | Timeline view per SKU | Full traceable history — who changed what, which run flagged it |
 
 ---
 
